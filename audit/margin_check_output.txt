@@ -84,3 +84,4 @@ E3_C_initialA_margin15_dwell10000 {'held_by_dwell': 118, 'switches': 15, 'held_b
 E3_C_initialA_margin15_dwell2000 {'held_by_margin': 62, 'switches': 39, 'held_by_dwell': 50} | improvement at switch min/max: (17.2, 100.0)
 E3_C_initialA_margin15_dwell5000 {'held_by_dwell': 103, 'switches': 25, 'held_by_margin': 15} | improvement at switch min/max: (15.9, 100.0)
 E3_C_initialA_margin30_dwell5000 {'held_by_dwell': 96, 'switches': 25, 'held_by_margin': 22} | improvement at switch min/max: (30.7, 99.8)
+committed
