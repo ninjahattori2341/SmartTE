@@ -1,0 +1,127 @@
+============================================================
+STARTING AUDIT FOR MODE: both
+============================================================
+--- Pre-run cleanup: mn -c ---
+*** Removing excess controllers/ofprotocols/ofdatapaths/pings/noxes
+killall controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+killall -9 controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+pkill -9 -f "sudo mnexec"
+*** Removing junk from /tmp
+rm -f /tmp/vconn* /tmp/vlogs* /tmp/*.out /tmp/*.log
+*** Removing old X11 tunnels
+*** Removing excess kernel datapaths
+ps ax | egrep -o 'dp[0-9]+' | sed 's/dp/nl:/'
+your 131072x1 screen size is bogus. expect trouble
+***  Removing OVS datapaths
+ovs-vsctl --timeout=1 list-br
+ovs-vsctl --timeout=1 list-br
+*** Removing all links of the pattern foo-ethX
+ip link show | egrep -o '([-_.[:alnum:]]+-eth[[:digit:]]+)'
+ip link show
+*** Killing stale mininet node processes
+pkill -9 -f mininet:
+*** Shutting down stale tunnels
+pkill -9 -f Tunnel=Ethernet
+pkill -9 -f .ssh/mn
+rm -f ~/.ssh/mn/*
+*** Cleanup complete.
+
+--- Pre-run ovs-vsctl show ---
+fa39c7f3-2a6e-4a47-9516-22150199b964
+    ovs_version: "3.3.9"
+
+--- Pre-run ip link (checking for leftover mininet interfaces) ---
+Leftover interfaces count: 0
+Building topology with path=both, bw_a=10, bw_b=10, access_bw=100
+Starting network...
+Clearing default flows on all switches...
+Installing flows for mode both...
+Executing mode both exactly as in datacenter_topology.py (calls install_flows_path_a)...
+
+--- Step 2: OpenFlow 1.3 Flow Dumps ---
+>>> ovs-ofctl -O OpenFlow13 dump-flows s1
+OFPST_FLOW reply (OF1.3) (xid=0x2):
+ cookie=0x0, duration=1.247s, table=0, n_packets=0, n_bytes=0, ip,in_port=1,nw_dst=10.0.0.2 actions=output:3
+ cookie=0x0, duration=1.202s, table=0, n_packets=0, n_bytes=0, ip,in_port=3,nw_dst=10.0.0.1 actions=output:1
+>>> ovs-ofctl -O OpenFlow13 dump-flows s2
+OFPST_FLOW reply (OF1.3) (xid=0x2):
+ cookie=0x0, duration=1.164s, table=0, n_packets=0, n_bytes=0, ip,in_port=1,nw_dst=10.0.0.2 actions=output:2
+ cookie=0x0, duration=1.119s, table=0, n_packets=0, n_bytes=0, ip,in_port=2,nw_dst=10.0.0.1 actions=output:1
+>>> ovs-ofctl -O OpenFlow13 dump-flows s3
+OFPST_FLOW reply (OF1.3) (xid=0x2):
+>>> ovs-ofctl -O OpenFlow13 dump-flows s4
+OFPST_FLOW reply (OF1.3) (xid=0x2):
+ cookie=0x0, duration=1.085s, table=0, n_packets=0, n_bytes=0, ip,in_port=3,nw_dst=10.0.0.2 actions=output:1
+ cookie=0x0, duration=1.035s, table=0, n_packets=0, n_bytes=0, ip,in_port=1,nw_dst=10.0.0.1 actions=output:3
+
+--- Step 3a: h1 -> h2 ping -c 10 ---
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=28.5 ms
+64 bytes from 10.0.0.2: icmp_seq=2 ttl=64 time=25.8 ms
+64 bytes from 10.0.0.2: icmp_seq=3 ttl=64 time=27.1 ms
+64 bytes from 10.0.0.2: icmp_seq=4 ttl=64 time=27.2 ms
+64 bytes from 10.0.0.2: icmp_seq=5 ttl=64 time=25.4 ms
+64 bytes from 10.0.0.2: icmp_seq=6 ttl=64 time=27.6 ms
+64 bytes from 10.0.0.2: icmp_seq=7 ttl=64 time=25.5 ms
+64 bytes from 10.0.0.2: icmp_seq=8 ttl=64 time=26.9 ms
+64 bytes from 10.0.0.2: icmp_seq=9 ttl=64 time=26.1 ms
+64 bytes from 10.0.0.2: icmp_seq=10 ttl=64 time=26.7 ms
+
+--- 10.0.0.2 ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9077ms
+rtt min/avg/max/mdev = 25.409/26.677/28.502/0.925 ms
+
+--- Step 3b: h1 -> h2 manual iperf test ---
+Starting iperf server on h2: iperf -s &
+Running iperf client on h1: iperf -c 10.0.0.2 -t 10
+------------------------------------------------------------
+Client connecting to 10.0.0.2, TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  1] local 10.0.0.1 port 57510 connected with 10.0.0.2 port 5001 (icwnd/mss/irtt=14/1448/25174)
+[ ID] Interval       Transfer     Bandwidth
+[  1] 0.0000-12.2401 sec  13.9 MBytes  9.51 Mbits/sec
+Stopping iperf server on h2...
+
+--- Step 4: h3 -> h4 ping -c 3 ---
+PING 10.0.0.4 (10.0.0.4) 56(84) bytes of data.
+
+--- 10.0.0.4 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2068ms
+
+--- Stopping network ---
+
+--- Post-run cleanup: mn -c ---
+*** Removing excess controllers/ofprotocols/ofdatapaths/pings/noxes
+killall controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+killall -9 controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+pkill -9 -f "sudo mnexec"
+*** Removing junk from /tmp
+rm -f /tmp/vconn* /tmp/vlogs* /tmp/*.out /tmp/*.log
+*** Removing old X11 tunnels
+*** Removing excess kernel datapaths
+ps ax | egrep -o 'dp[0-9]+' | sed 's/dp/nl:/'
+your 131072x1 screen size is bogus. expect trouble
+***  Removing OVS datapaths
+ovs-vsctl --timeout=1 list-br
+ovs-vsctl --timeout=1 list-br
+*** Removing all links of the pattern foo-ethX
+ip link show | egrep -o '([-_.[:alnum:]]+-eth[[:digit:]]+)'
+ip link show
+*** Killing stale mininet node processes
+pkill -9 -f mininet:
+*** Shutting down stale tunnels
+pkill -9 -f Tunnel=Ethernet
+pkill -9 -f .ssh/mn
+rm -f ~/.ssh/mn/*
+*** Cleanup complete.
+
+
+--- Post-run ovs-vsctl show ---
+fa39c7f3-2a6e-4a47-9516-22150199b964
+    ovs_version: "3.3.9"
+
+
+--- Post-run ip link check ---
+Post-run leftover interfaces count: 0
+AUDIT FOR MODE both COMPLETED CLEANLY.

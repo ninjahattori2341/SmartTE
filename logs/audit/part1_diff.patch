@@ -1,0 +1,240 @@
+--- a/topology/datacenter_topology.py
++++ b/topology/datacenter_topology.py
+@@ -34,10 +34,10 @@
+ Path B links:  configurable (default 10 Mbps), 10 ms delay
+ 
+ Usage:
+-    sudo python3 datacenter_topology.py              # default Path A
+-    sudo python3 datacenter_topology.py --path B      # use Path B
+-    sudo python3 datacenter_topology.py --path both   # install both paths
+-    sudo python3 datacenter_topology.py --bw-a 10 --bw-b 20  # custom BWs
++    sudo python3 datacenter_topology.py                          # default Path A, competing off
++    sudo python3 datacenter_topology.py --path B                  # use Path B for h1<->h2
++    sudo python3 datacenter_topology.py --competing A             # pin h3<->h4 to Path A
++    sudo python3 datacenter_topology.py --path A --competing A    # both flows on Path A
+ """
+ 
+ import argparse
+@@ -48,13 +48,15 @@
+ # ---------------------------------------------------------------------------
+ # Configuration defaults
+ # ---------------------------------------------------------------------------
+-DEFAULT_PATH      = 'A'
+-ACCESS_BW         = 100    # Mbps
+-ACCESS_DELAY      = '1ms'
+-PATH_A_BW         = 10     # Mbps  (s1-s2, s2-s4)
+-PATH_A_DELAY      = '5ms'
+-PATH_B_BW         = 10     # Mbps  (s1-s3, s3-s4)
+-PATH_B_DELAY      = '10ms'
++DEFAULT_PATH         = 'A'
++DEFAULT_COMPETING    = 'off'
++ACCESS_BW            = 100    # Mbps
++DEFAULT_DELAY_ACCESS = '1ms'
++PATH_A_BW            = 10     # Mbps  (s1-s2, s2-s4)
++DEFAULT_DELAY_A      = '5ms'
++PATH_B_BW            = 10     # Mbps  (s1-s3, s3-s4)
++DEFAULT_DELAY_B      = '10ms'
++DEFAULT_QUEUE        = 100    # max_queue_size packets on inter-switch links
+ 
+ # ---------------------------------------------------------------------------
+ # Logging setup
+@@ -72,8 +74,12 @@
+         description='SmartTE diamond topology with static path selection'
+     )
+     parser.add_argument(
+-        '--path', choices=['A', 'B', 'both'], default=DEFAULT_PATH,
++        '--path', choices=['A', 'B'], default=DEFAULT_PATH,
+         help='Active forwarding path for h1<->h2 (default: A)'
++    )
++    parser.add_argument(
++        '--competing', choices=['off', 'A', 'B'], default=DEFAULT_COMPETING,
++        help='Forwarding path for competing traffic h3<->h4 (default: off)'
+     )
+     parser.add_argument(
+         '--bw-a', type=int, default=PATH_A_BW,
+@@ -86,6 +92,22 @@
+     parser.add_argument(
+         '--access-bw', type=int, default=ACCESS_BW,
+         help='Bandwidth for host access links in Mbps (default: %(default)s)'
++    )
++    parser.add_argument(
++        '--delay-access', type=str, default=DEFAULT_DELAY_ACCESS,
++        help='Propagation delay for access links (default: %(default)s)'
++    )
++    parser.add_argument(
++        '--delay-a', type=str, default=DEFAULT_DELAY_A,
++        help='Propagation delay for Path A links (default: %(default)s)'
++    )
++    parser.add_argument(
++        '--delay-b', type=str, default=DEFAULT_DELAY_B,
++        help='Propagation delay for Path B links (default: %(default)s)'
++    )
++    parser.add_argument(
++        '--queue', type=int, default=DEFAULT_QUEUE,
++        help='Queue limit (max_queue_size in packets) on bottleneck links (default: %(default)s)'
+     )
+     parser.add_argument(
+         '--no-cli', action='store_true', default=False,
+@@ -111,13 +133,19 @@
+ 
+     setLogLevel('info')
+ 
++    delay_access = getattr(args, 'delay_access', DEFAULT_DELAY_ACCESS)
++    delay_a = getattr(args, 'delay_a', DEFAULT_DELAY_A)
++    delay_b = getattr(args, 'delay_b', DEFAULT_DELAY_B)
++    queue_pkts = getattr(args, 'queue', DEFAULT_QUEUE)
++    q_param = queue_pkts if (queue_pkts is not None and queue_pkts > 0) else None
++
+     # Use no controller - we install flows manually for static baseline
+     net = Mininet(
+         controller=None,
+         switch=OVSSwitch,
+         link=TCLink,
+-        autoSetMacs=False,
+-        autoStaticArp=True,    # pre-populate ARP tables to avoid broadcast
++        autoSetMacs=True,      # Deterministic MAC addresses (e.g. 00:00:00:00:00:01 for h1)
++        autoStaticArp=True,    # Pre-populate kernel ARP tables on hosts. This is required because OpenFlow switches run in failMode='secure' without a controller and flow rules only match IP traffic; without static ARP, ARP requests would be dropped. Flooding ARP would cause broadcast storms in this looped diamond topology.
+     )
+ 
+     log.info('Creating switches (OpenFlow 1.3, failMode=secure)...')
+@@ -135,21 +163,23 @@
+     # ------------------------------------------------------------------
+     # Links - port numbers are explicitly assigned
+     # ------------------------------------------------------------------
+-    log.info('Creating access links (%d Mbps, %s)...', args.access_bw, ACCESS_DELAY)
++    log.info('Creating access links (%d Mbps, %s)...', args.access_bw, delay_access)
+     # s1 access links
+-    net.addLink(h1, s1, port1=0, port2=1, bw=args.access_bw, delay=ACCESS_DELAY)
+-    net.addLink(h3, s1, port1=0, port2=2, bw=args.access_bw, delay=ACCESS_DELAY)
++    net.addLink(h1, s1, port1=0, port2=1, bw=args.access_bw, delay=delay_access)
++    net.addLink(h3, s1, port1=0, port2=2, bw=args.access_bw, delay=delay_access)
+     # s4 access links
+-    net.addLink(h2, s4, port1=0, port2=1, bw=args.access_bw, delay=ACCESS_DELAY)
+-    net.addLink(h4, s4, port1=0, port2=2, bw=args.access_bw, delay=ACCESS_DELAY)
+-
+-    log.info('Creating Path A links (s1-s2-s4, %d Mbps, %s)...', args.bw_a, PATH_A_DELAY)
+-    net.addLink(s1, s2, port1=3, port2=1, bw=args.bw_a, delay=PATH_A_DELAY)
+-    net.addLink(s2, s4, port1=2, port2=3, bw=args.bw_a, delay=PATH_A_DELAY)
+-
+-    log.info('Creating Path B links (s1-s3-s4, %d Mbps, %s)...', args.bw_b, PATH_B_DELAY)
+-    net.addLink(s1, s3, port1=4, port2=1, bw=args.bw_b, delay=PATH_B_DELAY)
+-    net.addLink(s3, s4, port1=2, port2=4, bw=args.bw_b, delay=PATH_B_DELAY)
++    net.addLink(h2, s4, port1=0, port2=1, bw=args.access_bw, delay=delay_access)
++    net.addLink(h4, s4, port1=0, port2=2, bw=args.access_bw, delay=delay_access)
++
++    log.info('Creating Path A links (s1-s2-s4, %d Mbps, %s, queue=%s pkts)...',
++             args.bw_a, delay_a, q_param)
++    net.addLink(s1, s2, port1=3, port2=1, bw=args.bw_a, delay=delay_a, max_queue_size=q_param)
++    net.addLink(s2, s4, port1=2, port2=3, bw=args.bw_a, delay=delay_a, max_queue_size=q_param)
++
++    log.info('Creating Path B links (s1-s3-s4, %d Mbps, %s, queue=%s pkts)...',
++             args.bw_b, delay_b, q_param)
++    net.addLink(s1, s3, port1=4, port2=1, bw=args.bw_b, delay=delay_b, max_queue_size=q_param)
++    net.addLink(s3, s4, port1=2, port2=4, bw=args.bw_b, delay=delay_b, max_queue_size=q_param)
+ 
+     return net
+ 
+@@ -200,6 +230,74 @@
+     net['s4'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.1,actions=output:4', '-O', 'OpenFlow13')
+ 
+     log.info('Path B flows installed.')
++
++
++def install_competing_flows_path_a(net):
++    """
++    Install OpenFlow rules for competing traffic h3 <-> h4 via Path A (s1 -> s2 -> s4).
++
++    Forward direction:  h3 -> s1:p2 -> s1:p3 -> s2:p1 -> s2:p2 -> s4:p3 -> s4:p2 -> h4
++    Reverse direction:  h4 -> s4:p2 -> s4:p3 -> s2:p2 -> s2:p1 -> s1:p3 -> s1:p2 -> h3
++    """
++    log.info('Installing competing Path A flows (s1 -> s2 -> s4) for h3 <-> h4...')
++
++    # s1: h3(port2) -> s2(port3) and s2(port3) -> h3(port2)
++    net['s1'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.4,actions=output:3', '-O', 'OpenFlow13')
++    net['s1'].dpctl('add-flow', 'in_port=3,ip,nw_dst=10.0.0.3,actions=output:2', '-O', 'OpenFlow13')
++
++    # s2: s1(port1) -> s4(port2) and s4(port2) -> s1(port1)
++    net['s2'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.4,actions=output:2', '-O', 'OpenFlow13')
++    net['s2'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.3,actions=output:1', '-O', 'OpenFlow13')
++
++    # s4: s2(port3) -> h4(port2) and h4(port2) -> s2(port3)
++    net['s4'].dpctl('add-flow', 'in_port=3,ip,nw_dst=10.0.0.4,actions=output:2', '-O', 'OpenFlow13')
++    net['s4'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.3,actions=output:3', '-O', 'OpenFlow13')
++
++    log.info('Competing Path A flows installed.')
++
++
++def install_competing_flows_path_b(net):
++    """
++    Install OpenFlow rules for competing traffic h3 <-> h4 via Path B (s1 -> s3 -> s4).
++
++    Forward direction:  h3 -> s1:p2 -> s1:p4 -> s3:p1 -> s3:p2 -> s4:p4 -> s4:p2 -> h4
++    Reverse direction:  h4 -> s4:p2 -> s4:p4 -> s3:p2 -> s3:p1 -> s1:p4 -> s1:p2 -> h3
++    """
++    log.info('Installing competing Path B flows (s1 -> s3 -> s4) for h3 <-> h4...')
++
++    # s1: h3(port2) -> s3(port4) and s3(port4) -> h3(port2)
++    net['s1'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.4,actions=output:4', '-O', 'OpenFlow13')
++    net['s1'].dpctl('add-flow', 'in_port=4,ip,nw_dst=10.0.0.3,actions=output:2', '-O', 'OpenFlow13')
++
++    # s3: s1(port1) -> s4(port2) and s4(port2) -> s1(port1)
++    net['s3'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.4,actions=output:2', '-O', 'OpenFlow13')
++    net['s3'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.3,actions=output:1', '-O', 'OpenFlow13')
++
++    # s4: s3(port4) -> h4(port2) and h4(port2) -> s3(port4)
++    net['s4'].dpctl('add-flow', 'in_port=4,ip,nw_dst=10.0.0.4,actions=output:2', '-O', 'OpenFlow13')
++    net['s4'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.3,actions=output:4', '-O', 'OpenFlow13')
++
++    log.info('Competing Path B flows installed.')
++
++
++def install_flows(net, path='A', competing='off'):
++    """Unified entry point to install primary and competing flows."""
++    if path == 'A':
++        install_flows_path_a(net)
++    elif path == 'B':
++        install_flows_path_b(net)
++    else:
++        raise ValueError(f"Invalid path '{path}'. Must be 'A' or 'B'.")
++
++    if competing == 'A':
++        install_competing_flows_path_a(net)
++    elif competing == 'B':
++        install_competing_flows_path_b(net)
++    elif competing == 'off':
++        log.info('Competing traffic: off (h3, h4 isolated)')
++    else:
++        raise ValueError(f"Invalid competing mode '{competing}'. Must be 'off', 'A', or 'B'.")
++
+ 
+ 
+ def verify_port_mappings(net):
+@@ -296,7 +394,8 @@
+ def main():
+     """Entry point."""
+     args = parse_args()
+-    log.info('SmartTE Diamond Topology - Path: %s', args.path)
++    log.info('SmartTE Diamond Topology - Path: %s, Competing: %s',
++             args.path, args.competing)
+     log.info('Path A bandwidth: %d Mbps, Path B bandwidth: %d Mbps',
+              args.bw_a, args.bw_b)
+ 
+@@ -304,15 +403,15 @@
+         run_network(args)
+     except KeyboardInterrupt:
+         log.info('Interrupted by user.')
+-        sys.exit(0)
+     except Exception as e:
+         log.error('Fatal error: %s', e)
+-        log.info('Attempting cleanup...')
++        sys.exit(1)
++    finally:
++        log.info('Performing post-execution cleanup...')
+         try:
+             cleanup_previous()
+         except Exception:
+             pass
+-        sys.exit(1)
+ 
+ 
+ if __name__ == '__main__':

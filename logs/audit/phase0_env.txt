@@ -1,0 +1,128 @@
+=== uname -a ===
+Linux KUTU 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:31:42 UTC 2025 aarch64 aarch64 aarch64 GNU/Linux
+=== os-release ===
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+=== pwd ===
+/home/andy2341/smartte
+=== git status ===
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	logs/
+	topology/
+
+nothing added to commit but untracked files present (use "git add" to track)
+=== git log --oneline -n 10 ===
+ccdb3f7 Initialize SmartTE project
+=== git diff --stat ===
+=== git config user.name ===
+ninjahattori2341
+=== git config user.email ===
+aayushsingh12062007@gmail.com
+=== ls -la root ===
+total 52
+drwxr-xr-x 12 andy2341 andy2341 4096 Oct 10 13:51 .
+drwxr-x---  8 andy2341 andy2341 4096 Oct 10 13:53 ..
+drwxr-xr-x  8 andy2341 andy2341 4096 Oct 11 08:43 .git
+-rw-r--r--  1 andy2341 andy2341  315 Oct 10 13:51 README.md
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 analysis
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 controller
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 experiments
+drwxr-xr-x  3 andy2341 andy2341 4096 Oct 11 08:43 logs
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 report
+drwxr-xr-x  4 andy2341 andy2341 4096 Oct 10 13:49 results
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 screenshots
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 tests
+drwxr-xr-x  3 andy2341 andy2341 4096 Oct 10 14:14 topology
+=== python3 --version ===
+Python 3.12.3
+=== git --version ===
+git version 2.43.0
+=== mn --version ===
+2.3.0
+=== ovs-vsctl --version ===
+ovs-vsctl (Open vSwitch) 3.3.9
+DB Schema 8.5.1
+=== service openvswitch-switch status ===
+● openvswitch-switch.service - Open vSwitch
+     Loaded: loaded (/usr/lib/systemd/system/openvswitch-switch.service; enabled; preset: enabled)
+     Active: active (exited) since Sun 2026-10-11 08:16:26 UTC; 27min ago
+   Main PID: 437 (code=exited, status=0/SUCCESS)
+        CPU: 1ms
+
+Oct 11 08:16:25 KUTU systemd[1]: Starting openvswitch-switch.service - Open vSwitch...
+Oct 11 08:16:26 KUTU systemd[1]: Finished openvswitch-switch.service - Open vSwitch.
+=== pip3 show ryu ===
+WARNING: Package(s) not found: ryu
+=== which ryu-manager ===
+/home/andy2341/smartte/analysis/:
+total 8
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 .
+drwxr-xr-x 12 andy2341 andy2341 4096 Oct 10 13:51 ..
+
+/home/andy2341/smartte/controller/:
+total 8
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 .
+drwxr-xr-x 12 andy2341 andy2341 4096 Oct 10 13:51 ..
+
+/home/andy2341/smartte/experiments/:
+total 8
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 .
+drwxr-xr-x 12 andy2341 andy2341 4096 Oct 10 13:51 ..
+
+/home/andy2341/smartte/logs/:
+total 12
+drwxr-xr-x  3 andy2341 andy2341 4096 Oct 11 08:43 .
+drwxr-xr-x 12 andy2341 andy2341 4096 Oct 10 13:51 ..
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 11 08:43 audit
+
+/home/andy2341/smartte/report/:
+total 8
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 .
+drwxr-xr-x 12 andy2341 andy2341 4096 Oct 10 13:51 ..
+
+/home/andy2341/smartte/results/:
+total 16
+drwxr-xr-x  4 andy2341 andy2341 4096 Oct 10 13:49 .
+drwxr-xr-x 12 andy2341 andy2341 4096 Oct 10 13:51 ..
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 processed
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 raw
+
+/home/andy2341/smartte/screenshots/:
+total 8
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 .
+drwxr-xr-x 12 andy2341 andy2341 4096 Oct 10 13:51 ..
+
+/home/andy2341/smartte/tests/:
+total 8
+drwxr-xr-x  2 andy2341 andy2341 4096 Oct 10 13:49 .
+drwxr-xr-x 12 andy2341 andy2341 4096 Oct 10 13:51 ..
+
+/home/andy2341/smartte/topology/:
+total 24
+drwxr-xr-x  3 andy2341 andy2341  4096 Oct 10 14:14 .
+drwxr-xr-x 12 andy2341 andy2341  4096 Oct 10 13:51 ..
+drwxr-xr-x  2 andy2341 andy2341  4096 Oct 10 14:18 __pycache__
+-rw-r--r--  1 andy2341 andy2341 11941 Oct 10 14:15 datacenter_topology.py
+319 /home/andy2341/smartte/topology/datacenter_topology.py
+/home/andy2341/smartte/topology/datacenter_topology.py: Python script, ASCII text executable
+  File: /home/andy2341/smartte/topology/datacenter_topology.py
+  Size: 11941     	Blocks: 24         IO Block: 4096   regular file
+Device: 8,48	Inode: 5901        Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/andy2341)   Gid: ( 1000/andy2341)
+Access: 2026-10-10 14:15:52.144551388 +0000
+Modify: 2026-10-10 14:15:00.265300166 +0000
+Change: 2026-10-10 14:15:00.265300166 +0000
+ Birth: 2026-10-10 14:13:56.159649197 +0000
