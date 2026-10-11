@@ -1,0 +1,89 @@
+### sudo check
+passwordless sudo OFF
+README
+no NOPASSWD entries
+
+### code changed since the commit recorded in the CSV
+ analysis/analyse_results.py            | 368 +++++++++++++++++++++++++++++++++
+ analysis/plot_results.py               | 311 ++++++++++++++++++++++++++++
+ controller/congestion_policy.py        |  21 ++
+ controller/smartte_controller.py       |  11 +-
+ experiments/run_controller_campaign.py |   3 +-
+ tests/test_congestion_policy.py        |  16 ++
+ 6 files changed, 727 insertions(+), 3 deletions(-)
+diff --git a/controller/congestion_policy.py b/controller/congestion_policy.py
+index 7fd7d33..b77a2cd 100644
+--- a/controller/congestion_policy.py
++++ b/controller/congestion_policy.py
+@@ -4,6 +4,27 @@ VALID_PATHS = ('A', 'B')
+ DEFAULT_EPSILON = 0.01  # utilisation percentage points; avoids float flapping.
+ 
+ 
++def mask_unavailable_paths(scores, unavailable_paths):
++    """Make a failed path ineligible for best-path selection."""
++    unavailable = set(unavailable_paths)
++    return {
++        path: None if path in unavailable else scores.get(path)
++        for path in VALID_PATHS
++    }
++
++
++def successful_path_change_count(events):
++    """Count committed route transitions, not rejected switch decisions."""
++    totals = [
++        int(event['path_changes_total'])
++        for event in events
++        if isinstance(event.get('path_changes_total'), (int, float))
++    ]
++    if totals:
++        return max(totals)
++    return sum(event.get('decision') == 'switch' for event in events)
++
++
+ def score_paths(link_utilization):
+     """Return each path's worst core-link utilisation, or None if incomplete."""
+     result = {}
+
+### switch decisions vs successful installs, all B and C trials
+E1_B_no_competition | (decisions, ok, failed, raw_path_changes) per trial: [(16, 16, 0, '16'), (16, 16, 0, '16'), (16, 16, 0, '16'), (16, 16, 0, '16'), (16, 16, 0, '16')]
+E1_C_no_competition | (decisions, ok, failed, raw_path_changes) per trial: [(3, 3, 0, '3'), (3, 3, 0, '3'), (3, 3, 0, '3'), (3, 3, 0, '3'), (3, 3, 0, '3')]
+E2_B_initialA_5Mbps | (decisions, ok, failed, raw_path_changes) per trial: [(18, 18, 0, '18'), (18, 18, 0, '18'), (18, 18, 0, '18'), (18, 18, 0, '18'), (19, 19, 0, '19')]
+E2_B_initialA_9Mbps | (decisions, ok, failed, raw_path_changes) per trial: [(14, 14, 0, '14'), (14, 14, 0, '14'), (15, 15, 0, '15'), (14, 14, 0, '14'), (16, 16, 0, '16')]
+E2_C_initialA_5Mbps | (decisions, ok, failed, raw_path_changes) per trial: [(4, 4, 0, '4'), (4, 4, 0, '4'), (4, 4, 0, '4'), (4, 4, 0, '4'), (4, 4, 0, '4')]
+E2_C_initialA_9Mbps | (decisions, ok, failed, raw_path_changes) per trial: [(2, 2, 0, '2'), (2, 2, 0, '2'), (2, 2, 0, '2'), (2, 2, 0, '2'), (2, 2, 0, '2')]
+E3_B_initialA_margin15_dwell5000 | (decisions, ok, failed, raw_path_changes) per trial: [(25, 25, 0, '25'), (25, 25, 0, '25'), (25, 25, 0, '25'), (25, 25, 0, '25'), (25, 25, 0, '25')]
+E3_C_initialA_margin10_dwell5000 | (decisions, ok, failed, raw_path_changes) per trial: [(5, 5, 0, '5'), (5, 5, 0, '5'), (5, 5, 0, '5'), (5, 5, 0, '5'), (5, 5, 0, '5')]
+E3_C_initialA_margin15_dwell10000 | (decisions, ok, failed, raw_path_changes) per trial: [(3, 3, 0, '3'), (3, 3, 0, '3'), (3, 3, 0, '3'), (3, 3, 0, '3'), (3, 3, 0, '3')]
+E3_C_initialA_margin15_dwell2000 | (decisions, ok, failed, raw_path_changes) per trial: [(8, 8, 0, '8'), (8, 8, 0, '8'), (7, 7, 0, '7'), (7, 7, 0, '7'), (9, 9, 0, '9')]
+E3_C_initialA_margin15_dwell5000 | (decisions, ok, failed, raw_path_changes) per trial: [(5, 5, 0, '5'), (5, 5, 0, '5'), (5, 5, 0, '5'), (5, 5, 0, '5'), (5, 5, 0, '5')]
+E3_C_initialA_margin30_dwell5000 | (decisions, ok, failed, raw_path_changes) per trial: [(5, 5, 0, '5'), (5, 5, 0, '5'), (5, 5, 0, '5'), (5, 5, 0, '5'), (5, 5, 0, '5')]
+E4_B_PathA_down | (decisions, ok, failed, raw_path_changes) per trial: [(17, 1, 16, '17'), (17, 1, 16, '17'), (17, 1, 16, '17'), (17, 1, 16, '17'), (17, 1, 16, '17')]
+E4_C_PathA_down | (decisions, ok, failed, raw_path_changes) per trial: [(11, 1, 10, '11'), (12, 1, 11, '12'), (12, 1, 11, '12'), (12, 1, 11, '12'), (12, 1, 11, '12')]
+
+### E1 C trial 1: every switch event
+{"candidate_path": "B", "controller_process_cpu_s": 0.0019475999999999938, "current_path": "A", "cycle_id": 5, "decision": "switch", "decision_cpu_time_s": 1.8200000000023753e-05, "elapsed_since_last_switch_ms": 5368.643, "flow_mod_count_after": 16, "flow_mod_count_before": 6, "flow_mod_install_succeeded": true, "flow_mod_timestamp_monotonic_s": 12906.124468252, "improvement_pct_points": 97.8878016897093, "minimum_dw
+{"candidate_path": "A", "controller_process_cpu_s": 0.002792900000000015, "current_path": "B", "cycle_id": 10, "decision": "switch", "decision_cpu_time_s": 2.389999999999337e-05, "elapsed_since_last_switch_ms": 5003.739, "flow_mod_count_after": 26, "flow_mod_count_before": 16, "flow_mod_install_succeeded": true, "flow_mod_timestamp_monotonic_s": 12911.129499998, "improvement_pct_points": 97.86977225177887, "minimum_d
+{"candidate_path": "B", "controller_process_cpu_s": 0.0031023000000000023, "current_path": "A", "cycle_id": 15, "decision": "switch", "decision_cpu_time_s": 2.4100000000026878e-05, "elapsed_since_last_switch_ms": 5004.009, "flow_mod_count_after": 36, "flow_mod_count_before": 26, "flow_mod_install_succeeded": true, "flow_mod_timestamp_monotonic_s": 12916.135023269, "improvement_pct_points": 98.0431082471008, "minimum_
+
+### loss with Wilson 95% CI (pings treated as independent: optimistic)
+E1_B_no_competition,375,16,4.27,2.64,6.82
+E1_C_no_competition,375,17,4.53,2.85,7.14
+E1_STATIC_no_competition,375,8,2.13,1.08,4.15
+E2_B_initialA_5Mbps,500,53,10.60,8.20,13.61
+E2_B_initialA_9Mbps,500,61,12.20,9.62,15.36
+E2_C_initialA_5Mbps,500,22,4.40,2.92,6.57
+E2_C_initialA_9Mbps,500,7,1.40,0.68,2.86
+E2_STATIC_initialA_5Mbps,500,17,3.40,2.13,5.38
+E2_STATIC_initialA_9Mbps,500,26,5.20,3.57,7.51
+E2_STATIC_initialB_5Mbps,500,8,1.60,0.81,3.13
+E2_STATIC_initialB_9Mbps,500,6,1.20,0.55,2.59
+E3_B_initialA_margin15_dwell5000,750,56,7.47,5.79,9.57
+E3_C_initialA_margin10_dwell5000,750,31,4.13,2.93,5.81
+E3_C_initialA_margin15_dwell10000,750,49,6.53,4.98,8.53
+E3_C_initialA_margin15_dwell2000,750,30,4.00,2.82,5.65
+E3_C_initialA_margin15_dwell5000,750,38,5.07,3.71,6.88
+E3_C_initialA_margin30_dwell5000,750,40,5.33,3.94,7.18
+E3_STATIC_initialA_margin15_dwell5000,750,60,8.00,6.27,10.16
+E3_STATIC_initialB_margin15_dwell5000,750,10,1.33,0.73,2.44
+E4_B_PathA_down,375,8,2.13,1.08,4.15
+E4_C_PathA_down,375,7,1.87,0.91,3.80

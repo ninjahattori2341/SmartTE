@@ -137,3 +137,12 @@ E4_C_PathA_down_t04 | 12 | 1 | 11 | 1 | 0.009
 E4_C_PathA_down_t05 | 12 | 1 | 11 | 1 | 0.021
 
 ##### 3. COMMIT AUDIT FILES #####
+audit commit ok
+cbdfc3f docs: audit scripts and outputs
+65fbab9 data: M2 verification evidence (refreshed re-runs)
+4e0e191 docs: report drafts
+
+##### 4. REMOVE TEMP SUDO #####
+temp sudo rule removed
+WARNING: passwordless sudo still active
+DONE
