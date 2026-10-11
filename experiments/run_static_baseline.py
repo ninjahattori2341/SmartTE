@@ -45,6 +45,7 @@ if PROJECT_ROOT not in sys.path:
 from topology.datacenter_topology import (
     build_topology,
     install_flows,
+    disable_ipv6_interface_noise,
     cleanup_previous,
     DEFAULT_DELAY_ACCESS,
     DEFAULT_DELAY_A,
@@ -231,19 +232,29 @@ def capture_switch_snapshot(net, raw_dir, trial_tag, phase):
 
 def parse_port_counters(output):
     counters = {}
+    current_port = None
     for line in output.splitlines():
-        port_match = re.search(r'^\s*port\s+(\d+):', line)
-        if not port_match:
+        port_match = re.search(r'^\s*port\s+(.+?):', line)
+        if port_match:
+            current_port = port_match.group(1).strip().strip('"')
+            counters.setdefault(current_port, {})
+        if current_port is None:
             continue
-        port = port_match.group(1)
-        values = {}
         for direction in ('rx', 'tx'):
             match = re.search(rf'{direction} pkts=(\d+),\s*bytes=(\d+)', line)
             if match:
-                values[f'{direction}_packets'] = int(match.group(1))
-                values[f'{direction}_bytes'] = int(match.group(2))
-        counters[port] = values
+                counters[current_port][f'{direction}_packets'] = int(match.group(1))
+                counters[current_port][f'{direction}_bytes'] = int(match.group(2))
     return counters
+
+
+def packet_delta_sum(port_deltas, switch):
+    """Sum RX and TX packet deltas for a switch's ports."""
+    prefix = f'{switch}:'
+    return sum(
+        value for key, value in port_deltas.items()
+        if key.startswith(prefix) and key.endswith((':rx_packets', ':tx_packets'))
+    )
 
 
 def parse_flow_counters(output):
@@ -266,14 +277,14 @@ def write_snapshot_delta(before, after, raw_dir, trial_tag, primary_path,
     for sw in ('s2', 's3'):
         before_ports = parse_port_counters(before['ports'].get(sw, ''))
         after_ports = parse_port_counters(after['ports'].get(sw, ''))
-        for port in sorted(set(before_ports) | set(after_ports), key=int):
+        for port in sorted(set(before_ports) | set(after_ports), key=str):
             old = before_ports.get(port, {})
             new = after_ports.get(port, {})
             for metric in ('rx_packets', 'tx_packets', 'rx_bytes', 'tx_bytes'):
                 if metric in old and metric in new:
                     port_deltas[f'{sw}:{port}:{metric}'] = new[metric] - old[metric]
 
-    rx_gt_tx = []
+    rx_gt_tx_imbalances = []
     for sw in ('s2', 's3'):
         ports = parse_port_counters(before['ports'].get(sw, ''))
         after_ports = parse_port_counters(after['ports'].get(sw, ''))
@@ -281,8 +292,8 @@ def write_snapshot_delta(before, after, raw_dir, trial_tag, primary_path,
             rx_delta = port_deltas.get(f'{sw}:{port}:rx_packets')
             tx_delta = port_deltas.get(f'{sw}:{port}:tx_packets')
             if rx_delta is not None and tx_delta is not None and rx_delta > tx_delta:
-                rx_gt_tx.append({
-                    'switch': sw, 'port': int(port),
+                rx_gt_tx_imbalances.append({
+                    'switch': sw, 'port': port,
                     'rx_packets_delta': rx_delta,
                     'tx_packets_delta': tx_delta
                 })
@@ -300,14 +311,14 @@ def write_snapshot_delta(before, after, raw_dir, trial_tag, primary_path,
         active_paths.add(competing_path)
     unused_path = next(iter({'A', 'B'} - active_paths)) if len(active_paths) == 1 else None
     unused_switch = {'A': 's2', 'B': 's3'}.get(unused_path)
-    unused_packets = sum(
-        value for key, value in port_deltas.items()
-        if unused_switch and key.startswith(f'{unused_switch}:')
-        and key.endswith(('_rx_packets', '_tx_packets'))
-    )
+    unused_packets = packet_delta_sum(port_deltas, unused_switch) if unused_switch else 0
     report = {
         'port_counter_deltas': port_deltas,
-        'rx_greater_than_tx_anomalies': rx_gt_tx,
+        'rx_gt_tx_direction_imbalances': rx_gt_tx_imbalances,
+        'counter_interpretation': (
+            'Per-port RX/TX packet-count imbalance is descriptive and can occur '
+            'with asymmetric TCP data and ACK traffic; it is not by itself a loop verdict.'
+        ),
         'flow_n_packets_deltas': flow_deltas,
         'unused_path': unused_path,
         'unused_path_switch': unused_switch,
@@ -323,20 +334,59 @@ def write_snapshot_delta(before, after, raw_dir, trial_tag, primary_path,
 def sample_core_tx_bytes(net, path):
     sw, port, capacity_mbps = PATH_EGRESS[path]
     output = net[sw].cmd(f'ovs-ofctl -O OpenFlow13 dump-ports {sw}').strip()
-    match = re.search(
-        rf'^\s*port\s+{port}:.*?tx pkts=\d+,\s*bytes=(\d+)',
-        output, re.MULTILINE
-    )
-    if not match:
+    port_counters = parse_port_counters(output)
+    interface = f'{sw}-eth{port}'
+    values = port_counters.get(interface) or port_counters.get(str(port))
+    if not values or 'tx_bytes' not in values:
         return None, {'switch': sw, 'port': port, 'output': output}
-    return int(match.group(1)), {'switch': sw, 'port': port, 'capacity_mbps': capacity_mbps}
+    return values['tx_bytes'], {
+        'switch': sw, 'port': port, 'interface': interface,
+        'capacity_mbps': capacity_mbps
+    }
+
+
+def evaluate_h3_h4_validation(ping_text, port_deltas, competing_path):
+    """Evaluate saved ping and port-counter evidence for h3-h4 path isolation."""
+    path_packets = {
+        'A': packet_delta_sum(port_deltas, 's2'),
+        'B': packet_delta_sum(port_deltas, 's3'),
+    }
+    ping = parse_ping_output(ping_text)
+    duplicate_reply_detected = 'DUP!' in ping_text
+    should_work = competing_path != 'off'
+    if should_work:
+        expected_path = competing_path
+        other_path = 'B' if expected_path == 'A' else 'A'
+        passed = (
+            ping['ping_loss_pct'] == 0.0 and path_packets[expected_path] > 0
+            and path_packets[other_path] == 0 and not duplicate_reply_detected
+        )
+        expectation = (
+            f'h3-h4 ping succeeds and Path {expected_path} has packets; '
+            f'Path {other_path} has none'
+        )
+    else:
+        passed = (
+            ping['ping_loss_pct'] == 100.0 and path_packets['A'] == 0
+            and path_packets['B'] == 0 and not duplicate_reply_detected
+        )
+        expectation = 'h3-h4 ping fails and neither core path has packets'
+    return {
+        'expected': expectation,
+        'observed_ping_loss_pct': ping['ping_loss_pct'],
+        'duplicate_reply_detected': duplicate_reply_detected,
+        'path_a_packet_delta_sum': path_packets['A'],
+        'path_b_packet_delta_sum': path_packets['B'],
+        'passed': passed,
+    }
 
 
 def validate_h3_h4(net, competing_path, raw_dir, label):
     """Check the requested h3-h4 rule behavior and save path-counter evidence."""
     before, before_ref = capture_switch_snapshot(net, raw_dir, label, 'h3h4_before')
     ping_text = net['h3'].cmd('ping -c 20 10.0.0.4')
-    with open(os.path.join(raw_dir, f'{label}_h3_h4_ping.txt'), 'w') as f:
+    ping_ref = f'{label}_h3_h4_ping.txt'
+    with open(os.path.join(raw_dir, ping_ref), 'w') as f:
         f.write(ping_text)
     after, after_ref = capture_switch_snapshot(net, raw_dir, label, 'h3h4_after')
     deltas, delta_ref = write_snapshot_delta(
@@ -344,30 +394,10 @@ def validate_h3_h4(net, competing_path, raw_dir, label):
         competing_path=competing_path,
         competing_active=competing_path != 'off'
     )
-    path_a_packets = sum(
-        value for key, value in deltas['port_counter_deltas'].items()
-        if key.startswith('s2:') and key.endswith(('_rx_packets', '_tx_packets'))
+    result = evaluate_h3_h4_validation(
+        ping_text, deltas['port_counter_deltas'], competing_path
     )
-    path_b_packets = sum(
-        value for key, value in deltas['port_counter_deltas'].items()
-        if key.startswith('s3:') and key.endswith(('_rx_packets', '_tx_packets'))
-    )
-    ping = parse_ping_output(ping_text)
-    should_work = competing_path != 'off'
-    if should_work:
-        passed = ping['ping_loss_pct'] == 0.0 and path_a_packets > 0 and path_b_packets == 0
-        expectation = 'h3-h4 ping succeeds and Path A has packets; Path B has none'
-    else:
-        passed = ping['ping_loss_pct'] == 100.0 and path_a_packets == 0 and path_b_packets == 0
-        expectation = 'h3-h4 ping fails and neither core path has packets'
-    result = {
-        'expected': expectation,
-        'observed_ping_loss_pct': ping['ping_loss_pct'],
-        'path_a_packet_delta_sum': path_a_packets,
-        'path_b_packet_delta_sum': path_b_packets,
-        'passed': passed,
-        'raw_files': [f'{label}_h3_h4_ping.txt', before_ref, after_ref, delta_ref]
-    }
+    result['raw_files'] = [ping_ref, before_ref, after_ref, delta_ref]
     with open(os.path.join(raw_dir, f'{label}_h3_h4_validation.json'), 'w') as f:
         json.dump(result, f, indent=2)
     return result
@@ -843,6 +873,18 @@ def main():
             net = build_topology(topo_args)
             try:
                 net.start()
+                ipv6_observation = disable_ipv6_interface_noise(
+                    net, trial_raw_dir, f'{path}_c{c_rate}'
+                )
+                metadata.setdefault('ipv6_interface_observations', []).append({
+                    'scenario': f'primary_{path}_competing_{comp_setting}_{c_rate}mbps',
+                    **ipv6_observation
+                })
+                save_metadata()
+                if not ipv6_observation['verified']:
+                    raise RuntimeError(
+                        'IPv6 suppression could not be verified on all Mininet interfaces.'
+                    )
                 time.sleep(2)
 
                 qdisc_observation = capture_queue_config(

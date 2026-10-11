@@ -1,0 +1,37 @@
+SmartTE Step 0 environment record
+Client date: 2026-10-11
+
+VERIFIED BY EXECUTION
+- pwd: /home/andy2341/smartte
+- uname -a: Linux KUTU 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 5 18:31:42 UTC 2025 aarch64 aarch64 aarch64 GNU/Linux
+- whoami: andy2341
+- command -v python3: /usr/bin/python3
+- python3 --version: Python 3.12.3
+- uname -m: aarch64
+- /etc/os-release: Ubuntu 24.04.5 LTS
+- mn --version: 2.3.0
+- ovs-vsctl --version: Open vSwitch 3.3.9, DB Schema 8.5.1
+- git --version: git version 2.43.0
+- service openvswitch-switch status: active (exited), status 0/SUCCESS
+- wc -l: topology/datacenter_topology.py = 418; experiments/run_static_baseline.py = 988
+- py_compile: both files passed with exit code 0; cache directed to logs/scratch/step0_pycache
+- sudo -n true: failed with “sudo: a password is required”
+
+VERIFIED BY EXECUTION: Git state before creating this Step 0 record and docs/PROGRESS.md:
+- HEAD: d4c18ae feat: M2 topology changes and static baseline runner (queue unverified)
+- Previous commit: ccdb3f7 Initialize SmartTE project
+- git config user.name: ninjahattori2341
+- git config user.email: aayushsingh12062007@gmail.com
+- git status --short: M experiments/run_static_baseline.py; ?? experiments/__pycache__/; ?? results/; ?? topology/__pycache__/
+- git diff --stat: experiments/run_static_baseline.py | 818 +++++++++++++++++++++++++++++++------ (691 insertions, 127 deletions)
+
+VERIFIED BY INSPECTION
+- .gitignore is absent; it was not created or modified.
+- topology/datacenter_topology.py is not modified in git status.
+- The topology source configures 100 Mbps access links at 1 ms, Path A at 10 Mbps/5 ms, Path B at 10 Mbps/10 ms, and DEFAULT_QUEUE=100.
+- The topology source sets autoStaticArp=True and explicitly assigns the host/switch/inter-switch ports.
+- Empty directories present at Step 0 include analysis/, controller/, report/, screenshots/, and tests/.
+
+NOT VERIFIED
+- Privileged M2-S1 measurements: path counters/flow counters, queue enforcement, h1/h2 neighbor entries, loop/duplicate checks, and cleanup after M2 runs.
+- The edited runner has only passed syntax compilation; it has not been run after these edits.

@@ -1,0 +1,13 @@
+{
+  "expected": "h3-h4 ping succeeds and Path A has packets; Path B has none",
+  "observed_ping_loss_pct": 0.0,
+  "path_a_packet_delta_sum": 0,
+  "path_b_packet_delta_sum": 0,
+  "passed": false,
+  "raw_files": [
+    "A_competing_A_h3h4_h3_h4_ping.txt",
+    "A_competing_A_h3h4_h3h4_before_switch_counters.txt",
+    "A_competing_A_h3h4_h3h4_after_switch_counters.txt",
+    "A_competing_A_h3h4_h3h4_counter_deltas.json"
+  ]
+}

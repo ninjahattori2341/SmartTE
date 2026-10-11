@@ -1,0 +1,39 @@
+{
+  "run_id": "path_validation_recheck_20261011_103528",
+  "evidence_label": "VERIFIED BY EXECUTION",
+  "git_commit": "b1624a13fc7b013ee8ff3dd98cbe10bbde626d09",
+  "git_dirty": true,
+  "purpose": "Validate h3-h4 path rules with the corrected OVS port parser.",
+  "results": [
+    {
+      "expected": "h3-h4 ping fails and neither core path has packets",
+      "observed_ping_loss_pct": 100.0,
+      "duplicate_reply_detected": false,
+      "path_a_packet_delta_sum": 0,
+      "path_b_packet_delta_sum": 0,
+      "passed": true,
+      "raw_files": [
+        "h3h4_off_h3_h4_ping.txt",
+        "h3h4_off_h3h4_before_switch_counters.txt",
+        "h3h4_off_h3h4_after_switch_counters.txt",
+        "h3h4_off_h3h4_counter_deltas.json"
+      ],
+      "ipv6_suppression_verified": true
+    },
+    {
+      "expected": "h3-h4 ping succeeds and Path A has packets; Path B has none",
+      "observed_ping_loss_pct": 0.0,
+      "duplicate_reply_detected": false,
+      "path_a_packet_delta_sum": 80,
+      "path_b_packet_delta_sum": 0,
+      "passed": true,
+      "raw_files": [
+        "h3h4_A_h3_h4_ping.txt",
+        "h3h4_A_h3h4_before_switch_counters.txt",
+        "h3h4_A_h3h4_after_switch_counters.txt",
+        "h3h4_A_h3h4_counter_deltas.json"
+      ],
+      "ipv6_suppression_verified": true
+    }
+  ]
+}

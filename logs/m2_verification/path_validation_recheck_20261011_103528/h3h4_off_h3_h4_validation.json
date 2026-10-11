@@ -1,0 +1,14 @@
+{
+  "expected": "h3-h4 ping fails and neither core path has packets",
+  "observed_ping_loss_pct": 100.0,
+  "duplicate_reply_detected": false,
+  "path_a_packet_delta_sum": 0,
+  "path_b_packet_delta_sum": 0,
+  "passed": true,
+  "raw_files": [
+    "h3h4_off_h3_h4_ping.txt",
+    "h3h4_off_h3h4_before_switch_counters.txt",
+    "h3h4_off_h3h4_after_switch_counters.txt",
+    "h3h4_off_h3h4_counter_deltas.json"
+  ]
+}

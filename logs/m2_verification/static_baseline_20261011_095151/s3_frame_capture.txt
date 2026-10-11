@@ -1,0 +1,21 @@
+VERIFIED BY EXECUTION: AF_PACKET capture on s3-eth1 and s3-eth2.
+Scenario: Path A primary and h3-h4 rules enabled; 5 h3-h4 pings.
+IPv6 interface disable verified=True
+
+=== s3 interface IPv6 addresses ===
+
+=== h3-h4 ping ===
+PING 10.0.0.4 (10.0.0.4) 56(84) bytes of data.
+64 bytes from 10.0.0.4: icmp_seq=1 ttl=64 time=30.4 ms
+64 bytes from 10.0.0.4: icmp_seq=2 ttl=64 time=26.1 ms
+64 bytes from 10.0.0.4: icmp_seq=3 ttl=64 time=30.1 ms
+64 bytes from 10.0.0.4: icmp_seq=4 ttl=64 time=27.5 ms
+64 bytes from 10.0.0.4: icmp_seq=5 ttl=64 time=26.9 ms
+
+--- 10.0.0.4 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4002ms
+rtt min/avg/max/mdev = 26.139/28.202/30.439/1.752 ms
+
+=== captured frames ===
+
+frame_count=0

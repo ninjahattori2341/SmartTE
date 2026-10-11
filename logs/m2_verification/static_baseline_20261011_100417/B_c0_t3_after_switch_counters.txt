@@ -1,0 +1,33 @@
+=== s2 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=102.414s
+  port  "s2-eth1": rx pkts=3, bytes=266, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=2, bytes=180, drop=0, errs=0, coll=0
+           duration=102.417s
+  port  "s2-eth2": rx pkts=3, bytes=266, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=2, bytes=176, drop=0, errs=0, coll=0
+           duration=102.417s
+=== s3 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=102.434s
+  port  "s3-eth1": rx pkts=13414, bytes=37825476, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=12761, bytes=860090, drop=0, errs=0, coll=0
+           duration=102.437s
+  port  "s3-eth2": rx pkts=12763, bytes=860266, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=13415, bytes=37825566, drop=0, errs=0, coll=0
+           duration=102.437s
+=== s1 flows ===
+cookie=0x0, duration=99.018s, table=0, n_packets=13434, n_bytes=37886120, ip,in_port="s1-eth1",nw_dst=10.0.0.2 actions=output:"s1-eth4"
+ cookie=0x0, duration=98.995s, table=0, n_packets=12760, n_bytes=860000, ip,in_port="s1-eth4",nw_dst=10.0.0.1 actions=output:"s1-eth1"
+=== s2 flows ===
+
+=== s3 flows ===
+cookie=0x0, duration=99.007s, table=0, n_packets=13412, n_bytes=37825300, ip,in_port="s3-eth1",nw_dst=10.0.0.2 actions=output:"s3-eth2"
+ cookie=0x0, duration=98.986s, table=0, n_packets=12760, n_bytes=860000, ip,in_port="s3-eth2",nw_dst=10.0.0.1 actions=output:"s3-eth1"
+=== s4 flows ===
+cookie=0x0, duration=98.986s, table=0, n_packets=13412, n_bytes=37825300, ip,in_port="s4-eth4",nw_dst=10.0.0.2 actions=output:"s4-eth1"
+ cookie=0x0, duration=98.970s, table=0, n_packets=12760, n_bytes=860000, ip,in_port="s4-eth1",nw_dst=10.0.0.1 actions=output:"s4-eth4"

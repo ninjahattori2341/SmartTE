@@ -1,0 +1,39 @@
+{
+  "monotonic_start_s": 7011.508724653,
+  "monotonic_end_s": 7022.018479442,
+  "interval_s": 10.509754788999999,
+  "counter_start": {
+    "A": {
+      "tx_bytes": null,
+      "switch": "s2",
+      "port": 2,
+      "output": "OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports\r\n  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=0, bytes=0, drop=0, errs=0, coll=0\r\n           duration=58.404s\r\n  port  \"s2-eth1\": rx pkts=4524, bytes=12600150, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=4326, bytes=294362, drop=0, errs=0, coll=0\r\n           duration=58.407s\r\n  port  \"s2-eth2\": rx pkts=4325, bytes=294292, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=4525, bytes=12600220, drop=0, errs=0, coll=0\r\n           duration=58.407s"
+    },
+    "B": {
+      "tx_bytes": null,
+      "switch": "s3",
+      "port": 2,
+      "output": "OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports\r\n  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=0, bytes=0, drop=0, errs=0, coll=0\r\n           duration=58.415s\r\n  port  \"s3-eth1\": rx pkts=9, bytes=726, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=9, bytes=726, drop=0, errs=0, coll=0\r\n           duration=58.419s\r\n  port  \"s3-eth2\": rx pkts=10, bytes=796, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=9, bytes=726, drop=0, errs=0, coll=0\r\n           duration=58.418s"
+    }
+  },
+  "counter_end": {
+    "A": {
+      "tx_bytes": null,
+      "switch": "s2",
+      "port": 2,
+      "output": "OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports\r\n  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=0, bytes=0, drop=0, errs=0, coll=0\r\n           duration=69.008s\r\n  port  \"s2-eth1\": rx pkts=9023, bytes=25230579, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=8663, bytes=584598, drop=0, errs=0, coll=0\r\n           duration=69.011s\r\n  port  \"s2-eth2\": rx pkts=8663, bytes=584598, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=9023, bytes=25230579, drop=0, errs=0, coll=0\r\n           duration=69.011s"
+    },
+    "B": {
+      "tx_bytes": null,
+      "switch": "s3",
+      "port": 2,
+      "output": "OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports\r\n  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=0, bytes=0, drop=0, errs=0, coll=0\r\n           duration=68.985s\r\n  port  \"s3-eth1\": rx pkts=10, bytes=796, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=10, bytes=796, drop=0, errs=0, coll=0\r\n           duration=68.989s\r\n  port  \"s3-eth2\": rx pkts=10, bytes=796, drop=0, errs=0, frame=0, over=0, crc=0\r\n           tx pkts=10, bytes=796, drop=0, errs=0, coll=0\r\n           duration=68.988s"
+    }
+  },
+  "port_selection": {
+    "A": "s2 port 2, egress toward s4",
+    "B": "s3 port 2, egress toward s4"
+  },
+  "port_selection_reason": "These are the egress ports of the s2-s4 and s3-s4 core links in the h1-to-h2 direction.",
+  "utilization_definition": "(delta_tx_bytes * 8) / (delta_t_seconds * configured_link_capacity_bps) * 100"
+}

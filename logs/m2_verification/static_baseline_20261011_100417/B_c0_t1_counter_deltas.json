@@ -1,0 +1,48 @@
+{
+  "port_counter_deltas": {
+    "s2:LOCAL:rx_packets": 0,
+    "s2:LOCAL:tx_packets": 0,
+    "s2:LOCAL:rx_bytes": 0,
+    "s2:LOCAL:tx_bytes": 0,
+    "s2:s2-eth1:rx_packets": 0,
+    "s2:s2-eth1:tx_packets": 0,
+    "s2:s2-eth1:rx_bytes": 0,
+    "s2:s2-eth1:tx_bytes": 0,
+    "s2:s2-eth2:rx_packets": 0,
+    "s2:s2-eth2:tx_packets": 0,
+    "s2:s2-eth2:rx_bytes": 0,
+    "s2:s2-eth2:tx_bytes": 0,
+    "s3:LOCAL:rx_packets": 0,
+    "s3:LOCAL:tx_packets": 0,
+    "s3:LOCAL:rx_bytes": 0,
+    "s3:LOCAL:tx_bytes": 0,
+    "s3:s3-eth1:rx_packets": 4453,
+    "s3:s3-eth1:tx_packets": 4231,
+    "s3:s3-eth1:rx_bytes": 12584598,
+    "s3:s3-eth1:tx_bytes": 284400,
+    "s3:s3-eth2:rx_packets": 4231,
+    "s3:s3-eth2:tx_packets": 4453,
+    "s3:s3-eth2:rx_bytes": 284400,
+    "s3:s3-eth2:tx_bytes": 12584598
+  },
+  "rx_greater_than_tx_anomalies": [
+    {
+      "switch": "s3",
+      "port": "s3-eth1",
+      "rx_packets_delta": 4453,
+      "tx_packets_delta": 4231
+    }
+  ],
+  "flow_n_packets_deltas": {
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth1\",nw_dst=10.0.0.2 actions=output:\"s1-eth4\"": 4460,
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth4\",nw_dst=10.0.0.1 actions=output:\"s1-eth1\"": 4231,
+    "s3:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s3-eth1\",nw_dst=10.0.0.2 actions=output:\"s3-eth2\"": 4453,
+    "s3:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s3-eth2\",nw_dst=10.0.0.1 actions=output:\"s3-eth1\"": 4231,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth4\",nw_dst=10.0.0.2 actions=output:\"s4-eth1\"": 4453,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth1\",nw_dst=10.0.0.1 actions=output:\"s4-eth4\"": 4231
+  },
+  "unused_path": "A",
+  "unused_path_switch": "s2",
+  "unused_path_packet_delta_sum": 0,
+  "unused_path_traffic_detected": false
+}

@@ -1,0 +1,33 @@
+=== s2 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=134.806s
+  port  "s2-eth1": rx pkts=11, bytes=866, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=10, bytes=796, drop=0, errs=0, coll=0
+           duration=134.812s
+  port  "s2-eth2": rx pkts=11, bytes=866, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=10, bytes=796, drop=0, errs=0, coll=0
+           duration=134.813s
+=== s3 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=134.806s
+  port  "s3-eth1": rx pkts=13425, bytes=37829194, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=12807, bytes=866431, drop=0, errs=0, coll=0
+           duration=134.810s
+  port  "s3-eth2": rx pkts=12807, bytes=866431, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=13425, bytes=37829194, drop=0, errs=0, coll=0
+           duration=134.810s
+=== s1 flows ===
+cookie=0x0, duration=131.139s, table=0, n_packets=13440, n_bytes=37899548, ip,in_port="s1-eth1",nw_dst=10.0.0.2 actions=output:"s1-eth4"
+ cookie=0x0, duration=131.088s, table=0, n_packets=12796, n_bytes=865565, ip,in_port="s1-eth4",nw_dst=10.0.0.1 actions=output:"s1-eth1"
+=== s2 flows ===
+
+=== s3 flows ===
+cookie=0x0, duration=131.114s, table=0, n_packets=13414, n_bytes=37828328, ip,in_port="s3-eth1",nw_dst=10.0.0.2 actions=output:"s3-eth2"
+ cookie=0x0, duration=131.077s, table=0, n_packets=12796, n_bytes=865565, ip,in_port="s3-eth2",nw_dst=10.0.0.1 actions=output:"s3-eth1"
+=== s4 flows ===
+cookie=0x0, duration=131.098s, table=0, n_packets=13414, n_bytes=37828328, ip,in_port="s4-eth4",nw_dst=10.0.0.2 actions=output:"s4-eth1"
+ cookie=0x0, duration=131.077s, table=0, n_packets=12796, n_bytes=865565, ip,in_port="s4-eth1",nw_dst=10.0.0.1 actions=output:"s4-eth4"

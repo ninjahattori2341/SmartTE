@@ -124,6 +124,55 @@ def cleanup_previous():
     log.info('Cleanup complete.')
 
 
+def disable_ipv6_interface_noise(net, raw_dir=None, label='topology'):
+    """Disable IPv6 on Mininet interfaces for the IPv4-only experiment workload."""
+    import os
+
+    interfaces = {
+        's1': ('s1-eth1', 's1-eth2', 's1-eth3', 's1-eth4'),
+        's2': ('s2-eth1', 's2-eth2'),
+        's3': ('s3-eth1', 's3-eth2'),
+        's4': ('s4-eth1', 's4-eth2', 's4-eth3', 's4-eth4'),
+        'h1': ('h1-eth0',),
+        'h2': ('h2-eth0',),
+        'h3': ('h3-eth0',),
+        'h4': ('h4-eth0',),
+    }
+    observations = []
+    for node_name, device_names in interfaces.items():
+        for device in device_names:
+            proc_path = f'/proc/sys/net/ipv6/conf/{device}/disable_ipv6'
+            output = net[node_name].cmd(
+                f'if [ -w {proc_path} ]; then '
+                f'echo 1 > {proc_path} && cat {proc_path}; '
+                'else echo unavailable; fi'
+            ).strip()
+            observations.append({
+                'node': node_name,
+                'interface': device,
+                'observed_disable_ipv6': output,
+                'verified': output == '1',
+            })
+
+    verified = all(item['verified'] for item in observations)
+    raw_log = None
+    if raw_dir:
+        raw_log = f'{label}_ipv6_config.txt'
+        with open(os.path.join(raw_dir, raw_log), 'w') as output_file:
+            output_file.write('IPv6 suppression for the IPv4-only Mininet experiment.\n')
+            for item in observations:
+                output_file.write(
+                    f"{item['node']}/{item['interface']}: "
+                    f"disable_ipv6={item['observed_disable_ipv6']} "
+                    f"verified={item['verified']}\n"
+                )
+    return {
+        'verified': verified,
+        'interfaces': observations,
+        'raw_log': raw_log,
+    }
+
+
 def build_topology(args):
     """Build and return the Mininet network with the diamond topology."""
     from mininet.net import Mininet
