@@ -8,7 +8,7 @@
 |---|---|---|---|---|
 | Member 1 | [Fill in] | [Commit, file, or evidence path] | [Section] | [Initial/date] |
 | Member 2 | [Fill in] | [Commit, file, or evidence path] | [Section] | [Initial/date] |
-| Member 3 | [Fill in] | [Commit, file, or evidence path] | [Section] | [Initial/date] |
+
 
 ## Suggested division with shared interfaces
 
