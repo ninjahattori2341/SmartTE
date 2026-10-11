@@ -1,0 +1,86 @@
+### controller + runner diffs vs campaign commit
+diff --git a/controller/smartte_controller.py b/controller/smartte_controller.py
+index 5898d4c..b201991 100644
+--- a/controller/smartte_controller.py
++++ b/controller/smartte_controller.py
+@@ -16,6 +16,7 @@ from topology.spec import PATHS, SWITCHES, flow_rules_for_pair
+ from controller.congestion_policy import (
+     evaluate_policy_b,
+     evaluate_policy_c,
++    mask_unavailable_paths,
+     score_paths,
+     utilization_from_counters,
+ )
+@@ -321,7 +322,9 @@ class SmartTEController(app_manager.OSKenApp):
+             ]
+             for path_name in ('A', 'B')
+         }
+-        scores = score_paths(link_values)
++        scores = mask_unavailable_paths(
++            score_paths(link_values), self.unavailable_paths
++        )
+         self._read_load_event()
+         record = {
+             'timestamp_utc': _timestamp_utc(),
+@@ -345,7 +348,11 @@ class SmartTEController(app_manager.OSKenApp):
+         if self.policy == 'STATIC' or any(value is None for value in scores.values()):
+             record.update({
+                 'decision': 'hold',
+-                'reason': 'static policy' if self.policy == 'STATIC' else 'hold: path score unavailable',
++                'reason': (
++                    'static policy' if self.policy == 'STATIC'
++                    else 'hold: path unavailable' if self.unavailable_paths
++                    else 'hold: path score unavailable'
++                ),
+                 'candidate_path': None,
+                 'switching_threshold': self.switching_threshold if self.policy == 'C' else None,
+                 'elapsed_since_last_switch_ms': round(
+diff --git a/experiments/run_controller_campaign.py b/experiments/run_controller_campaign.py
+index 4d875ea..4cffaac 100644
+--- a/experiments/run_controller_campaign.py
++++ b/experiments/run_controller_campaign.py
+@@ -44,6 +44,7 @@ from topology.datacenter_topology import (  # noqa: E402
+     cleanup_previous,
+     disable_ipv6_interface_noise,
+ )
++from controller.congestion_policy import successful_path_change_count  # noqa: E402
+ 
+ CONTROLLER_PYTHON = os.environ.get(
+     'SMARTTE_CONTROLLER_PYTHON',
+@@ -332,7 +333,7 @@ def load_policy_events(event_path, initial_path):
+     return {
+         'events': events,
+         'decision_count': len(decisions),
+-        'path_changes': len(switches),
++        'path_changes': successful_path_change_count(events),
+         'final_path': current_path,
+         'reaction_time_s': reaction,
+         'recovery_time_s': recovery,
+
+### does analysis use the new helpers?
+analysis/analyse_results.py:98:            if event.get('flow_mod_install_succeeded') is False
+controller/congestion_policy.py:7:def mask_unavailable_paths(scores, unavailable_paths):
+controller/congestion_policy.py:16:def successful_path_change_count(events):
+controller/smartte_controller.py:19:    mask_unavailable_paths,
+controller/smartte_controller.py:325:        scores = mask_unavailable_paths(
+controller/smartte_controller.py:410:            record['flow_mod_install_succeeded'] = installed
+experiments/run_controller_campaign.py:47:from controller.congestion_policy import successful_path_change_count  # noqa: E402
+experiments/run_controller_campaign.py:336:        'path_changes': successful_path_change_count(events),
+
+### file modification times vs campaign window
+2026-10-11 12:59:57.702654308 controller/congestion_policy.py
+2026-10-11 11:28:50.160227374 controller/run_osken.py
+2026-10-11 13:00:01.437455537 controller/smartte_controller.py
+2026-10-11 11:21:32.112674943 controller/static_policy.py
+2026-10-11 13:00:04.345616699 experiments/run_controller_campaign.py
+2026-10-11 12:54:23.393751943 results/raw/m5_campaign_20261011T115819Z.csv
+
+### does the margin ever bind? (C trials)
+E1_C_no_competition {'held_by_dwell': 70, 'switches': 15} | improvement at switch min/max: (96.3, 98.6)
+E2_C_initialA_5Mbps {'held_by_dwell': 90, 'switches': 20} | improvement at switch min/max: (45.6, 98.9)
+E2_C_initialA_9Mbps {'held_by_dwell': 33, 'switches': 10, 'held_by_margin': 67} | improvement at switch min/max: (16.8, 98.0)
+E3_C_initialA_margin10_dwell5000 {'held_by_dwell': 105, 'switches': 25, 'held_by_margin': 14} | improvement at switch min/max: (12.4, 99.9)
+E3_C_initialA_margin15_dwell10000 {'held_by_dwell': 118, 'switches': 15, 'held_by_margin': 18} | improvement at switch min/max: (19.1, 99.8)
+E3_C_initialA_margin15_dwell2000 {'held_by_margin': 62, 'switches': 39, 'held_by_dwell': 50} | improvement at switch min/max: (17.2, 100.0)
+E3_C_initialA_margin15_dwell5000 {'held_by_dwell': 103, 'switches': 25, 'held_by_margin': 15} | improvement at switch min/max: (15.9, 100.0)
+E3_C_initialA_margin30_dwell5000 {'held_by_dwell': 96, 'switches': 25, 'held_by_margin': 22} | improvement at switch min/max: (30.7, 99.8)

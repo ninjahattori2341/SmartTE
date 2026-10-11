@@ -87,3 +87,4 @@ E3_STATIC_initialA_margin15_dwell5000,750,60,8.00,6.27,10.16
 E3_STATIC_initialB_margin15_dwell5000,750,10,1.33,0.73,2.44
 E4_B_PathA_down,375,8,2.13,1.08,4.15
 E4_C_PathA_down,375,7,1.87,0.91,3.80
+committed
