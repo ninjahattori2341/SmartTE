@@ -1,0 +1,11 @@
+trial,switch_decisions,installs_succeeded,installs_failed,max_path_changes_total,first_ok_switch_after_linkdown_s
+E4_B_PathA_down_t01,17,1,16,1,n/a
+E4_B_PathA_down_t02,17,1,16,1,n/a
+E4_B_PathA_down_t03,17,1,16,1,n/a
+E4_B_PathA_down_t04,17,1,16,1,n/a
+E4_B_PathA_down_t05,17,1,16,1,n/a
+E4_C_PathA_down_t01,11,1,10,1,0.012
+E4_C_PathA_down_t02,12,1,11,1,0.008
+E4_C_PathA_down_t03,12,1,11,1,0.013
+E4_C_PathA_down_t04,12,1,11,1,0.009
+E4_C_PathA_down_t05,12,1,11,1,0.021

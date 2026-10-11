@@ -1,0 +1,110 @@
+##### A. OWNERSHIP + CLEANUP #####
+ownership fixed
+mn -c done
+fa39c7f3-2a6e-4a47-9516-22150199b964
+    ovs_version: "3.3.9"
+no stray processes
+
+##### B. COMMITS (local only, no push) #####
+ninjahattori2341
+aayushsingh12062007@gmail.com
+ 480 files changed, 55376 insertions(+), 55182 deletions(-)
+commit 1 ok
+commit 2 ok
+commit 3 ok
+commit 4 ok
+65fbab9 data: M2 verification evidence (refreshed re-runs)
+4e0e191 docs: report drafts
+ae687ee data: raw campaign CSVs, M3/M4/M5 logs and processed outputs
+20d3985 feat: M3-M5 controller, algorithms, analysis scripts
+cd777d9 chore: stop tracking Python bytecode
+58acacd test: cover congestion policies and freeze M5 settings
+left uncommitted:
+?? audit/
+?? logs/scratch/
+
+##### C. PANDAS VENV + CSV AUDIT #####
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.12-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/andy2341/audit-venv/bin/python3
+
+VENV FAILED: need 'sudo apt install python3-venv'
+./audit/run_everything.sh: line 24: /home/andy2341/audit-venv/bin/pip: No such file or directory
+Traceback (most recent call last):
+  File "/home/andy2341/smartte/audit/audit_m5.py", line 5, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+
+##### D. UNIT TESTS #####
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 0.505s
+
+OK
+
+##### E. E4 EVIDENCE (stdlib parser) #####
+E4 rows from raw CSV (algorithm, trial, status, path_changes, decision_count, throughput, loss):
+  static 1 failed 0 0  93.3333  
+  b 1 ok 17 19 9.124 1.33333  0.173
+  c 1 ok 11 19 9.233 1.33333  0.253
+  b 2 ok 17 19 9.274 1.33333  0.244
+  c 2 ok 12 19 9.216 2.66667  1.164
+  static 2 failed 0 0  93.3333  
+  c 3 ok 12 19 9.217 1.33333  1.2
+  static 3 failed 0 0  93.3333  
+  b 3 ok 17 19 9.472 2.66667  0.212
+  static 4 failed 0 0  93.3333  
+  b 4 ok 17 19 9.336 2.66667  0.187
+  c 4 ok 12 19 9.203 2.66667  1.217
+  b 5 ok 17 19 8.843 2.66667  0.148
+  c 5 ok 12 19 9.202 1.33333  1.193
+  static 5 failed 0 0  93.3333  
+
+Per-trial controller_events summary (B and C):
+E4_B_PathA_down_t01 decisions: {'hold': 2, 'switch': 17} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 15776.016295007}
+   reasons: {'switch: lower congestion score': 17, 'hold: path score unavailable': 1, 'hold: current path is best or tied': 1}
+   process.log flow/fail/error lines: 0
+   event keys: ['candidate_path', 'controller_process_cpu_s', 'current_path', 'cycle_id', 'decision', 'decision_cpu_time_s', 'elapsed_since_last_switch_ms', 'flow_mod_count_after', 'flow_mod_count_before', 'flow_mod_install_succeeded', 'flow_mod_timestamp_monotonic_s', 'improvement_pct_points', 'minimum_dwell_time_ms', 'path_after', 'path_before', 'path_changes_total', 'path_link_utilization_pct', 'path_scores_pct', 'policy', 'poll_interval_ms', 'poll_round_trip_s', 'reaction_time_s', 'reason', 'recovery_time_s', 'switching_threshold', 'time_monotonic_s', 'timestamp_utc']
+   first non-hold events: [{"candidate_path": "B", "controller_process_cpu_s": 0.002518399999999976, "current_path": "A", "cycle_id": 3, "decision": "switch", "decision_cpu_time_s": 1.280000000000725e-05, "elapsed_since_last_switch_ms": 3345.158, "flow_mod_count_after": 16, "flow_mod_count_before": 6, "flow_mod_install_succeeded": true, "flow_mod_timestamp_monotonic_s": 15775.189288268, "improvement_pct_points": 1.7453086915697795, "minimum_dwell_time_ms": null, "path_after": "B", "path_before": "A", "path_changes_total": 1, "path_link_utilization_pct": {"A": [1.7453086915697795, 1.272799870759792], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 1.7453086915697795, "B": 0.0}, "policy": "B", "poll_interval_ms": 1000, "pol
+   summary keys: ['alternative_path_first_tx_time_monotonic_s', 'controller_policy_events', 'ipv6_suppression_verified', 'link_failure_time_monotonic_s', 'path_counter_deltas', 'path_utilization_samples', 'queue_limit_verified', 'ready_record', 'udp_bursts']
+E4_B_PathA_down_t02 decisions: {'hold': 2, 'switch': 17} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 15819.471232786}
+   reasons: {'switch: lower congestion score': 17, 'hold: path score unavailable': 1, 'hold: current path is best or tied': 1}
+   process.log flow/fail/error lines: 0
+E4_B_PathA_down_t03 decisions: {'hold': 2, 'switch': 17} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 15968.429943136}
+   reasons: {'switch: lower congestion score': 17, 'hold: path score unavailable': 1, 'hold: current path is best or tied': 1}
+   process.log flow/fail/error lines: 0
+E4_B_PathA_down_t04 decisions: {'hold': 2, 'switch': 17} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 16032.982644767}
+   reasons: {'switch: lower congestion score': 17, 'hold: path score unavailable': 1, 'hold: current path is best or tied': 1}
+   process.log flow/fail/error lines: 0
+E4_B_PathA_down_t05 decisions: {'hold': 2, 'switch': 17} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 16076.585400243}
+   reasons: {'switch: lower congestion score': 17, 'hold: path score unavailable': 1, 'hold: current path is best or tied': 1}
+   process.log flow/fail/error lines: 0
+E4_C_PathA_down_t01 decisions: {'hold': 9, 'switch': 11} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 15797.758043198}
+   reasons: {'hold: current path is best or tied': 2, 'switch: improvement 97.81 >= margin 15.0': 2, 'hold: path score unavailable': 1, 'held: dwell 3361 < 5000 ms': 1}
+   process.log flow/fail/error lines: 0
+   event keys: ['candidate_path', 'controller_process_cpu_s', 'current_path', 'cycle_id', 'decision', 'decision_cpu_time_s', 'elapsed_since_last_switch_ms', 'flow_mod_count_after', 'flow_mod_count_before', 'flow_mod_install_succeeded', 'flow_mod_timestamp_monotonic_s', 'improvement_pct_points', 'minimum_dwell_time_ms', 'path_after', 'path_before', 'path_changes_total', 'path_link_utilization_pct', 'path_scores_pct', 'policy', 'poll_interval_ms', 'poll_round_trip_s', 'reaction_time_s', 'reason', 'recovery_time_s', 'switching_threshold', 'time_monotonic_s', 'timestamp_utc']
+   first non-hold events: [{"decision": "switch", "path_after": "B", "path_before": "A", "path_changes_total": 1, "reason": "switch: current path became unavailable", "recovery_time_s": null, "time_monotonic_s": 15797.769946179, "timestamp_utc": "2026-10-11T12:48:18.514250+00:00"}, {"candidate_path": "A", "controller_process_cpu_s": 0.0014110000000000233, "current_path": "B", "cycle_id": 9, "decision": "switch", "decision_cpu_time_s": 1.709999999999212e-05, "elapsed_since_last_switch_ms": 5243.946, "flow_mod_count_after": 16, "flow_mod_count_before": 16, "flow_mod_install_succeeded": false, "flow_mod_timestamp_monotonic_s": 15803.013884873, "improvement_pct_points": 98.0565812117733, "minimum_dwell_time_ms": 5000, "p
+   summary keys: ['alternative_path_first_tx_time_monotonic_s', 'controller_policy_events', 'ipv6_suppression_verified', 'link_failure_time_monotonic_s', 'path_counter_deltas', 'path_utilization_samples', 'queue_limit_verified', 'ready_record', 'udp_bursts']
+E4_C_PathA_down_t02 decisions: {'hold': 8, 'switch': 12} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 15841.299989415}
+   reasons: {'hold: current path is best or tied': 2, 'switch: improvement 97.94 >= margin 15.0': 2, 'hold: path score unavailable': 1, 'held: dwell 3341 < 5000 ms': 1}
+   process.log flow/fail/error lines: 0
+E4_C_PathA_down_t03 decisions: {'hold': 8, 'switch': 12} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 15904.945156715}
+   reasons: {'hold: current path is best or tied': 2, 'hold: path score unavailable': 1, 'held: dwell 3360 < 5000 ms': 1, 'switch: current path became unavailable': 1}
+   process.log flow/fail/error lines: 0
+E4_C_PathA_down_t04 decisions: {'hold': 8, 'switch': 12} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 16054.755798737}
+   reasons: {'hold: current path is best or tied': 2, 'hold: path score unavailable': 1, 'held: dwell 3381 < 5000 ms': 1, 'switch: current path became unavailable': 1}
+   process.log flow/fail/error lines: 0
+E4_C_PathA_down_t05 decisions: {'hold': 8, 'switch': 12} | link event: {'event': 'path_a_link_down', 'link': 's2-s4', 'time_monotonic_s': 16098.411345196}
+   reasons: {'hold: current path is best or tied': 2, 'switch: improvement 97.71 >= margin 15.0': 2, 'hold: path score unavailable': 1, 'held: dwell 3336 < 5000 ms': 1}
+   process.log flow/fail/error lines: 0
+
+##### F. DOCS #####
+50
+DONE

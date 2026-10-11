@@ -1,0 +1,864 @@
+##### STEP 1: GIT #####
+ M README.md
+ M controller/congestion_policy.py
+ M controller/smartte_controller.py
+ M docs/PROGRESS.md
+ M experiments/run_controller_campaign.py
+ M logs/m2_verification/path_validation_recheck_20261011_103528/h3h4_A_h3_h4_ping.txt
+ M logs/m2_verification/path_validation_recheck_20261011_103528/h3h4_A_h3h4_after_switch_counters.txt
+ M logs/m2_verification/path_validation_recheck_20261011_103528/h3h4_A_h3h4_before_switch_counters.txt
+ M logs/m2_verification/path_validation_recheck_20261011_103528/h3h4_off_h3_h4_ping.txt
+ M logs/m2_verification/path_validation_recheck_20261011_103528/h3h4_off_h3h4_after_switch_counters.txt
+ M logs/m2_verification/path_validation_recheck_20261011_103528/h3h4_off_h3h4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095057/A_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_095057/static_baseline_20261011_095057.csv
+ M logs/m2_verification/static_baseline_20261011_095125/A_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_095125/static_baseline_20261011_095125.csv
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_competing_A_h3h4_h3_h4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_competing_A_h3h4_h3h4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_competing_A_h3h4_h3h4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_competing_off_h3h4_h3_h4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_competing_off_h3h4_h3h4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/A_competing_off_h3h4_h3h4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_competing_off_h3h4_h3_h4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_competing_off_h3h4_h3h4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/B_competing_off_h3h4_h3h4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_095151/s3_frame_capture.txt
+ M logs/m2_verification/static_baseline_20261011_095151/static_baseline_20261011_095151.csv
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_competing_A_h3h4_h3_h4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_competing_A_h3h4_h3h4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_competing_A_h3h4_h3h4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_competing_off_h3h4_h3_h4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_competing_off_h3h4_h3h4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/A_competing_off_h3h4_h3h4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_competing_off_h3h4_h3_h4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_competing_off_h3h4_h3h4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/B_competing_off_h3h4_h3h4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_100417/static_baseline_20261011_100417.csv
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c5_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104020/A_c9_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104020/static_baseline_20261011_104020.csv
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t1_competing.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t2_competing.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c5_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t1_competing.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t2_competing.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104335/A_c9_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104335/static_baseline_20261011_104335.csv
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t4_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t4_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t4_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t5_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t5_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t5_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t5_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t5_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_t5_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t1_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t2_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t3_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t4_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t4_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t4_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t4_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t5_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t5_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t5_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t5_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t5_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t5_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_t5_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c5_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t1_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t2_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t3_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t4_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t4_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t4_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t4_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t5_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t5_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t5_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t5_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t5_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t5_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_t5_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/A_c9_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t4_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t4_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t4_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t5_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t5_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t5_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t5_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t5_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_t5_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t1_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t2_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t3_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t4_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t4_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t4_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t4_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t5_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t5_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t5_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t5_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t5_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t5_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_t5_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c5_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t1_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t2_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t3_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t4_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t4_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t4_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t4_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t4_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t4_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t4_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t5_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t5_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t5_competing.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t5_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t5_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t5_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_t5_ping.txt
+ M logs/m2_verification/static_baseline_20261011_104756/B_c9_tc.txt
+ M logs/m2_verification/static_baseline_20261011_104756/static_baseline_20261011_104756.csv
+ M logs/m2_verification/static_baseline_20261011_110127/A_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_110127/static_baseline_20261011_110127.csv
+ M logs/m2_verification/static_baseline_20261011_110307/A_c0_tc.txt
+ M logs/m2_verification/static_baseline_20261011_110307/static_baseline_20261011_110307.csv
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t1_competing.json
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t2_competing.json
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t3_competing.json
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_110325/A_c9_tc.txt
+ M logs/m2_verification/static_baseline_20261011_110325/static_baseline_20261011_110325.csv
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t1_competing.json
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t2_competing.json
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t3_competing.json
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_110455/A_c9_tc.txt
+ M logs/m2_verification/static_baseline_20261011_110455/static_baseline_20261011_110455.csv
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t1_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t1_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t1_competing.json
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t1_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t1_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t1_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t1_ping.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t2_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t2_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t2_competing.json
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t2_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t2_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t2_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t2_ping.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t3_after_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t3_before_switch_counters.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t3_competing.json
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t3_h1_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t3_h2_neigh.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t3_iperf3.json
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_t3_ping.txt
+ M logs/m2_verification/static_baseline_20261011_110630/A_c9_tc.txt
+ M logs/m2_verification/static_baseline_20261011_110630/static_baseline_20261011_110630.csv
+ M logs/m2_verification/udp9_path_a_standalone_20261011/iperf3_udp_receiver.json
+ M logs/m2_verification/udp9_path_a_standalone_20261011/tc_core_path_a.txt
+ M results/DATA_DICTIONARY.md
+ M tests/test_congestion_policy.py
+?? analysis/
+?? audit/
+?? logs/m2_verification/static_baseline_20261011_114241/
+?? logs/m3_verification/
+?? logs/m4_pilot_run.txt
+?? logs/m5_campaign_complete_run.txt
+?? logs/m5_campaign_interruption.md
+?? logs/m5_campaign_run.txt
+?? logs/scratch/
+?? report/
+?? requirements/analysis-py310.lock
+?? results/processed/
+?? results/raw/
+cd777d9 chore: stop tracking Python bytecode
+58acacd test: cover congestion policies and freeze M5 settings
+857b674 feat: add OpenFlow controller and campaign runner
+35c8db5 feat: complete M2 static experiments
+c63aaab fix: validate contention gate measurements
+6e37f9f fix: validate M2 static path evidence
+b1624a1 chore: ignore Python bytecode
+c02039e wip: extended-schema runner
+d4c18ae feat: M2 topology changes and static baseline runner (queue unverified)
+ccdb3f7 Initialize SmartTE project
+* master cd777d9 chore: stop tracking Python bytecode
+__pycache__/
+*.pyc
+tracked pyc:
+results tracked?:
+results/DATA_DICTIONARY.md
+
+##### STEP 2: CSV AUDIT #####
+Traceback (most recent call last):
+  File "/home/andy2341/smartte/audit/audit_m5.py", line 5, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+
+##### STEP 3: E4 EVIDENCE #####
+m3_controller_static_20261011T113518Z
+m3_controller_static_20261011T113518Z.csv
+m3_controller_static_20261011T113635Z
+m3_controller_static_20261011T113635Z.csv
+m3_controller_static_20261011T113744Z
+m3_controller_static_20261011T113744Z.csv
+m4_pilot_20261011T114337Z
+m4_pilot_20261011T114337Z.csv
+m5_campaign_20261011T114755Z
+m5_campaign_20261011T114755Z.csv
+m5_campaign_20261011T115819Z
+m5_campaign_20261011T115819Z.csv
+static_baseline_20261011_091753
+static_baseline_20261011_091753.csv
+static_baseline_20261011_091842
+static_baseline_20261011_091842.csv
+static_baseline_20261011_092105
+static_baseline_20261011_092105.csv
+static_baseline_20261011_095057
+static_baseline_20261011_095057.csv
+static_baseline_20261011_095125
+static_baseline_20261011_095125.csv
+static_baseline_20261011_095151
+static_baseline_20261011_095151.csv
+static_baseline_20261011_100417
+static_baseline_20261011_100417.csv
+static_baseline_20261011_104020
+static_baseline_20261011_104020.csv
+static_baseline_20261011_104335
+static_baseline_20261011_104335.csv
+static_baseline_20261011_104756
+static_baseline_20261011_104756.csv
+static_baseline_20261011_110127
+static_baseline_20261011_110127.csv
+static_baseline_20261011_110307
+static_baseline_20261011_110307.csv
+static_baseline_20261011_110325
+static_baseline_20261011_110325.csv
+static_baseline_20261011_110455
+static_baseline_20261011_110455.csv
+run dir: results/raw/m5_campaign_20261011T115819Z
+E4_B_PathA_down_t01
+E4_B_PathA_down_t02
+E4_B_PathA_down_t03
+E4_B_PathA_down_t04
+E4_B_PathA_down_t05
+E4_C_PathA_down_t01
+E4_C_PathA_down_t02
+E4_C_PathA_down_t03
+E4_C_PathA_down_t04
+E4_C_PathA_down_t05
+E4_STATIC_PathA_down_t01
+E4_STATIC_PathA_down_t02
+E4_STATIC_PathA_down_t03
+E4_STATIC_PathA_down_t04
+E4_STATIC_PathA_down_t05
+--- results/raw/m5_campaign_20261011T115819Z/E4_STATIC_PathA_down_t01
+total 208
+drwxr-xr-x   2 root root  4096 Oct 11 12:47 .
+drwxr-xr-x 112 root root 12288 Oct 11 12:53 ..
+-rw-r--r--   1 root root  2254 Oct 11 12:47 E4_STATIC_PathA_down_t01_after_traffic_switch_counters.txt
+-rw-r--r--   1 root root  2179 Oct 11 12:47 E4_STATIC_PathA_down_t01_before_switch_counters.txt
+-rw-r--r--   1 root root  2310 Oct 11 12:47 E4_STATIC_PathA_down_t01_counter_deltas.json
+-rw-r--r--   1 root root   711 Oct 11 12:47 E4_STATIC_PathA_down_t01_ipv6_config.txt
+-rw-r--r--   1 root root  6387 Oct 11 12:47 E4_STATIC_PathA_down_t01_tc.txt
+-rw-r--r--   1 root root   777 Oct 11 12:47 controller_cookie_cleanup.json
+-rw-r--r--   1 root root 21437 Oct 11 12:47 controller_events.jsonl
+-rw-r--r--   1 root root  2053 Oct 11 12:47 controller_overhead.csv
+-rw-r--r--   1 root root  7233 Oct 11 12:47 controller_overhead.json
+-rw-r--r--   1 root root 42313 Oct 11 12:47 controller_port_stats.jsonl
+-rw-r--r--   1 root root  1764 Oct 11 12:47 controller_process.log
+-rw-r--r--   1 root root   284 Oct 11 12:47 controller_ready.json
+-rw-r--r--   1 root root   174 Oct 11 12:47 h1_neighbors.txt
+-rw-r--r--   1 root root   174 Oct 11 12:47 h2_neighbors.txt
+-rw-r--r--   1 root root    91 Oct 11 12:47 link_failure_event.json
+-rw-r--r--   1 root root  2882 Oct 11 12:47 manifest.json
+-rw-r--r--   1 root root 35029 Oct 11 12:47 openflow_controller_summary.json
+-rw-r--r--   1 root root  2603 Oct 11 12:47 openflow_utilization_counters.json
+-rw-r--r--   1 root root   489 Oct 11 12:47 primary_ping.txt
+-rw-r--r--   1 root root     0 Oct 11 12:47 primary_tcp_iperf3.json
+-rw-r--r--   1 root root    36 Oct 11 12:47 s1_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:47 s2_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:47 s3_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:47 s4_after_controller_exit_flows.txt
+== results/raw/m5_campaign_20261011T115819Z/E4_STATIC_PathA_down_t01/manifest.json
+{
+  "controller": "OS-Ken 4.2.2 / Python 3.10.22 / OpenFlow 1.3",
+  "path_utilization_definition": "(delta_tx_bytes * 8) / (actual OpenFlow counter interval * configured capacity) * 100",
+  "policy_parameters": {
+    "duration_s": 15,
+    "dwell_ms": 5000,
+    "experiment_id": "E4-link-failure",
+    "fail_path_a_at_s": 1,
+    "initial_path": "A",
+    "offered_rate_mbps": 0,
+    "policy": "STATIC",
+    "poll_ms": 1000,
+    "scenario": "E4_STATIC_PathA_down",
+    "threshold": 15.0
+  },
+  "queue_config": "verified explicit max_queue_size queue limit 100 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms",
+  "queue_limit_pkts": 100,
+  "queue_limit_verified": true,
+  "raw_files": [
+    "E4_STATIC_PathA_down_t01_after_traffic_switch_counters.txt",
+    "E4_STATIC_PathA_down_t01_before_switch_counters.txt",
+    "E4_STATIC_PathA_down_t01_counter_deltas.json",
+    "E4_STATIC_PathA_down_t01_ipv6_config.txt",
+    "E4_STATIC_PathA_down_t01_tc.txt",
+    "controller_cookie_cleanup.json",
+    "controller_events.jsonl",
+    "controller_overhead.csv",
+    "controller_overhead.json",
+    "controller_port_stats.jsonl",
+    "controller_process.log",
+    "controller_ready.json",
+    "h1_neighbors.txt",
+    "h2_neighbors.txt",
+    "link_failure_event.json",
+    "openflow_controller_summary.json",
+    "openflow_utilization_counters.json",
+    "primary_ping.txt",
+    "primary_tcp_iperf3.json",
+    "s1_after_controller_exit_flows.txt",
+    "s2_after_controller_exit_flows.txt",
+== results/raw/m5_campaign_20261011T115819Z/E4_STATIC_PathA_down_t01/primary_ping.txt
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=28.0 ms
+64 bytes from 10.0.0.2: icmp_seq=2 ttl=64 time=46.3 ms
+64 bytes from 10.0.0.2: icmp_seq=3 ttl=64 time=127 ms
+64 bytes from 10.0.0.2: icmp_seq=4 ttl=64 time=134 ms
+64 bytes from 10.0.0.2: icmp_seq=5 ttl=64 time=147 ms
+
+--- 10.0.0.2 ping statistics ---
+75 packets transmitted, 5 received, 93.3333% packet loss, time 15423ms
+rtt min/avg/max/mdev = 27.967/96.554/147.209/49.289 ms
+--- results/raw/m5_campaign_20261011T115819Z/E4_STATIC_PathA_down_t02
+total 208
+drwxr-xr-x   2 root root  4096 Oct 11 12:50 .
+drwxr-xr-x 112 root root 12288 Oct 11 12:53 ..
+-rw-r--r--   1 root root  2255 Oct 11 12:50 E4_STATIC_PathA_down_t02_after_traffic_switch_counters.txt
+-rw-r--r--   1 root root  2180 Oct 11 12:49 E4_STATIC_PathA_down_t02_before_switch_counters.txt
+-rw-r--r--   1 root root  2310 Oct 11 12:50 E4_STATIC_PathA_down_t02_counter_deltas.json
+-rw-r--r--   1 root root   711 Oct 11 12:49 E4_STATIC_PathA_down_t02_ipv6_config.txt
+-rw-r--r--   1 root root  6389 Oct 11 12:49 E4_STATIC_PathA_down_t02_tc.txt
+-rw-r--r--   1 root root   777 Oct 11 12:50 controller_cookie_cleanup.json
+-rw-r--r--   1 root root 20887 Oct 11 12:50 controller_events.jsonl
+-rw-r--r--   1 root root  2010 Oct 11 12:50 controller_overhead.csv
+-rw-r--r--   1 root root  7064 Oct 11 12:50 controller_overhead.json
+-rw-r--r--   1 root root 41255 Oct 11 12:50 controller_port_stats.jsonl
+-rw-r--r--   1 root root  1764 Oct 11 12:49 controller_process.log
+-rw-r--r--   1 root root   284 Oct 11 12:49 controller_ready.json
+-rw-r--r--   1 root root   174 Oct 11 12:49 h1_neighbors.txt
+-rw-r--r--   1 root root   174 Oct 11 12:49 h2_neighbors.txt
+-rw-r--r--   1 root root    91 Oct 11 12:49 link_failure_event.json
+-rw-r--r--   1 root root  2882 Oct 11 12:50 manifest.json
+-rw-r--r--   1 root root 34270 Oct 11 12:50 openflow_controller_summary.json
+-rw-r--r--   1 root root  2602 Oct 11 12:50 openflow_utilization_counters.json
+-rw-r--r--   1 root root   489 Oct 11 12:50 primary_ping.txt
+-rw-r--r--   1 root root     0 Oct 11 12:50 primary_tcp_iperf3.json
+-rw-r--r--   1 root root    36 Oct 11 12:50 s1_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:50 s2_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:50 s3_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:50 s4_after_controller_exit_flows.txt
+== results/raw/m5_campaign_20261011T115819Z/E4_STATIC_PathA_down_t02/manifest.json
+{
+  "controller": "OS-Ken 4.2.2 / Python 3.10.22 / OpenFlow 1.3",
+  "path_utilization_definition": "(delta_tx_bytes * 8) / (actual OpenFlow counter interval * configured capacity) * 100",
+  "policy_parameters": {
+    "duration_s": 15,
+    "dwell_ms": 5000,
+    "experiment_id": "E4-link-failure",
+    "fail_path_a_at_s": 1,
+    "initial_path": "A",
+    "offered_rate_mbps": 0,
+    "policy": "STATIC",
+    "poll_ms": 1000,
+    "scenario": "E4_STATIC_PathA_down",
+    "threshold": 15.0
+  },
+  "queue_config": "verified explicit max_queue_size queue limit 100 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms",
+  "queue_limit_pkts": 100,
+  "queue_limit_verified": true,
+  "raw_files": [
+    "E4_STATIC_PathA_down_t02_after_traffic_switch_counters.txt",
+    "E4_STATIC_PathA_down_t02_before_switch_counters.txt",
+    "E4_STATIC_PathA_down_t02_counter_deltas.json",
+    "E4_STATIC_PathA_down_t02_ipv6_config.txt",
+    "E4_STATIC_PathA_down_t02_tc.txt",
+    "controller_cookie_cleanup.json",
+    "controller_events.jsonl",
+    "controller_overhead.csv",
+    "controller_overhead.json",
+    "controller_port_stats.jsonl",
+    "controller_process.log",
+    "controller_ready.json",
+    "h1_neighbors.txt",
+    "h2_neighbors.txt",
+    "link_failure_event.json",
+    "openflow_controller_summary.json",
+    "openflow_utilization_counters.json",
+    "primary_ping.txt",
+    "primary_tcp_iperf3.json",
+    "s1_after_controller_exit_flows.txt",
+    "s2_after_controller_exit_flows.txt",
+== results/raw/m5_campaign_20261011T115819Z/E4_STATIC_PathA_down_t02/primary_ping.txt
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=26.3 ms
+64 bytes from 10.0.0.2: icmp_seq=2 ttl=64 time=46.2 ms
+64 bytes from 10.0.0.2: icmp_seq=3 ttl=64 time=125 ms
+64 bytes from 10.0.0.2: icmp_seq=4 ttl=64 time=137 ms
+64 bytes from 10.0.0.2: icmp_seq=5 ttl=64 time=147 ms
+
+--- 10.0.0.2 ping statistics ---
+75 packets transmitted, 5 received, 93.3333% packet loss, time 15427ms
+rtt min/avg/max/mdev = 26.298/96.291/146.896/49.908 ms
+--- results/raw/m5_campaign_20261011T115819Z/E4_B_PathA_down_t01
+total 188
+drwxr-xr-x   2 root root  4096 Oct 11 12:48 .
+drwxr-xr-x 112 root root 12288 Oct 11 12:53 ..
+-rw-r--r--   1 root root  2287 Oct 11 12:48 E4_B_PathA_down_t01_after_traffic_switch_counters.txt
+-rw-r--r--   1 root root  2179 Oct 11 12:47 E4_B_PathA_down_t01_before_switch_counters.txt
+-rw-r--r--   1 root root  1438 Oct 11 12:48 E4_B_PathA_down_t01_counter_deltas.json
+-rw-r--r--   1 root root   711 Oct 11 12:47 E4_B_PathA_down_t01_ipv6_config.txt
+-rw-r--r--   1 root root  6389 Oct 11 12:47 E4_B_PathA_down_t01_tc.txt
+-rw-r--r--   1 root root   777 Oct 11 12:48 controller_cookie_cleanup.json
+-rw-r--r--   1 root root 17574 Oct 11 12:48 controller_events.jsonl
+-rw-r--r--   1 root root  1441 Oct 11 12:48 controller_overhead.csv
+-rw-r--r--   1 root root  3865 Oct 11 12:48 controller_overhead.json
+-rw-r--r--   1 root root 20493 Oct 11 12:48 controller_port_stats.jsonl
+-rw-r--r--   1 root root  3151 Oct 11 12:48 controller_process.log
+-rw-r--r--   1 root root   279 Oct 11 12:47 controller_ready.json
+-rw-r--r--   1 root root   174 Oct 11 12:47 h1_neighbors.txt
+-rw-r--r--   1 root root   174 Oct 11 12:47 h2_neighbors.txt
+-rw-r--r--   1 root root    91 Oct 11 12:47 link_failure_event.json
+-rw-r--r--   1 root root  2837 Oct 11 12:48 manifest.json
+-rw-r--r--   1 root root 27229 Oct 11 12:48 openflow_controller_summary.json
+-rw-r--r--   1 root root  2645 Oct 11 12:48 openflow_utilization_counters.json
+-rw-r--r--   1 root root  4398 Oct 11 12:48 primary_ping.txt
+-rw-r--r--   1 root root 11620 Oct 11 12:48 primary_tcp_iperf3.json
+-rw-r--r--   1 root root    36 Oct 11 12:48 s1_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:48 s2_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:48 s3_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:48 s4_after_controller_exit_flows.txt
+--- results/raw/m5_campaign_20261011T115819Z/E4_C_PathA_down_t01
+total 188
+drwxr-xr-x   2 root root  4096 Oct 11 12:48 .
+drwxr-xr-x 112 root root 12288 Oct 11 12:53 ..
+-rw-r--r--   1 root root  2297 Oct 11 12:48 E4_C_PathA_down_t01_after_traffic_switch_counters.txt
+-rw-r--r--   1 root root  2178 Oct 11 12:48 E4_C_PathA_down_t01_before_switch_counters.txt
+-rw-r--r--   1 root root  1450 Oct 11 12:48 E4_C_PathA_down_t01_counter_deltas.json
+-rw-r--r--   1 root root   711 Oct 11 12:48 E4_C_PathA_down_t01_ipv6_config.txt
+-rw-r--r--   1 root root  6387 Oct 11 12:48 E4_C_PathA_down_t01_tc.txt
+-rw-r--r--   1 root root   777 Oct 11 12:48 controller_cookie_cleanup.json
+-rw-r--r--   1 root root 17258 Oct 11 12:48 controller_events.jsonl
+-rw-r--r--   1 root root  1441 Oct 11 12:48 controller_overhead.csv
+-rw-r--r--   1 root root  4004 Oct 11 12:48 controller_overhead.json
+-rw-r--r--   1 root root 20534 Oct 11 12:48 controller_port_stats.jsonl
+-rw-r--r--   1 root root  2629 Oct 11 12:48 controller_process.log
+-rw-r--r--   1 root root   279 Oct 11 12:48 controller_ready.json
+-rw-r--r--   1 root root   174 Oct 11 12:48 h1_neighbors.txt
+-rw-r--r--   1 root root   174 Oct 11 12:48 h2_neighbors.txt
+-rw-r--r--   1 root root    91 Oct 11 12:48 link_failure_event.json
+-rw-r--r--   1 root root  2837 Oct 11 12:48 manifest.json
+-rw-r--r--   1 root root 26846 Oct 11 12:48 openflow_controller_summary.json
+-rw-r--r--   1 root root  2633 Oct 11 12:48 openflow_utilization_counters.json
+-rw-r--r--   1 root root  4363 Oct 11 12:48 primary_ping.txt
+-rw-r--r--   1 root root 11652 Oct 11 12:48 primary_tcp_iperf3.json
+-rw-r--r--   1 root root    36 Oct 11 12:48 s1_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:48 s2_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:48 s3_after_controller_exit_flows.txt
+-rw-r--r--   1 root root    36 Oct 11 12:48 s4_after_controller_exit_flows.txt
+controller log lines mentioning failure/switch (first 40):
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 1, "decision": "hold", "elapsed_since_last_switch_ms": 2472.993, "path_link_utilization_pct": {"A": [null, null], "B": [null, null]}, "path_scores_pct": {"A": null, "B": null}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11253.808607611, "timestamp_utc": "2026-10-11T11:31:03.411853+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 2, "decision": "hold", "elapsed_since_last_switch_ms": 3478.287, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.014644995159375411, 0.01496373256354789]}, "path_scores_pct": {"A": 0.0, "B": 0.01496373256354789}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11254.813896561, "timestamp_utc": "2026-10-11T11:31:04.417137+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 3, "decision": "hold", "elapsed_since_last_switch_ms": 4477.862, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007846102415987582, 0.007840699923600862]}, "path_scores_pct": {"A": 0.0, "B": 0.007846102415987582}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11255.813475501, "timestamp_utc": "2026-10-11T11:31:05.416721+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 4, "decision": "hold", "elapsed_since_last_switch_ms": 5483.275, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007795349531916089, 0.007805008235849318]}, "path_scores_pct": {"A": 0.0, "B": 0.007805008235849318}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11256.818884881, "timestamp_utc": "2026-10-11T11:31:06.422125+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 5, "decision": "hold", "elapsed_since_last_switch_ms": 6486.68, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007816407128683903, 0.007806666082300809]}, "path_scores_pct": {"A": 0.0, "B": 0.007816407128683903}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11257.822288502, "timestamp_utc": "2026-10-11T11:31:07.425529+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 6, "decision": "hold", "elapsed_since_last_switch_ms": 7483.718, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.00786223478522627, 0.007862756791705705]}, "path_scores_pct": {"A": 0.0, "B": 0.007862756791705705}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11258.819331679, "timestamp_utc": "2026-10-11T11:31:08.422577+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 7, "decision": "hold", "elapsed_since_last_switch_ms": 8489.291, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007801881186599646, 0.007796994158304352]}, "path_scores_pct": {"A": 0.0, "B": 0.007801881186599646}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11259.824901512, "timestamp_utc": "2026-10-11T11:31:09.428142+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 8, "decision": "hold", "elapsed_since_last_switch_ms": 9488.036, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007849180236370941, 0.007850705017240802]}, "path_scores_pct": {"A": 0.0, "B": 0.007850705017240802}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11260.82364798, "timestamp_utc": "2026-10-11T11:31:10.426890+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 9, "decision": "hold", "elapsed_since_last_switch_ms": 10490.802, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007820192235087703, 0.007818810055222981]}, "path_scores_pct": {"A": 0.0, "B": 0.007820192235087703}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11261.82641283, "timestamp_utc": "2026-10-11T11:31:11.429654+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 10, "decision": "hold", "elapsed_since_last_switch_ms": 11490.412, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007837058697015063, 0.00784150748276901]}, "path_scores_pct": {"A": 0.0, "B": 0.00784150748276901}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11262.826025469, "timestamp_utc": "2026-10-11T11:31:12.429270+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 11, "decision": "hold", "elapsed_since_last_switch_ms": 12492.77, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007829038860199635, 0.007823239218472552]}, "path_scores_pct": {"A": 0.0, "B": 0.007829038860199635}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11263.828379675, "timestamp_utc": "2026-10-11T11:31:13.431620+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 12, "decision": "hold", "elapsed_since_last_switch_ms": 13492.355, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007832438994167176, 0.00784324253765676]}, "path_scores_pct": {"A": 0.0, "B": 0.00784324253765676}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11264.827967139, "timestamp_utc": "2026-10-11T11:31:14.431211+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 13, "decision": "hold", "elapsed_since_last_switch_ms": 14496.579, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007815523538769926, 0.007807938939620261]}, "path_scores_pct": {"A": 0.0, "B": 0.007815523538769926}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11265.832188552, "timestamp_utc": "2026-10-11T11:31:15.435428+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 14, "decision": "hold", "elapsed_since_last_switch_ms": 15494.361, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007854426153833112, 0.007854327408509653]}, "path_scores_pct": {"A": 0.0, "B": 0.007854426153833112}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11266.829974595, "timestamp_utc": "2026-10-11T11:31:16.433220+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 15, "decision": "hold", "elapsed_since_last_switch_ms": 16499.023, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007799833408497044, 0.007804386360774004]}, "path_scores_pct": {"A": 0.0, "B": 0.007804386360774004}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11267.83463102, "timestamp_utc": "2026-10-11T11:31:17.437872+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 16, "decision": "hold", "elapsed_since_last_switch_ms": 17496.532, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007856830824410127, 0.007860107585751314]}, "path_scores_pct": {"A": 0.0, "B": 0.007860107585751314}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11268.832146076, "timestamp_utc": "2026-10-11T11:31:18.435392+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 17, "decision": "hold", "elapsed_since_last_switch_ms": 18502.175, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007799217214660815, 0.007805398768730388]}, "path_scores_pct": {"A": 0.0, "B": 0.007805398768730388}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11269.83778488, "timestamp_utc": "2026-10-11T11:31:19.441026+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 18, "decision": "hold", "elapsed_since_last_switch_ms": 19500.014, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007854265254292775, 0.007846122784678097]}, "path_scores_pct": {"A": 0.0, "B": 0.007854265254292775}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11270.835628098, "timestamp_utc": "2026-10-11T11:31:20.438874+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 19, "decision": "hold", "elapsed_since_last_switch_ms": 20499.556, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007845627503844196, 0.00784379255214298]}, "path_scores_pct": {"A": 0.0, "B": 0.007845627503844196}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11271.835170366, "timestamp_utc": "2026-10-11T11:31:21.438416+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 20, "decision": "hold", "elapsed_since_last_switch_ms": 21503.946, "path_link_utilization_pct": {"A": [0.0, 0.0], "B": [0.007805871721871944, 0.007806309762514859]}, "path_scores_pct": {"A": 0.0, "B": 0.007806309762514859}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11272.839556511, "timestamp_utc": "2026-10-11T11:31:22.442798+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 21, "decision": "hold", "elapsed_since_last_switch_ms": 22502.163, "path_link_utilization_pct": {"A": [0.007856761780571514, 0.007846654999198573], "B": [0.007856761780571514, 0.00785336837275351]}, "path_scores_pct": {"A": 0.007856761780571514, "B": 0.007856761780571514}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11273.837775753, "timestamp_utc": "2026-10-11T11:31:23.441020+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 22, "decision": "hold", "elapsed_since_last_switch_ms": 23506.671, "path_link_utilization_pct": {"A": [0.007808108934656025, 0.007804924186805912], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007808108934656025, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11274.842281773, "timestamp_utc": "2026-10-11T11:31:24.445523+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 23, "decision": "hold", "elapsed_since_last_switch_ms": 24507.216, "path_link_utilization_pct": {"A": [0.007837365829996088, 0.007837628474696276], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007837628474696276, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11275.842826946, "timestamp_utc": "2026-10-11T11:31:25.446068+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 24, "decision": "hold", "elapsed_since_last_switch_ms": 25509.147, "path_link_utilization_pct": {"A": [0.007826948860198782, 0.007823050875244632], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007826948860198782, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11276.844757092, "timestamp_utc": "2026-10-11T11:31:26.447998+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 25, "decision": "hold", "elapsed_since_last_switch_ms": 26511.417, "path_link_utilization_pct": {"A": [0.00781952827168283, 0.00782219631354618], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.00782219631354618, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11277.847027943, "timestamp_utc": "2026-10-11T11:31:27.450269+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 26, "decision": "hold", "elapsed_since_last_switch_ms": 27510.061, "path_link_utilization_pct": {"A": [0.007846392212495302, 0.007849793252915608], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007849793252915608, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11278.84567512, "timestamp_utc": "2026-10-11T11:31:28.448921+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 27, "decision": "hold", "elapsed_since_last_switch_ms": 28513.243, "path_link_utilization_pct": {"A": [0.007819863242197954, 0.007815954076596618], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007819863242197954, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11279.848852849, "timestamp_utc": "2026-10-11T11:31:29.452094+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 28, "decision": "hold", "elapsed_since_last_switch_ms": 29514.958, "path_link_utilization_pct": {"A": [0.00781909991342909, 0.00783403104806327], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.00783403104806327, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11280.85056764, "timestamp_utc": "2026-10-11T11:31:30.453809+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 29, "decision": "hold", "elapsed_since_last_switch_ms": 30513.559, "path_link_utilization_pct": {"A": [0.007849949614899458, 0.007842892027226399], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007849949614899458, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11281.849173064, "timestamp_utc": "2026-10-11T11:31:31.452417+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 30, "decision": "hold", "elapsed_since_last_switch_ms": 31513.621, "path_link_utilization_pct": {"A": [0.007840289831991766, 0.007839497903672232], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007840289831991766, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11282.849235345, "timestamp_utc": "2026-10-11T11:31:32.452481+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 31, "decision": "hold", "elapsed_since_last_switch_ms": 32516.347, "path_link_utilization_pct": {"A": [0.007825380053726329, 0.00781885289589099], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007825380053726329, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11283.851959786, "timestamp_utc": "2026-10-11T11:31:33.455203+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 32, "decision": "hold", "elapsed_since_last_switch_ms": 33516.155, "path_link_utilization_pct": {"A": [0.007833949676151279, 0.007841028860600242], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007841028860600242, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11284.851770317, "timestamp_utc": "2026-10-11T11:31:35.083110+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 33, "decision": "hold", "elapsed_since_last_switch_ms": 34519.762, "path_link_utilization_pct": {"A": [0.007813382703900038, 0.00781961464778531], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.00781961464778531, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11285.855371716, "timestamp_utc": "2026-10-11T11:31:36.086706+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 34, "decision": "hold", "elapsed_since_last_switch_ms": 35517.52, "path_link_utilization_pct": {"A": [0.007854566552875903, 0.007851921140001827], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007854566552875903, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11286.853135194, "timestamp_utc": "2026-10-11T11:31:37.084475+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 35, "decision": "hold", "elapsed_since_last_switch_ms": 36518.012, "path_link_utilization_pct": {"A": [0.007836280720930473, 0.007836385968497651], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007836385968497651, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11287.853626979, "timestamp_utc": "2026-10-11T11:31:38.084966+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 36, "decision": "hold", "elapsed_since_last_switch_ms": 37518.962, "path_link_utilization_pct": {"A": [0.007834615715189251, 0.007830451680347296], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007834615715189251, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11288.854577546, "timestamp_utc": "2026-10-11T11:31:39.085917+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 37, "decision": "hold", "elapsed_since_last_switch_ms": 38520.757, "path_link_utilization_pct": {"A": [0.00782461062624113, 0.007826021614101144], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007826021614101144, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11289.856368984, "timestamp_utc": "2026-10-11T11:31:40.087707+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 38, "decision": "hold", "elapsed_since_last_switch_ms": 39521.604, "path_link_utilization_pct": {"A": [0.007832836291577631, 0.00783303046713804], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.00783303046713804, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11290.857219321, "timestamp_utc": "2026-10-11T11:31:41.088559+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 39, "decision": "hold", "elapsed_since_last_switch_ms": 40522.848, "path_link_utilization_pct": {"A": [0.007832006724437233, 0.007830242288771081], "B": [0.0, 0.0]}, "path_scores_pct": {"A": 0.007832006724437233, "B": 0.0}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11291.858462536, "timestamp_utc": "2026-10-11T11:31:42.089802+00:00"}
+logs/m3_verification/osken_spike_eventlet/path_b/controller_events.jsonl:{"candidate_path": null, "current_path": "B", "cycle_id": 40, "decision": "hold", "elapsed_since_last_switch_ms": 41523.883, "path_link_utilization_pct": {"A": [0.007831210335651097, 0.007832116457859238], "B": [0.07008134147312257, 0.05130508242413606]}, "path_scores_pct": {"A": 0.007832116457859238, "B": 0.07008134147312257}, "policy": "STATIC", "poll_interval_ms": 1000, "reason": "static policy", "switching_threshold": null, "time_monotonic_s": 11292.859497543, "timestamp_utc": "2026-10-11T11:31:43.090837+00:00"}
+static ARP / flood grep:
+topology/datacenter_topology.py:227:        autoStaticArp=True,    # Pre-populate kernel ARP tables on hosts. This is required because OpenFlow switches run in failMode='secure' without a controller and flow rules only match IP traffic; without static ARP, ARP requests would be dropped. Flooding ARP would cause broadcast storms in this looped diamond topology.
+grep: topology/__pycache__/datacenter_topology.cpython-312.pyc: binary file matches
+grep: topology/__pycache__/datacenter_topology.cpython-310.pyc: binary file matches
+topology/datacenter_topology.py:227:        autoStaticArp=True,    # Pre-populate kernel ARP tables on hosts. This is required because OpenFlow switches run in failMode='secure' without a controller and flow rules only match IP traffic; without static ARP, ARP requests would be dropped. Flooding ARP would cause broadcast storms in this looped diamond topology.
+
+##### STEP 4: CLEANUP AND TESTS #####
+sudo needs password: run 'sudo mn -c; sudo ovs-vsctl show' yourself
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000\    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000\    link/ether 00:15:5d:34:0a:60 brd ff:ff:ff:ff:ff:ff
+__pycache__
+test_congestion_policy.py
+test_run_static_baseline_helpers.py
+/usr/bin/python3: No module named pytest
+queue evidence (limit values):
+   2295 limit 100
+    597 limit 1000
+    149 limit 20
+
+##### STEP 5: FILES FOR REVIEW #####
+  1998 report/literature_notes.md
+  1655 report/part_a_draft.md
+   573 report/part_a_review_outline.md
+  2237 report/part_b_simulation.md
+  1116 report/part_c_alignment.md
+  1047 report/references.md
+   917 report/screenshot_checklist.md
+   294 report/team_contribution.md
+  1310 report/viva_guide.md
+  1406 README.md
+  2948 docs/PROGRESS.md
+ 15501 total
+50
