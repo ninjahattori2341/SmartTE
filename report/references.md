@@ -1,0 +1,50 @@
+# Verified references
+
+**Verification status: VERIFIED BY INSPECTION.** Metadata and the cited claims below were checked on 2026-10-11 against linked RFC Editor/ONF/publisher or conference pages, author-hosted papers, or a trusted bibliographic index. The list contains 12 peer-reviewed conference/journal papers ([5]–[16]) and two original standards documents ([1], [4]); informational RFCs and non-peer-reviewed background articles are separately identified and are not counted toward that total.
+
+## IEEE-style bibliography
+
+[1] J. Moy, “OSPF Version 2,” IETF, RFC 2328, Standards Track, Apr. 1998. [Online]. Available: [RFC Editor](https://www.rfc-editor.org/rfc/rfc2328). **Type:** original standards-track RFC. **Verified:** RFC Editor record confirms title, author, date, status, and DOI 10.17487/RFC2328.
+
+[2] C. Hopps, “Analysis of an Equal-Cost Multi-Path Algorithm,” IETF, RFC 2992, Informational, Nov. 2000. [Online]. Available: [IETF Datatracker](https://datatracker.ietf.org/doc/html/rfc2992). **Type:** informational RFC, not a standards-track document. **Verified:** Datatracker text confirms title, author, date, and that it analyzes hash-threshold ECMP and route disruption.
+
+[3] E. Haleplidis, K. Pentikousis, S. Denazis, J. Hadi Salim, D. Meyer, and O. Koufopavlou, “Software-Defined Networking (SDN): Layers and Architecture Terminology,” IRTF, RFC 7426, Informational, Jan. 2015. [Online]. Available: [RFC Editor](https://www.rfc-editor.org/rfc/rfc7426). **Type:** informational RFC, not an Internet Standards Track specification. **Verified:** RFC Editor record and full text.
+
+[4] Open Networking Foundation, *OpenFlow Switch Specification, Version 1.3.0*, ONF TS-006, June 25, 2012. [Online]. Available: [ONF specification library](https://opennetworking.org/sdn-resources/openflow-switch-specification/). **Type:** original protocol specification. **Verified:** ONF library identifies version 1.3.0 and TS-006 and describes the controller-to-switch protocol.
+
+[5] M. Al-Fares, A. Loukissas, and A. Vahdat, “A scalable, commodity data center network architecture,” *ACM SIGCOMM Computer Communication Review*, vol. 38, no. 4, pp. 63–74, Oct. 2008, doi: [10.1145/1402946.1402967](https://doi.org/10.1145/1402946.1402967). **Type:** peer-reviewed SIGCOMM paper. **Verified:** ACM DOI record and paper metadata.
+
+[6] A. Greenberg, J. R. Hamilton, N. Jain, S. Kandula, C. Kim, P. Lahiri, D. A. Maltz, P. Patel, and S. Sengupta, “VL2: A scalable and flexible data center network,” in *Proc. ACM SIGCOMM*, 2009, pp. 51–62, doi: [10.1145/1592568.1592576](https://doi.org/10.1145/1592568.1592576). **Type:** peer-reviewed conference paper. **Verified:** SIGCOMM 2009 program and proceedings metadata.
+
+[7] M. Al-Fares, S. Radhakrishnan, B. Raghavan, N. Huang, and A. Vahdat, “Hedera: Dynamic flow scheduling for data center networks,” in *Proc. 7th USENIX Symposium on Networked Systems Design and Implementation (NSDI ’10)*, 2010. [Online]. Available: [USENIX paper page](https://www.usenix.org/conference/nsdi10-0/hedera-dynamic-flow-scheduling-data-center-networks). **Type:** peer-reviewed conference paper. **Verified:** USENIX proceedings page and full paper.
+
+[8] S. Jain, A. Kumar, S. Mandal, J. Ong, L. Poutievski, A. Singh, S. Venkata, J. Wanderer, J. Zhou, M. Zhu, J. Zolla, U. Hölzle, S. Stuart, and A. Vahdat, “B4: Experience with a globally-deployed software defined WAN,” in *Proc. ACM SIGCOMM*, 2013, pp. 3–14, doi: [10.1145/2534169.2486019](https://doi.org/10.1145/2534169.2486019). [Online]. Available: [Google Research publication page](https://research.google/pubs/b4-experience-with-a-globally-deployed-software-defined-wan/). **Type:** peer-reviewed conference paper. **Verified:** ACM/SIGCOMM proceedings and Google Research page/full paper.
+
+[9] C.-Y. Hong, S. Kandula, R. Mahajan, M. Zhang, V. Gill, M. Nanduri, and R. Wattenhofer, “Achieving high utilization with software-driven WAN,” *ACM SIGCOMM Computer Communication Review*, vol. 43, no. 4, pp. 15–26, 2013, doi: [10.1145/2534169.2486012](https://doi.org/10.1145/2534169.2486012). [Online]. Available: [Google Research publication page](https://research.google/pubs/achieving-high-utilization-with-software-driven-wan/). **Type:** peer-reviewed conference paper. **Verified:** SIGCOMM 2013 proceedings and Google Research page/full paper.
+
+[10] A. R. Curtis, J. C. Mogul, J. Tourrilhes, P. Yalagandula, P. Sharma, and S. Banerjee, “DevoFlow: Scaling flow management for high-performance networks,” in *Proc. ACM SIGCOMM*, 2011, pp. 254–265. [Online]. Available: [SIGCOMM proceedings paper](https://conferences.sigcomm.org/sigcomm/2011/papers/sigcomm/p254.pdf). **Type:** peer-reviewed conference paper. **Verified:** proceedings paper and [Google Research metadata/abstract](https://research.google/pubs/devoflow-scaling-flow-management-for-high-performance-networks/).
+
+[11] T. Benson, A. Anand, A. Akella, and M. Zhang, “MicroTE: Fine-grained traffic engineering for data centers,” in *Proc. 7th ACM International Conference on Emerging Networking Experiments and Technologies (CoNEXT ’11)*, 2011, doi: [10.1145/2079296.2079304](https://doi.org/10.1145/2079296.2079304). [Online]. Available: [authors’ paper](https://wisr.cs.wisc.edu/papers/microte.pdf). **Type:** peer-reviewed conference paper. **Verified:** paper title/authors/venue in the paper; DOI and proceedings record cross-checked with DBLP.
+
+[12] N. Handigol, B. Heller, V. Jeyakumar, B. Lantz, and N. McKeown, “Reproducible network experiments using container-based emulation,” in *Proc. 8th ACM International Conference on Emerging Networking Experiments and Technologies (CoNEXT ’12)*, 2012, pp. 253–264, doi: [10.1145/2413176.2413206](https://doi.org/10.1145/2413176.2413206). [Online]. Available: [paper PDF](https://tiny-tera.stanford.edu/~nickm/papers/mininet_hifi_conext2012.pdf). **Type:** peer-reviewed conference paper. **Verified:** ACM proceedings DOI metadata and full paper.
+
+[13] M. Reitblatt, N. Foster, J. Rexford, C. Schlesinger, and D. Walker, “Abstractions for network update,” *ACM SIGCOMM Computer Communication Review*, vol. 42, no. 4, pp. 323–334, 2012, doi: [10.1145/2377677.2377748](https://doi.org/10.1145/2377677.2377748). [Online]. Available: [authors’ paper](https://www.cs.princeton.edu/~dpw/papers/network-update-sigcomm12.pdf). **Type:** peer-reviewed conference paper. **Verified:** DOI record and full paper.
+
+[14] S.-H. Tseng, A. Tang, G. L. Choudhury, and S. Tse, “Routing stability in hybrid software-defined networks,” *IEEE/ACM Transactions on Networking*, vol. 27, no. 2, pp. 790–804, Apr. 2019, doi: [10.1109/TNET.2019.2900199](https://doi.org/10.1109/TNET.2019.2900199). [Online]. Available: [IEEE Xplore record](https://ieeexplore.ieee.org/document/8664455). **Type:** peer-reviewed journal paper. **Verified:** IEEE record and full author-hosted paper.
+
+[15] B. Fortz and M. Thorup, “Internet traffic engineering by optimizing OSPF weights,” in *Proc. IEEE INFOCOM*, vol. 2, 2000, pp. 519–528, doi: [10.1109/INFCOM.2000.832225](https://doi.org/10.1109/INFCOM.2000.832225). [Online]. Available: [paper PDF](https://www.cs.cornell.edu/courses/cs619/2004fa/documents/ospf_opt.pdf). **Type:** peer-reviewed conference paper. **Verified:** paper text and INFOCOM bibliographic record.
+
+[16] B. Fortz, J. L. Rexford, and M. Thorup, “Traffic engineering with traditional IP routing protocols,” *IEEE Communications Magazine*, vol. 40, no. 10, pp. 118–124, Oct. 2002, doi: [10.1109/MCOM.2002.1039866](https://doi.org/10.1109/MCOM.2002.1039866). [Online]. Available: [Princeton publication record](https://collaborate.princeton.edu/en/publications/traffic-engineering-with-traditional-ip-routing-protocols/). **Type:** peer-reviewed journal article. **Verified:** Princeton publication record and DOI.
+
+[17] B. Lantz, B. Heller, and N. McKeown, “A network in a laptop: Rapid prototyping for software-defined networks,” in *Proc. 9th ACM Workshop on Hot Topics in Networks (HotNets-IX)*, 2010. [Online]. Available: [HotNets paper](https://conferences.sigcomm.org/hotnets/2010/papers/a19-lantz.pdf). **Type:** conference workshop paper; not counted in the minimum above. **Verified:** HotNets 2010 program and paper.
+
+[18] N. McKeown, T. Anderson, H. Balakrishnan, G. Parulkar, L. Peterson, J. Rexford, S. Shenker, and J. Turner, “OpenFlow: Enabling innovation in campus networks,” *ACM SIGCOMM Computer Communication Review*, vol. 38, no. 2, pp. 69–74, 2008, doi: [10.1145/1355734.1355746](https://doi.org/10.1145/1355734.1355746). [Online]. Available: [Princeton publication record](https://collaborate.princeton.edu/en/publications/openflow-enabling-innovation-in-campus-networks/). **Type:** foundational background article. The paper itself labels this CCR article as an editorial note and says it was not peer reviewed; it is **not** counted toward the peer-reviewed minimum. **Verified:** paper front matter, Princeton metadata, and DOI.
+
+## Source use note
+
+The bibliography verifies what was published; it does not make the project’s measurements comparable to the papers’ production deployments, larger simulations, or different workloads. Any numerical findings attributed to a paper in `literature_notes.md` are scoped to that paper’s stated methodology and are not SmartTE results.
+
+## Controller implementation references
+
+- [Ryu SDN Framework repository](https://github.com/faucetsdn/ryu): checked for project status when selecting the controller. The repository identifies Ryu as unmaintained.
+- [OpenStack OS-Ken release notes](https://docs.openstack.org/releasenotes/os-ken/index.html) and [OS-Ken project repository](https://github.com/openstack/os-ken): checked for the maintained OpenStack fork/alternative and release documentation. This project used OS-Ken 4.2.2, with exact package versions recorded in `requirements/controller-osken-py310.lock`.
