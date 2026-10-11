@@ -1,0 +1,55 @@
+{
+  "port_counter_deltas": {
+    "s2:LOCAL:rx_packets": 0,
+    "s2:LOCAL:tx_packets": 0,
+    "s2:LOCAL:rx_bytes": 0,
+    "s2:LOCAL:tx_bytes": 0,
+    "s2:s2-eth1:rx_packets": 16890,
+    "s2:s2-eth1:tx_packets": 690,
+    "s2:s2-eth1:rx_bytes": 25614708,
+    "s2:s2-eth1:tx_bytes": 50365,
+    "s2:s2-eth2:rx_packets": 690,
+    "s2:s2-eth2:tx_packets": 16890,
+    "s2:s2-eth2:rx_bytes": 50365,
+    "s2:s2-eth2:tx_bytes": 25614708,
+    "s3:LOCAL:rx_packets": 0,
+    "s3:LOCAL:tx_packets": 0,
+    "s3:LOCAL:rx_bytes": 0,
+    "s3:LOCAL:tx_bytes": 0,
+    "s3:s3-eth1:rx_packets": 0,
+    "s3:s3-eth1:tx_packets": 0,
+    "s3:s3-eth1:rx_bytes": 0,
+    "s3:s3-eth1:tx_bytes": 0,
+    "s3:s3-eth2:rx_packets": 0,
+    "s3:s3-eth2:tx_packets": 0,
+    "s3:s3-eth2:rx_bytes": 0,
+    "s3:s3-eth2:tx_bytes": 0
+  },
+  "rx_gt_tx_direction_imbalances": [
+    {
+      "switch": "s2",
+      "port": "s2-eth1",
+      "rx_packets_delta": 16890,
+      "tx_packets_delta": 690
+    }
+  ],
+  "counter_interpretation": "Per-port RX/TX packet-count imbalance is descriptive and can occur with asymmetric TCP data and ACK traffic; it is not by itself a loop verdict.",
+  "flow_n_packets_deltas": {
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth1\",nw_dst=10.0.0.2 actions=output:\"s1-eth3\"": 914,
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth3\",nw_dst=10.0.0.1 actions=output:\"s1-eth1\"": 676,
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth2\",nw_dst=10.0.0.4 actions=output:\"s1-eth3\"": 16299,
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth3\",nw_dst=10.0.0.3 actions=output:\"s1-eth2\"": 9,
+    "s2:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s2-eth1\",nw_dst=10.0.0.2 actions=output:\"s2-eth2\"": 806,
+    "s2:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s2-eth2\",nw_dst=10.0.0.1 actions=output:\"s2-eth1\"": 676,
+    "s2:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s2-eth1\",nw_dst=10.0.0.4 actions=output:\"s2-eth2\"": 16048,
+    "s2:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s2-eth2\",nw_dst=10.0.0.3 actions=output:\"s2-eth1\"": 9,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth3\",nw_dst=10.0.0.2 actions=output:\"s4-eth1\"": 806,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth1\",nw_dst=10.0.0.1 actions=output:\"s4-eth3\"": 676,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth3\",nw_dst=10.0.0.4 actions=output:\"s4-eth2\"": 16084,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth2\",nw_dst=10.0.0.3 actions=output:\"s4-eth3\"": 14
+  },
+  "unused_path": "B",
+  "unused_path_switch": "s3",
+  "unused_path_packet_delta_sum": 0,
+  "unused_path_traffic_detected": false
+}

@@ -21,8 +21,8 @@ zero or a defined static control value.
 | 12 | `bottleneck_mbps` | Mbps | Configured capacity of the primary selected path; never null. |
 | 13 | `delay_a_ms` | ms per Path A link | Configured Path A link delay converted to milliseconds; empty only if config cannot be parsed. |
 | 14 | `delay_b_ms` | ms per Path B link | Configured Path B link delay converted to milliseconds; empty only if config cannot be parsed. |
-| 15 | `queue_limit_pkts` | packets | Requested inter-switch queue limit. This is configuration, not proof of enforcement. |
-| 16 | `queue_config` | string | Qdisc description observed with `tc` on every inter-switch interface. It must say `NOT VERIFIED` unless the requested packet limit is visible in the captured `tc` output on every interface. |
+| 15 | `queue_limit_pkts` | packets | Effective inter-switch netem limit verified in `tc` output on every core interface. With runner option `--queue 0`, the runner omits Mininet `max_queue_size` and records the default limit actually shown by `tc` (currently 1000 packets). Empty if the effective limit cannot be established. |
+| 16 | `queue_config` | string | Qdisc description observed with `tc` on every inter-switch interface. It identifies an explicit `max_queue_size` or the Mininet default and must say `NOT VERIFIED` unless a consistent effective packet limit is visible on every interface. |
 | 17 | `tcp_duration_s` | seconds | Requested duration of the primary TCP transfer; never null. |
 | 18 | `tcp_throughput_mbps` | Mbps | Receiver-side iperf3 `end.sum_received.bits_per_second` converted to Mbps. Empty if receiver-side result is unavailable; explain in `notes`. |
 | 19 | `tcp_retransmits` | packets | Sender-side iperf3 `end.sum_sent.retransmits`. Empty if unavailable; explain in `notes`. |
@@ -52,7 +52,8 @@ zero or a defined static control value.
 
 ## Measurement and provenance rules
 
-- `queue_limit_pkts` records the requested Mininet `max_queue_size`; it does not establish which qdisc enforces that limit. `queue_config` may claim a verified limit only when the exact limit appears in `tc` output for every inter-switch interface.
+- `queue_limit_pkts` records the effective netem limit, not the CLI request. `--queue 100` and `--queue 20` set explicit limits; `--queue 0` omits Mininet `max_queue_size` and discovers the default netem limit from `tc`. The runner excludes trials if the effective value cannot be verified consistently on all eight directed core interfaces. The current Mininet default was observed as `netem limit 1000`.
+- Mininet applies a netem delay qdisc to the 100 Mbps access interfaces too. Their current `tc` output also shows `netem limit 1000`; these access queues are separate from the experimental core queue setting and are recorded in the qdisc evidence.
 - Path utilization uses OVS `tx_bytes` sampled immediately before and after the TCP client command. The interval is measured with `time.monotonic()`. The raw counter values and interval belong in the trial's utilization JSON.
 - The path utilization counters include all egress traffic and headers, so utilization can be slightly greater than iperf throughput.
 - The first received RTT sample is discarded as a precaution. This is not a claim that the sample has a known cause; packet loss remains computed from ping's full transmitted count.

@@ -4,6 +4,7 @@ from experiments.run_static_baseline import (
     evaluate_h3_h4_validation,
     packet_delta_sum,
     parse_port_counters,
+    resolve_queue_limit,
     wait_for_iperf_json,
 )
 
@@ -90,6 +91,29 @@ class BackgroundIperfOutputTests(unittest.TestCase):
 
         output = wait_for_iperf_json(FakeNode(), '/tmp/competing.json', 2)
         self.assertIn('sum_received', output)
+
+
+class QueueLimitResolutionTests(unittest.TestCase):
+    def test_verifies_explicit_limit_on_every_interface(self):
+        outputs = [
+            ['qdisc netem 10: parent 5:1 limit 100 delay 5ms'],
+            ['qdisc netem 10: parent 5:1 limit 100 delay 10ms'],
+        ]
+        self.assertEqual(resolve_queue_limit(100, outputs), (100, True, 'explicit max_queue_size'))
+
+    def test_resolves_mininet_default_from_tc_output(self):
+        outputs = [
+            ['qdisc netem 10: parent 5:1 limit 1000 delay 5ms'],
+            ['qdisc netem 10: parent 5:1 limit 1000 delay 10ms'],
+        ]
+        self.assertEqual(resolve_queue_limit(0, outputs), (1000, True, 'Mininet default'))
+
+    def test_rejects_inconsistent_default_limits(self):
+        outputs = [
+            ['qdisc netem 10: parent 5:1 limit 1000 delay 5ms'],
+            ['qdisc netem 10: parent 5:1 limit 500 delay 10ms'],
+        ]
+        self.assertEqual(resolve_queue_limit(0, outputs), (None, False, 'Mininet default'))
 
 
 if __name__ == '__main__':

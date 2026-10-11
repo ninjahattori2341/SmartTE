@@ -166,12 +166,42 @@ def wait_for_iperf_json(node, path, timeout_s):
     return None
 
 
+def resolve_queue_limit(queue_request, interface_outputs):
+    """Resolve the effective packet limit from tc output on every core iface.
+
+    A positive request means Mininet max_queue_size was set explicitly. A
+    request of zero omits max_queue_size and verifies the default netem limit
+    reported by tc. Each interface entry contains the outputs of qdisc,
+    qdisc -s, and class inspection.
+    """
+    explicit_limit = int(queue_request) if queue_request is not None else 0
+    mode = 'explicit max_queue_size' if explicit_limit > 0 else 'Mininet default'
+    if not interface_outputs:
+        return None, False, mode
+
+    observed_limits = []
+    for outputs in interface_outputs:
+        text = '\n'.join(outputs)
+        if explicit_limit > 0:
+            pattern = re.compile(rf'\blimit\s+{explicit_limit}\b')
+            verified = bool(pattern.search(text))
+            observed_limits.append(explicit_limit if verified else None)
+        else:
+            values = set(re.findall(r'qdisc\s+netem\b[^\n]*\blimit\s+(\d+)\b', text))
+            observed_limits.append(int(next(iter(values))) if len(values) == 1 else None)
+
+    if any(limit is None for limit in observed_limits):
+        return None, False, mode
+    if len(set(observed_limits)) != 1:
+        return None, False, mode
+    return observed_limits[0], True, mode
+
+
 def capture_queue_config(net, queue_pkts, raw_dir, label):
     """Capture qdisc/class state and only verify a limit visible on every core iface."""
     per_iface = {}
     raw_lines = []
-    limit_pattern = re.compile(rf'\blimit\s+{int(queue_pkts)}\b')
-    all_limits_visible = queue_pkts is not None and int(queue_pkts) > 0
+    interface_outputs = []
 
     for iface in INTERSWITCH_INTERFACES:
         commands = [
@@ -188,8 +218,11 @@ def capture_queue_config(net, queue_pkts, raw_dir, label):
             observed.append(output)
         qdisc_text = observed[0] if observed else ''
         per_iface[iface] = qdisc_text or '(no qdisc output)'
-        if not any(limit_pattern.search(text) for text in observed):
-            all_limits_visible = False
+        interface_outputs.append(observed)
+
+    effective_limit, all_limits_visible, queue_mode = resolve_queue_limit(
+        queue_pkts, interface_outputs
+    )
 
     # Access-link state is recorded separately because it is outside the queue
     # limit requested for the inter-switch links.
@@ -212,10 +245,14 @@ def capture_queue_config(net, queue_pkts, raw_dir, label):
         f'{iface}={description}' for iface, description in per_iface.items()
     )
     if all_limits_visible:
-        description = f'verified queue limit {int(queue_pkts)} packets; {observed_description}'
+        description = (
+            f'verified {queue_mode} queue limit {effective_limit} packets; '
+            f'{observed_description}'
+        )
     else:
         description = (
-            f'NOT VERIFIED: requested max_queue_size={queue_pkts} packets; '
+            f'NOT VERIFIED: requested queue={queue_pkts} '
+            '(0 means Mininet default); '
             f'tc output did not show that limit on every inter-switch interface; '
             f'{observed_description}'
         )
@@ -223,6 +260,8 @@ def capture_queue_config(net, queue_pkts, raw_dir, label):
     return {
         'queue_config': description,
         'queue_limit_verified': bool(all_limits_visible),
+        'queue_limit_pkts': effective_limit,
+        'queue_mode': queue_mode,
         'access_qdisc': '; '.join(access_lines),
         'raw_log': f'{label}_tc.txt'
     }
@@ -768,7 +807,7 @@ def main():
     parser.add_argument('--duration', type=int, default=15,
                         help='Duration in seconds for TCP transfer (default: 15)')
     parser.add_argument('--queue', type=int, default=DEFAULT_QUEUE,
-                        help='Queue limit (max_queue_size in pkts) on bottleneck links (default: 100)')
+                        help='Queue limit on core links in packets; 0 omits max_queue_size and uses Mininet default netem settings (default: 100)')
     parser.add_argument('--smoke-test', action='store_true', default=False,
                         help='Run a quick smoke test (1 trial, 5s, Path A, 0 Mbps competing)')
     parser.add_argument('--path-evidence', action='store_true', default=False,
@@ -776,6 +815,8 @@ def main():
     parser.add_argument('--queue-audit-only', action='store_true', default=False,
                         help='Capture tc qdisc/class state on all inter-switch and access interfaces, without traffic')
     args = parser.parse_args()
+    if args.queue < 0:
+        parser.error('--queue must be zero (Mininet default) or a positive packet limit')
 
     # Create timestamped run identifier
     utc_str = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d_%H%M%S')
@@ -808,7 +849,8 @@ def main():
         'delay_access': DEFAULT_DELAY_ACCESS,
         'delay_a': DEFAULT_DELAY_A,
         'delay_b': DEFAULT_DELAY_B,
-        'queue_pkts': args.queue,
+        'queue_pkts_requested': args.queue,
+        'queue_limit_pkts': None,
         'queue_config': f'NOT VERIFIED: requested TCLink max_queue_size={args.queue}; qdisc capture pending',
         'queue_limit_verified': False,
         'queue_observations': [],
@@ -914,10 +956,13 @@ def main():
                 )
                 metadata['queue_config'] = qdisc_observation['queue_config']
                 metadata['queue_limit_verified'] = qdisc_observation['queue_limit_verified']
+                metadata['queue_limit_pkts'] = qdisc_observation['queue_limit_pkts']
                 metadata['queue_observations'].append({
                     'scenario': f'primary_{path}_competing_{comp_setting}_{c_rate}mbps',
                     'queue_config': qdisc_observation['queue_config'],
                     'queue_limit_verified': qdisc_observation['queue_limit_verified'],
+                    'queue_limit_pkts': qdisc_observation['queue_limit_pkts'],
+                    'queue_mode': qdisc_observation['queue_mode'],
                     'raw_log_ref': qdisc_observation['raw_log']
                 })
                 metadata['access_qdisc_observations'].append({
@@ -934,30 +979,47 @@ def main():
                 install_flows(net, path=path, competing=comp_setting)
                 time.sleep(1)
 
+                if not qdisc_observation['queue_limit_verified']:
+                    log.error(
+                        'Queue limit not verified on every core interface; '
+                        'excluding this configuration.'
+                    )
                 for t in range(1, trials_count + 1):
-                    try:
-                        row = run_trial(
-                            net, path, c_rate, t, duration_to_run, trial_raw_dir,
-                            args.queue, run_id, experiment_id, comp_setting,
-                            qdisc_observation['queue_config'], git_commit, git_dirty,
-                            path_evidence=args.path_evidence
-                        )
-                    except KeyboardInterrupt:
+                    if not qdisc_observation['queue_limit_verified']:
                         row = make_incomplete_row(
                             run_id, experiment_id, path, c_rate, t, duration_to_run,
-                            args.queue, qdisc_observation['queue_config'], git_commit,
-                            git_dirty, 'aborted', 'KeyboardInterrupt during trial',
+                            qdisc_observation['queue_limit_pkts'],
+                            qdisc_observation['queue_config'], git_commit,
+                            git_dirty, 'excluded', 'Queue limit was not verified on every inter-switch interface.',
                             competing_path=comp_setting
                         )
-                        stop_after_gate_failure = True
-                    except Exception as exc:
-                        log.exception('Trial %s failed before completion', t)
-                        row = make_incomplete_row(
-                            run_id, experiment_id, path, c_rate, t, duration_to_run,
-                            args.queue, qdisc_observation['queue_config'], git_commit,
-                            git_dirty, 'failed', f'{type(exc).__name__}: {exc}',
-                            competing_path=comp_setting
-                        )
+                    else:
+                        try:
+                            row = run_trial(
+                                net, path, c_rate, t, duration_to_run, trial_raw_dir,
+                                qdisc_observation['queue_limit_pkts'], run_id,
+                                experiment_id, comp_setting,
+                                qdisc_observation['queue_config'], git_commit, git_dirty,
+                                path_evidence=args.path_evidence
+                            )
+                        except KeyboardInterrupt:
+                            row = make_incomplete_row(
+                                run_id, experiment_id, path, c_rate, t, duration_to_run,
+                                qdisc_observation['queue_limit_pkts'],
+                                qdisc_observation['queue_config'], git_commit,
+                                git_dirty, 'aborted', 'KeyboardInterrupt during trial',
+                                competing_path=comp_setting
+                            )
+                            stop_after_gate_failure = True
+                        except Exception as exc:
+                            log.exception('Trial %s failed before completion', t)
+                            row = make_incomplete_row(
+                                run_id, experiment_id, path, c_rate, t, duration_to_run,
+                                qdisc_observation['queue_limit_pkts'],
+                                qdisc_observation['queue_config'], git_commit,
+                                git_dirty, 'failed', f'{type(exc).__name__}: {exc}',
+                                competing_path=comp_setting
+                            )
 
                     # Write to CSV immediately
                     with open(csv_path, 'a', newline='') as f:

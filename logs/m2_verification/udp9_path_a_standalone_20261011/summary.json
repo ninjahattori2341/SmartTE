@@ -1,0 +1,133 @@
+{
+  "run_id": "udp9_path_a_standalone_20261011",
+  "purpose": "Validate Path A port-counter utilization for h3-h4 UDP at 9 Mbps with no h1-h2 data flow.",
+  "offered_udp_mbps": 9,
+  "core_queue_limit_pkts": 100,
+  "utilization_port": "s2 port 2 (s2-eth2), Path A egress toward s4",
+  "ipv6_suppression_verified": true,
+  "counter_start_bytes": 176,
+  "counter_end_bytes": 11577190,
+  "counter_start_port": {
+    "switch": "s2",
+    "port": 2,
+    "interface": "s2-eth2",
+    "capacity_mbps": 10
+  },
+  "counter_end_port": {
+    "switch": "s2",
+    "port": 2,
+    "interface": "s2-eth2",
+    "capacity_mbps": 10
+  },
+  "counter_interval_s": 10.25490549299866,
+  "counter_delta_tx_bytes": 11577014,
+  "utilization_formula": "(delta_tx_bytes * 8) / (monotonic_interval_s * configured_capacity_bps) * 100",
+  "measured_path_a_utilization_pct": 90.314,
+  "receiver_achieved_udp_mbps": 8.976,
+  "receiver_udp_loss_pct": 0,
+  "iperf_receiver_packets": 7769,
+  "ipv6_suppression": {
+    "verified": true,
+    "interfaces": [
+      {
+        "node": "s1",
+        "interface": "s1-eth1",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s1",
+        "interface": "s1-eth2",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s1",
+        "interface": "s1-eth3",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s1",
+        "interface": "s1-eth4",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s2",
+        "interface": "s2-eth1",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s2",
+        "interface": "s2-eth2",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s3",
+        "interface": "s3-eth1",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s3",
+        "interface": "s3-eth2",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s4",
+        "interface": "s4-eth1",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s4",
+        "interface": "s4-eth2",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s4",
+        "interface": "s4-eth3",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "s4",
+        "interface": "s4-eth4",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "h1",
+        "interface": "h1-eth0",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "h2",
+        "interface": "h2-eth0",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "h3",
+        "interface": "h3-eth0",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      },
+      {
+        "node": "h4",
+        "interface": "h4-eth0",
+        "observed_disable_ipv6": "1",
+        "verified": true
+      }
+    ],
+    "raw_log": "udp9_ipv6_config.txt"
+  },
+  "post_cleanup_ovs_bridges": "",
+  "post_cleanup_ip_link": "lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP> \neth0             UP             00:15:5d:34:0a:60 <BROADCAST,MULTICAST,UP,LOWER_UP>"
+}
