@@ -1,2 +1,12 @@
+# Python caches
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Temporary scratch files
+logs/scratch/
