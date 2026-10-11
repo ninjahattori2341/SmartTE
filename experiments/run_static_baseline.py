@@ -150,6 +150,22 @@ def _run_command(command):
         return 1, f'{type(exc).__name__}: {exc}'
 
 
+def wait_for_iperf_json(node, path, timeout_s):
+    """Wait for a complete background iperf3 JSON document in a Mininet host."""
+    deadline = time.monotonic() + timeout_s
+    while time.monotonic() < deadline:
+        contents = node.cmd(f'cat {path} 2>/dev/null')
+        if contents.strip():
+            try:
+                payload = json.loads(contents)
+            except json.JSONDecodeError:
+                payload = None
+            if isinstance(payload, dict) and ('end' in payload or 'error' in payload):
+                return contents
+        time.sleep(0.25)
+    return None
+
+
 def capture_queue_config(net, queue_pkts, raw_dir, label):
     """Capture qdisc/class state and only verify a limit visible on every core iface."""
     per_iface = {}
@@ -495,7 +511,13 @@ def run_trial(net, path, competing_mbps, trial_idx, duration, raw_dir, queue_pkt
     if not path_evidence:
         time.sleep(1)
         ping_text = h1.cmd(f"cat {ping_raw_file}")
-    competing_json_str = h3.cmd(f"cat {competing_raw_file}") if competing_mbps > 0 else ''
+    competing_json_str = ''
+    if competing_mbps > 0:
+        competing_json_str = wait_for_iperf_json(
+            h3, competing_raw_file, max(15, duration + 10)
+        ) or ''
+        if not competing_json_str:
+            log.error('Timed out waiting for competing iperf3 JSON: %s', competing_raw_file)
     for host in (h1, h2, h3, h4):
         host.cmd('killall -9 iperf3 ping 2>/dev/null')
     h1.cmd(f"rm -f {ping_raw_file} {competing_raw_file} 2>/dev/null")

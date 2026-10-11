@@ -4,6 +4,7 @@ from experiments.run_static_baseline import (
     evaluate_h3_h4_validation,
     packet_delta_sum,
     parse_port_counters,
+    wait_for_iperf_json,
 )
 
 
@@ -72,6 +73,23 @@ class PathEvidenceTests(unittest.TestCase):
         ping = '20 packets transmitted, 0 received, 100% packet loss'
         result = evaluate_h3_h4_validation(ping, {}, 'off')
         self.assertTrue(result['passed'])
+
+
+class BackgroundIperfOutputTests(unittest.TestCase):
+    def test_waits_until_background_iperf_json_is_complete(self):
+        class FakeNode:
+            def __init__(self):
+                self.responses = iter((
+                    '',
+                    '{"start": {}}',
+                    '{"end": {"sum_received": {"bits_per_second": 5000000}}}',
+                ))
+
+            def cmd(self, command):
+                return next(self.responses)
+
+        output = wait_for_iperf_json(FakeNode(), '/tmp/competing.json', 2)
+        self.assertIn('sum_received', output)
 
 
 if __name__ == '__main__':

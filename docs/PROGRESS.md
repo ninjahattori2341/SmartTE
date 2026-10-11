@@ -11,7 +11,28 @@ Updated 2026-10-11.
 - The full path-evidence run recorded nine primary trial rows with `experiment_status=ok`: three h1–h2 trials on Path A, three on Path B, and three with h3–h4 configured on Path A. Its final h3–h4 check returned false because of the counter-key bug below; the live recheck with the corrected validator passed. CSV and raw output are in [the run folder](../logs/m2_verification/static_baseline_20261011_100417/).
 - Corrected live h3–h4 validation passed in [path_validation_recheck_20261011_103528](../logs/m2_verification/path_validation_recheck_20261011_103528/summary.json): with h3–h4 rules off, ping loss was 100% and both core paths had zero packet delta; with Path A rules on, ping loss was 0%, Path A had 80 packet-counter increments, Path B had zero, and no duplicate reply was seen.
 - Saved h1/h2 neighbor dumps show `PERMANENT` ARP entries. No `DUP!` marker appears in the full path run’s ping logs. After cleanup, `ovs-vsctl list-br`, `ip netns list`, and the `iperf3`/`ping` process check returned no entries.
-- Six helper unit tests pass. They cover numeric and named OVS ports, split RX/TX lines, packet-delta keys, path validation, and duplicate replies.
+- Seven helper unit tests pass. They cover numeric and named OVS ports, split RX/TX lines, packet-delta keys, path validation, duplicate replies, and complete background iperf JSON.
+
+## M2-S2: contention gate and frozen settings
+
+**VERIFIED BY EXECUTION**
+
+- The first contention pilot (`static_baseline_20261011_104020`) exposed a runner defect: the background UDP iperf client had not written its JSON before cleanup. Those competing-flow rows are excluded from results. The failed outputs and CSV are retained in [the diagnostic run folder](../logs/m2_verification/static_baseline_20261011_104020/).
+- Fixed the runner to wait for complete receiver-side UDP JSON (or a reported iperf error) before cleanup. Seven runner-helper unit tests passed after the change.
+- Repeated the same short gate at 0, 5, and 9 Mbps, two trials each, for 10-second TCP runs. All six rows are `ok` in [the verified pilot CSV](../logs/m2_verification/static_baseline_20261011_104335/static_baseline_20261011_104335.csv). Mean h1-h2 receiver throughput was 9.487, 4.409, and 0.766 Mbps respectively. Competing receiver throughput was 4.965/4.982 Mbps at 5 Mbps offered and 8.805/8.907 Mbps at 9 Mbps offered; reported UDP loss was 0.203-0.536% and 0.837-1.681% respectively. The 0 Mbps rows have no competing UDP measurement. The gate passes: competing traffic measurably reduced h1-h2 throughput.
+- Utilization values are sampled from OVS port `tx_bytes`, not inferred from iperf. The measured Path A utilization was 95.6-99.9% in loaded pilot rows; Path B was 0%. Port deltas recorded zero packets on the unused Path B during each Path A trial. No duplicate ping replies were reported.
+
+**FROZEN FOR THE REMAINING COMPARISONS**
+
+- Shared topology: Path A and Path B core links 10 Mbps, host access links 100 Mbps; access delay 1 ms, Path A delay 5 ms, Path B delay 10 ms; static ARP and the same IPv6 control-frame suppression for these IPv4 runs.
+- Queue limit: 100 packets for the primary comparison, verified from `tc` output on all eight inter-switch interfaces. Queue 20 is reserved for the queue-sensitivity comparison and was independently verified. No queue fix was needed.
+- Workload: h1-h2 TCP receiver throughput and ping RTT/loss; optional h3-h4 UDP on Path A at offered rates 0, 5, or 9 Mbps. Main matrix duration 15 seconds, five trials per configuration. Keep these settings and the same measurement/decision objective for static, B, and C; do not tune from the main results.
+
+## M2 work remaining
+
+- **IN PROGRESS:** Full static A/B matrix and queue-sensitivity comparison are pending.
+- **NOT STARTED:** M3 controller, M4 algorithms and pilot, M5 E1-E4, analysis, and Section 8 deliverables.
+- **OPEN RISK:** Mininet prints `sch_htb: quantum of class 50001 is big` warnings on 100 Mbps access links. The requested core queue limits were visible and verified; the warning did not stop the recorded trials.
 
 **VERIFIED BY INSPECTION**
 

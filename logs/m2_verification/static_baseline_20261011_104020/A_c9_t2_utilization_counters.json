@@ -1,0 +1,43 @@
+{
+  "monotonic_start_s": 8374.460565501,
+  "monotonic_end_s": 8384.879666814,
+  "interval_s": 10.419101313000283,
+  "counter_start": {
+    "A": {
+      "tx_bytes": 18519522,
+      "switch": "s2",
+      "port": 2,
+      "interface": "s2-eth2",
+      "capacity_mbps": 10
+    },
+    "B": {
+      "tx_bytes": 90,
+      "switch": "s3",
+      "port": 2,
+      "interface": "s3-eth2",
+      "capacity_mbps": 10
+    }
+  },
+  "counter_end": {
+    "A": {
+      "tx_bytes": 31455773,
+      "switch": "s2",
+      "port": 2,
+      "interface": "s2-eth2",
+      "capacity_mbps": 10
+    },
+    "B": {
+      "tx_bytes": 90,
+      "switch": "s3",
+      "port": 2,
+      "interface": "s3-eth2",
+      "capacity_mbps": 10
+    }
+  },
+  "port_selection": {
+    "A": "s2 port 2, egress toward s4",
+    "B": "s3 port 2, egress toward s4"
+  },
+  "port_selection_reason": "These are the egress ports of the s2-s4 and s3-s4 core links in the h1-to-h2 direction.",
+  "utilization_definition": "(delta_tx_bytes * 8) / (delta_t_seconds * configured_link_capacity_bps) * 100"
+}
