@@ -4,6 +4,27 @@ VALID_PATHS = ('A', 'B')
 DEFAULT_EPSILON = 0.01  # utilisation percentage points; avoids float flapping.
 
 
+def mask_unavailable_paths(scores, unavailable_paths):
+    """Make a failed path ineligible for best-path selection."""
+    unavailable = set(unavailable_paths)
+    return {
+        path: None if path in unavailable else scores.get(path)
+        for path in VALID_PATHS
+    }
+
+
+def successful_path_change_count(events):
+    """Count committed route transitions, not rejected switch decisions."""
+    totals = [
+        int(event['path_changes_total'])
+        for event in events
+        if isinstance(event.get('path_changes_total'), (int, float))
+    ]
+    if totals:
+        return max(totals)
+    return sum(event.get('decision') == 'switch' for event in events)
+
+
 def score_paths(link_utilization):
     """Return each path's worst core-link utilisation, or None if incomplete."""
     result = {}

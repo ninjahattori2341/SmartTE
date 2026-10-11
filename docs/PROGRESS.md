@@ -65,7 +65,7 @@ Updated 2026-10-11.
 - The zero-load static path evidence, queue audits at 20/100/default, static contention gate, full static matrix, and queue-sensitivity trials are recorded. The UDP-only port-counter validation measured the requested near-90% utilization.
 - Ten helper unit tests and `py_compile` for the runner and topology passed after adding verified default-queue support.
 - **OPEN RISK:** Mininet prints `sch_htb: quantum of class 50001 is big` warnings on 100 Mbps access links. All recorded trials completed; access queues are visible and are discussed above.
-- **NEXT:** M3 controller setup in an isolated Python environment; reproduce the static baseline using controller-installed rules before B/C measurements.
+- M2 was accepted by the user’s autonomous-run override. Controller work and the controller-installed static reproduction are recorded under M3 below.
 
 **VERIFIED BY INSPECTION**
 
@@ -85,7 +85,7 @@ Updated 2026-10-11.
 **VERIFIED BY EXECUTION**
 
 - Ryu was tried first in an isolated Python 3.10 environment. The packaged install failed in its legacy setuptools entry-point path; a source install then failed at runtime with Eventlet compatibility errors (`ALREADY_HANDLED` missing, and a Python 3.10 `TimeoutError` type error with the older Eventlet workaround). Logs: [Ryu install](../logs/m3_verification/ryu_install.txt) and [Ryu compatibility](../logs/m3_verification/ryu_compatibility.txt). No system Python was modified.
-- OS-Ken 4.2.2 runs in the isolated Python 3.10.22 environment using OpenFlow 1.3. A smoke run confirmed four switch connections, controller-installed IPv4 path rules, port-stat replies, and graceful cookie-owned rule cleanup. The launcher selects the Eventlet hub before OS-Ken starts; its startup/termination check is retained in [the OS-Ken spike evidence](../logs/m3_verification/osken_spike_eventlet/).
+- OS-Ken 4.2.2 runs in the isolated Python 3.10.22 environment using OpenFlow 1.3. The 60-second spike on each pinned path confirmed four switch connections, bidirectional controller-installed IPv4 rules, usable port-stat replies, and graceful cookie-owned rule cleanup. Path A carried h1–h2 traffic while Path B's packet delta was zero; Path B carried h1–h2 traffic in its run while Path A was unused. The spike's h1–h2 ping and TCP checks completed without `DUP!`; receiver TCP rates were 9.359 Mbps (A) and 9.341 Mbps (B). OS-Ken `tx_bytes` and `ovs-ofctl dump-ports` agreed exactly (0-byte difference on the checked ports). The launcher selects the Eventlet hub before OS-Ken starts; evidence is retained in [the OS-Ken spike folder](../logs/m3_verification/osken_spike_eventlet/) and [run log](../logs/m3_verification/osken_spike_eventlet_run.txt).
 - The static reproduction completed five trials per path (10/10 `experiment_status=ok`) at queue 100 and 15-second TCP duration: [CSV](../results/raw/m3_controller_static_20261011T113744Z.csv), [raw trials](../results/raw/m3_controller_static_20261011T113744Z/). Controller-installed Path A mean h1–h2 receiver throughput was 9.472 Mbps (sample SD 0.048); Path B was 9.475 Mbps (SD 0.014). Mean RTT was 172.07 ms (SD 15.00) on A and 201.92 ms (SD 26.22) on B. Utilization came from OS-Ken port `tx_bytes` counters over intervals bracketing TCP, not from iperf. This run captured commit `35c8db5` and marked the tree dirty because the controller changes were still in progress.
 - Every controller static trial contains a queue audit and a post-exit OVS flow dump for all four switches. The cookie-cleanup checks report zero remaining SmartTE rules. A separate direct-`dpctl` smoke after the topology refactor completed one 5-second trial on each path with both rows `ok`; its evidence is [CSV](../results/raw/static_baseline_20261011_114241.csv) and [console log](../logs/m3_verification/dpctl_static_recheck.txt). This reproduces the static path behavior through both rule-installation methods.
 - `python3 -m unittest discover -s tests -v` passed all 18 tests; the relevant controller/topology/experiment modules also passed `py_compile`.
@@ -114,3 +114,12 @@ Updated 2026-10-11.
 **M4 COMPLETE**
 
 - The policy implementation landed with the controller in `857b674`; this milestone records the passing decision-logic tests, pilot evidence, and frozen M5 settings.
+
+**M4 COMMIT:** `58acacd test: cover congestion policies and freeze M5 settings`.
+
+## M5: experiments and analysis — IN PROGRESS
+
+- A first 20-row campaign was interrupted before its next Mininet trial and retained at [partial CSV](../results/raw/m5_campaign_20261011T114755Z.csv). Its 20 completed rows were `ok`; the attempted next trial is recorded as `aborted` with no traffic and cleanup evidence in [its trial folder](../results/raw/m5_campaign_20261011T114755Z/E2_STATIC_initialB_9Mbps_t01/aborted.json). The entire partial campaign is excluded from final M5 analysis.
+- The initial reason for interrupting was a concern about the iperf3 UDP loss denominator. Inspection of raw receiver JSON disproved that concern: `lost_packets / packets * 100` reproduces iperf3's reported `lost_percent` exactly for the checked sample. No measurement-code correction was needed; see [interruption audit](../logs/m5_campaign_interruption.md).
+- The complete frozen campaign is running as `m5_campaign_20261011T115819Z`; current evidence is [CSV](../results/raw/m5_campaign_20261011T115819Z.csv), [raw trial folder](../results/raw/m5_campaign_20261011T115819Z/), and [runner log](../logs/m5_campaign_complete_run.txt). It contains 110 planned rows (expected (calculated)); at the 12:26 UTC checkpoint 62 rows were recorded and all were `ok` (E1 and E2 complete; E3 in progress). No main-run settings changed after the pilot.
+- Analysis scripts and the isolated analysis environment are prepared. Smoke analysis on the explicitly excluded partial CSV succeeded and wrote only under `logs/scratch/analysis_smoke/`; final tables/figures will be generated from the complete campaign only.

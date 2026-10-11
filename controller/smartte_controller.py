@@ -16,6 +16,7 @@ from topology.spec import PATHS, SWITCHES, flow_rules_for_pair
 from controller.congestion_policy import (
     evaluate_policy_b,
     evaluate_policy_c,
+    mask_unavailable_paths,
     score_paths,
     utilization_from_counters,
 )
@@ -321,7 +322,9 @@ class SmartTEController(app_manager.OSKenApp):
             ]
             for path_name in ('A', 'B')
         }
-        scores = score_paths(link_values)
+        scores = mask_unavailable_paths(
+            score_paths(link_values), self.unavailable_paths
+        )
         self._read_load_event()
         record = {
             'timestamp_utc': _timestamp_utc(),
@@ -345,7 +348,11 @@ class SmartTEController(app_manager.OSKenApp):
         if self.policy == 'STATIC' or any(value is None for value in scores.values()):
             record.update({
                 'decision': 'hold',
-                'reason': 'static policy' if self.policy == 'STATIC' else 'hold: path score unavailable',
+                'reason': (
+                    'static policy' if self.policy == 'STATIC'
+                    else 'hold: path unavailable' if self.unavailable_paths
+                    else 'hold: path score unavailable'
+                ),
                 'candidate_path': None,
                 'switching_threshold': self.switching_threshold if self.policy == 'C' else None,
                 'elapsed_since_last_switch_ms': round(

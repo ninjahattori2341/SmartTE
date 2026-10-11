@@ -4,7 +4,9 @@ from controller.congestion_policy import (
     best_path,
     evaluate_policy_b,
     evaluate_policy_c,
+    mask_unavailable_paths,
     score_paths,
+    successful_path_change_count,
     utilization_from_counters,
 )
 from controller.static_policy import choose_static_path
@@ -27,6 +29,20 @@ class PathScoringTests(unittest.TestCase):
         decision = evaluate_policy_b('A', {'A': 82.0, 'B': 57.0})
         self.assertTrue(decision['switch'])
         self.assertEqual(decision['selected_path'], 'B')
+
+    def test_unavailable_path_is_excluded_from_path_scores(self):
+        self.assertEqual(
+            mask_unavailable_paths({'A': 0.0, 'B': 98.0}, {'A'}),
+            {'A': None, 'B': 98.0},
+        )
+
+    def test_successful_path_count_ignores_rejected_switch_attempts(self):
+        events = [
+            {'decision': 'switch', 'path_changes_total': 1, 'flow_mod_install_succeeded': True},
+            {'decision': 'switch', 'path_changes_total': 1, 'flow_mod_install_succeeded': False},
+            {'decision': 'switch', 'path_changes_total': 1, 'flow_mod_install_succeeded': False},
+        ]
+        self.assertEqual(successful_path_change_count(events), 1)
 
     def test_invalid_path_and_missing_scores_are_rejected(self):
         with self.assertRaises(ValueError):

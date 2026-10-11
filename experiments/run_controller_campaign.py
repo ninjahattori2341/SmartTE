@@ -44,6 +44,7 @@ from topology.datacenter_topology import (  # noqa: E402
     cleanup_previous,
     disable_ipv6_interface_noise,
 )
+from controller.congestion_policy import successful_path_change_count  # noqa: E402
 
 CONTROLLER_PYTHON = os.environ.get(
     'SMARTTE_CONTROLLER_PYTHON',
@@ -332,7 +333,7 @@ def load_policy_events(event_path, initial_path):
     return {
         'events': events,
         'decision_count': len(decisions),
-        'path_changes': len(switches),
+        'path_changes': successful_path_change_count(events),
         'final_path': current_path,
         'reaction_time_s': reaction,
         'recovery_time_s': recovery,
