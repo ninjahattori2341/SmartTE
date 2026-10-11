@@ -1,0 +1,47 @@
+{
+  "completed_utc": "2026-10-11T11:41:26.217150+00:00",
+  "controller": "OS-Ken 4.2.2 using Eventlet hub",
+  "controller_openflow": "1.3",
+  "controller_parameters": {
+    "C_minimum_dwell_time_ms": 5000,
+    "C_switching_threshold_pct_points": 15.0,
+    "poll_interval_ms": 1000
+  },
+  "controller_python": "/home/andy2341/.local/share/smartte/os-ken-py310/bin/python",
+  "csv_file": "results/raw/m3_controller_static_20261011T113744Z.csv",
+  "experiment_mode": "static",
+  "git_commit": "35c8db51127c862f48974475113bed9a90be979f",
+  "git_dirty": true,
+  "host_python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "raw_trial_directory": "results/raw/m3_controller_static_20261011T113744Z",
+  "row_count": 10,
+  "run_id": "static_20261011T113744Z",
+  "started_utc": "2026-10-11T11:37:44.298092+00:00",
+  "status_counts": {
+    "aborted": 0,
+    "excluded": 0,
+    "failed": 0,
+    "ok": 10
+  },
+  "telemetry": {
+    "method": "OS-Ken OpenFlow OFPPortStatsReply tx_bytes counter deltas",
+    "objective": "maximum utilization among the two core egress links per path; controlled h1-h2 traffic is included",
+    "poll_interval_ms": 1000,
+    "utilization_ports": {
+      "A": "s2 port 2, egress toward s4",
+      "B": "s3 port 2, egress toward s4"
+    }
+  },
+  "topology": {
+    "access_mbps": 100,
+    "delay_a": "5ms",
+    "delay_access": "1ms",
+    "delay_b": "10ms",
+    "ipv6_control_frames_disabled": true,
+    "path_a_mbps": 10,
+    "path_b_mbps": 10,
+    "queue_method": "Mininet max_queue_size; verified with tc on all 8 directed core interfaces",
+    "queue_request_pkts": 100,
+    "static_arp": true
+  }
+}

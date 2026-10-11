@@ -1,0 +1,4 @@
+algorithm,trials,ok_rows,failed_rows,throughput_measurements,ping_loss_mean_pct,path_changes_mean,trials_with_reroute,raw_csv_path_changes_mean,switch_decision_attempts_mean,rejected_switch_attempts_mean,trials_on_path_b_at_link_failure,trials_changed_before_link_failure,recovery_measurements,recovery_mean_s
+static,5,0,5,0,93.3333,0.0,0,0.0,0.0,0.0,0,0,0,
+b,5,5,0,5,2.133334,1.0,5,17.0,17.0,16.0,5,5,5,0.19280000000000003
+c,5,5,0,5,1.866666,1.0,5,11.8,11.8,10.8,0,0,5,1.0054

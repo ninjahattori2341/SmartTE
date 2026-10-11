@@ -1,0 +1,52 @@
+run_id,experiment_id,timestamp_utc,algorithm,scenario,trial,flow_pair,competing_pair,initial_path,competing_path,offered_load_mbps,bottleneck_mbps,delay_a_ms,delay_b_ms,queue_limit_pkts,queue_config,tcp_duration_s,tcp_throughput_mbps,tcp_retransmits,rtt_min_ms,rtt_avg_ms,rtt_max_ms,rtt_mdev_ms,p95_rtt_ms,ping_loss_pct,competing_achieved_mbps,competing_loss_pct,measured_path_a_utilization_pct,measured_path_b_utilization_pct,final_path,path_changes,decision_count,reaction_time_s,recovery_time_s,controller_poll_interval_ms,switching_threshold,minimum_dwell_time_ms,experiment_status,raw_log_ref,git_commit,git_dirty,notes
+static_baseline_20261011_110325,static_baseline_m2,2026-10-11T11:03:31.822738+00:00,static,primary_A_competing_A_9mbps,1,h1-h2,h3-h4,A,A,9,10,5.0,10.0,20,"verified explicit max_queue_size queue limit 20 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms",15,0.767,139,32.6,44.588,68.2,4.891,52.8,8.0,8.787,2.243,98.329,0.0,A,0,0,,,,,,ok,results/raw/static_baseline_20261011_110325/A_c9_t1_manifest.json,c63aaabc196344a219c4d6fe289f7a56d9e31509,True,"TCP throughput is receiver-side iperf3 end.sum_received; retransmits are sender-side end.sum_sent. First received RTT sample discarded as a precaution; it remains in ping transmitted-packet loss denominator. RTT p95 uses nearest-rank method over retained RTT samples (n=68). Counter window=15.202007s; utilization counts all egress traffic and headers. Queue config: verified explicit max_queue_size queue limit 20 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms"
+static_baseline_20261011_110325,static_baseline_m2,2026-10-11T11:03:57.045909+00:00,static,primary_A_competing_A_9mbps,2,h1-h2,h3-h4,A,A,9,10,5.0,10.0,20,"verified explicit max_queue_size queue limit 20 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms",15,0.836,148,27.0,42.262,49.5,3.295,46.3,6.66667,8.791,2.194,98.672,0.0,A,0,0,,,,,,ok,results/raw/static_baseline_20261011_110325/A_c9_t2_manifest.json,c63aaabc196344a219c4d6fe289f7a56d9e31509,True,"TCP throughput is receiver-side iperf3 end.sum_received; retransmits are sender-side end.sum_sent. First received RTT sample discarded as a precaution; it remains in ping transmitted-packet loss denominator. RTT p95 uses nearest-rank method over retained RTT samples (n=69). Counter window=15.213632s; utilization counts all egress traffic and headers. Queue config: verified explicit max_queue_size queue limit 20 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms"
+static_baseline_20261011_110325,static_baseline_m2,2026-10-11T11:04:22.445637+00:00,static,primary_A_competing_A_9mbps,3,h1-h2,h3-h4,A,A,9,10,5.0,10.0,20,"verified explicit max_queue_size queue limit 20 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms",15,0.836,146,36.6,43.755,75.8,4.622,47.5,9.33333,8.853,1.514,99.619,0.0,A,0,0,,,,,,ok,results/raw/static_baseline_20261011_110325/A_c9_t3_manifest.json,c63aaabc196344a219c4d6fe289f7a56d9e31509,True,"TCP throughput is receiver-side iperf3 end.sum_received; retransmits are sender-side end.sum_sent. First received RTT sample discarded as a precaution; it remains in ping transmitted-packet loss denominator. RTT p95 uses nearest-rank method over retained RTT samples (n=67). Counter window=15.218958s; utilization counts all egress traffic and headers. Queue config: verified explicit max_queue_size queue limit 20 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000
+qdisc netem 10: parent 5:1 limit 20 delay 10ms"

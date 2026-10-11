@@ -1,0 +1,55 @@
+{
+  "port_counter_deltas": {
+    "s2:LOCAL:rx_packets": 0,
+    "s2:LOCAL:tx_packets": 0,
+    "s2:LOCAL:rx_bytes": 0,
+    "s2:LOCAL:tx_bytes": 0,
+    "s2:s2-eth1:rx_packets": 3086,
+    "s2:s2-eth1:tx_packets": 2866,
+    "s2:s2-eth1:rx_bytes": 8674755,
+    "s2:s2-eth1:tx_bytes": 192225,
+    "s2:s2-eth2:rx_packets": 2885,
+    "s2:s2-eth2:tx_packets": 3007,
+    "s2:s2-eth2:rx_bytes": 193479,
+    "s2:s2-eth2:tx_bytes": 8450829,
+    "s3:LOCAL:rx_packets": 0,
+    "s3:LOCAL:tx_packets": 0,
+    "s3:LOCAL:rx_bytes": 0,
+    "s3:LOCAL:tx_bytes": 0,
+    "s3:s3-eth1:rx_packets": 2615,
+    "s3:s3-eth1:tx_packets": 2440,
+    "s3:s3-eth1:rx_bytes": 7222987,
+    "s3:s3-eth1:tx_bytes": 164205,
+    "s3:s3-eth2:rx_packets": 2474,
+    "s3:s3-eth2:tx_packets": 2587,
+    "s3:s3-eth2:rx_bytes": 166758,
+    "s3:s3-eth2:tx_bytes": 7140019
+  },
+  "rx_gt_tx_direction_imbalances": [
+    {
+      "switch": "s2",
+      "port": "s2-eth1",
+      "rx_packets_delta": 3086,
+      "tx_packets_delta": 2866
+    },
+    {
+      "switch": "s3",
+      "port": "s3-eth1",
+      "rx_packets_delta": 2615,
+      "tx_packets_delta": 2440
+    }
+  ],
+  "counter_interpretation": "Per-port RX/TX packet-count imbalance is descriptive and can occur with asymmetric TCP data and ACK traffic; it is not by itself a loop verdict.",
+  "flow_n_packets_deltas": {
+    "s1:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s1-eth1\",nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=output:\"s1-eth3\"": 5701,
+    "s1:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s1-eth3\",nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=output:\"s1-eth1\"": 5,
+    "s2:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s2-eth1\",nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=output:\"s2-eth2\"": 6,
+    "s2:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s2-eth2\",nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=output:\"s2-eth1\"": 5,
+    "s4:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s4-eth3\",nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=output:\"s4-eth1\"": 6,
+    "s4:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s4-eth1\",nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=output:\"s4-eth3\"": 5359
+  },
+  "unused_path": "B",
+  "unused_path_switch": "s3",
+  "unused_path_packet_delta_sum": 10116,
+  "unused_path_traffic_detected": true
+}

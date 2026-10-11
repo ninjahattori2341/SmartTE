@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/home/andy2341/.local/share/uv/python/cpython-3.10-linux-aarch64-gnu/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/andy2341/.local/share/uv/python/cpython-3.10-linux-aarch64-gnu/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/andy2341/.local/share/smartte/ryu-py310/lib/python3.10/site-packages/ryu/cmd/manager.py", line 22, in <module>
+    from ryu.lib import hub
+  File "/home/andy2341/.local/share/smartte/ryu-py310/lib/python3.10/site-packages/ryu/lib/hub.py", line 30, in <module>
+    import eventlet
+  File "/home/andy2341/.local/share/smartte/ryu-py310/lib/python3.10/site-packages/eventlet/__init__.py", line 17, in <module>
+    from eventlet import convenience
+  File "/home/andy2341/.local/share/smartte/ryu-py310/lib/python3.10/site-packages/eventlet/convenience.py", line 7, in <module>
+    from eventlet.green import socket
+  File "/home/andy2341/.local/share/smartte/ryu-py310/lib/python3.10/site-packages/eventlet/green/socket.py", line 4, in <module>
+    __import__('eventlet.green._socket_nodns')
+  File "/home/andy2341/.local/share/smartte/ryu-py310/lib/python3.10/site-packages/eventlet/green/_socket_nodns.py", line 11, in <module>
+    from eventlet import greenio
+  File "/home/andy2341/.local/share/smartte/ryu-py310/lib/python3.10/site-packages/eventlet/greenio/__init__.py", line 3, in <module>
+    from eventlet.greenio.base import *  # noqa
+  File "/home/andy2341/.local/share/smartte/ryu-py310/lib/python3.10/site-packages/eventlet/greenio/base.py", line 32, in <module>
+    socket_timeout = eventlet.timeout.wrap_is_timeout(socket.timeout)
+  File "/home/andy2341/.local/share/smartte/ryu-py310/lib/python3.10/site-packages/eventlet/timeout.py", line 166, in wrap_is_timeout
+    base.is_timeout = property(lambda _: True)
+TypeError: cannot set 'is_timeout' attribute of immutable type 'TimeoutError'
+ryu_manager_exit_code=

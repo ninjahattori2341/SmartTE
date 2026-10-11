@@ -1,0 +1,39 @@
+{
+  "controller": "OS-Ken 4.2.2 using Eventlet hub",
+  "controller_openflow": "1.3",
+  "controller_parameters": {
+    "C_minimum_dwell_time_ms": 5000,
+    "C_switching_threshold_pct_points": 15.0,
+    "poll_interval_ms": 1000
+  },
+  "controller_python": "/home/andy2341/.local/share/smartte/os-ken-py310/bin/python",
+  "csv_file": "results/raw/m5_campaign_20261011T114755Z.csv",
+  "experiment_mode": "m5",
+  "git_commit": "58acacd120a1b8b85b81d8a46c1f273479d18942",
+  "git_dirty": true,
+  "host_python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "raw_trial_directory": "results/raw/m5_campaign_20261011T114755Z",
+  "run_id": "m5_20261011T114755Z",
+  "started_utc": "2026-10-11T11:47:55.845718+00:00",
+  "telemetry": {
+    "method": "OS-Ken OpenFlow OFPPortStatsReply tx_bytes counter deltas",
+    "objective": "maximum utilization among the two core egress links per path; controlled h1-h2 traffic is included",
+    "poll_interval_ms": 1000,
+    "utilization_ports": {
+      "A": "s2 port 2, egress toward s4",
+      "B": "s3 port 2, egress toward s4"
+    }
+  },
+  "topology": {
+    "access_mbps": 100,
+    "delay_a": "5ms",
+    "delay_access": "1ms",
+    "delay_b": "10ms",
+    "ipv6_control_frames_disabled": true,
+    "path_a_mbps": 10,
+    "path_b_mbps": 10,
+    "queue_method": "Mininet max_queue_size; verified with tc on all 8 directed core interfaces",
+    "queue_request_pkts": 100,
+    "static_arp": true
+  }
+}

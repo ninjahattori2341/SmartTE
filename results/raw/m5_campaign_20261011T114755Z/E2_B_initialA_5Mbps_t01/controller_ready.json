@@ -1,0 +1,15 @@
+{
+  "ready": true,
+  "timestamp_utc": "2026-10-11T11:54:24.665427+00:00",
+  "time_monotonic_s": 12627.171191816,
+  "policy": "B",
+  "initial_path": "A",
+  "competing_path": "A",
+  "connected_switches": [
+    "s1",
+    "s2",
+    "s3",
+    "s4"
+  ],
+  "openflow_version": "1.3"
+}

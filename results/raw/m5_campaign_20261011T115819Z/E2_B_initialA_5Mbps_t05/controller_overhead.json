@@ -1,0 +1,151 @@
+{
+  "flow_mod_count_final": 202,
+  "measurement_method": "per-cycle process_time delta and OpenFlow request-to-last-reply monotonic interval logged by the controller",
+  "openflow_port_stat_record_count": 96,
+  "poll_cycles": [
+    {
+      "controller_process_cpu_s": 0.0006966999999999945,
+      "cycle_id": 1,
+      "decision_cpu_time_s": null,
+      "poll_round_trip_s": 0.0010391939995315624
+    },
+    {
+      "controller_process_cpu_s": 0.002337800000000001,
+      "cycle_id": 2,
+      "decision_cpu_time_s": 1.1499999999997623e-05,
+      "poll_round_trip_s": 0.003080972001043847
+    },
+    {
+      "controller_process_cpu_s": 0.0014133999999999813,
+      "cycle_id": 3,
+      "decision_cpu_time_s": 8.80000000000325e-06,
+      "poll_round_trip_s": 0.0022109849996923003
+    },
+    {
+      "controller_process_cpu_s": 0.0028166999999999776,
+      "cycle_id": 4,
+      "decision_cpu_time_s": 1.669999999998062e-05,
+      "poll_round_trip_s": 0.0037909080001554685
+    },
+    {
+      "controller_process_cpu_s": 0.0010080000000000089,
+      "cycle_id": 5,
+      "decision_cpu_time_s": 6.399999999989747e-06,
+      "poll_round_trip_s": 0.0016045970005507115
+    },
+    {
+      "controller_process_cpu_s": 0.002678600000000003,
+      "cycle_id": 6,
+      "decision_cpu_time_s": 1.3299999999993872e-05,
+      "poll_round_trip_s": 0.004211269000734319
+    },
+    {
+      "controller_process_cpu_s": 0.003009099999999987,
+      "cycle_id": 7,
+      "decision_cpu_time_s": 1.4299999999994872e-05,
+      "poll_round_trip_s": 0.0037950300011289073
+    },
+    {
+      "controller_process_cpu_s": 0.0007710000000000217,
+      "cycle_id": 8,
+      "decision_cpu_time_s": 4.899999999974369e-06,
+      "poll_round_trip_s": 0.001219469999341527
+    },
+    {
+      "controller_process_cpu_s": 0.0006827999999999834,
+      "cycle_id": 9,
+      "decision_cpu_time_s": 5.000000000032756e-06,
+      "poll_round_trip_s": 0.0010784330006572418
+    },
+    {
+      "controller_process_cpu_s": 0.0009161000000000308,
+      "cycle_id": 10,
+      "decision_cpu_time_s": 4.799999999971494e-06,
+      "poll_round_trip_s": 0.001452959999369341
+    },
+    {
+      "controller_process_cpu_s": 0.0007113999999999732,
+      "cycle_id": 11,
+      "decision_cpu_time_s": 4.600000000021254e-06,
+      "poll_round_trip_s": 0.0010586080006760312
+    },
+    {
+      "controller_process_cpu_s": 0.0007191999999999754,
+      "cycle_id": 12,
+      "decision_cpu_time_s": 4.9000000000298805e-06,
+      "poll_round_trip_s": 0.0011145089993078727
+    },
+    {
+      "controller_process_cpu_s": 0.0007324000000000219,
+      "cycle_id": 13,
+      "decision_cpu_time_s": 4.899999999974369e-06,
+      "poll_round_trip_s": 0.0010360360010963632
+    },
+    {
+      "controller_process_cpu_s": 0.0007288999999999768,
+      "cycle_id": 14,
+      "decision_cpu_time_s": 4.899999999974369e-06,
+      "poll_round_trip_s": 0.0011427589997765608
+    },
+    {
+      "controller_process_cpu_s": 0.0009604999999999753,
+      "cycle_id": 15,
+      "decision_cpu_time_s": 4.700000000024129e-06,
+      "poll_round_trip_s": 0.0013963240016892087
+    },
+    {
+      "controller_process_cpu_s": 0.0007943999999999729,
+      "cycle_id": 16,
+      "decision_cpu_time_s": 4.699999999968618e-06,
+      "poll_round_trip_s": 0.0012134820008213865
+    },
+    {
+      "controller_process_cpu_s": 0.0010489000000000193,
+      "cycle_id": 17,
+      "decision_cpu_time_s": 4.700000000024129e-06,
+      "poll_round_trip_s": 0.0019020799991267268
+    },
+    {
+      "controller_process_cpu_s": 0.0008193999999999702,
+      "cycle_id": 18,
+      "decision_cpu_time_s": 4.999999999977245e-06,
+      "poll_round_trip_s": 0.0013400190000538714
+    },
+    {
+      "controller_process_cpu_s": 0.0008073000000000108,
+      "cycle_id": 19,
+      "decision_cpu_time_s": 4.700000000024129e-06,
+      "poll_round_trip_s": 0.001237317999766674
+    },
+    {
+      "controller_process_cpu_s": 0.000881500000000035,
+      "cycle_id": 20,
+      "decision_cpu_time_s": 5.0999999999801204e-06,
+      "poll_round_trip_s": 0.019059178999668802
+    },
+    {
+      "controller_process_cpu_s": 0.000999600000000045,
+      "cycle_id": 21,
+      "decision_cpu_time_s": 4.9000000000298805e-06,
+      "poll_round_trip_s": 0.001471715999286971
+    },
+    {
+      "controller_process_cpu_s": 0.0007174000000000347,
+      "cycle_id": 22,
+      "decision_cpu_time_s": 4.700000000024129e-06,
+      "poll_round_trip_s": 0.0011151319995406084
+    },
+    {
+      "controller_process_cpu_s": 0.0033343000000000123,
+      "cycle_id": 23,
+      "decision_cpu_time_s": 1.5299999999995872e-05,
+      "poll_round_trip_s": 0.004871117998845875
+    },
+    {
+      "controller_process_cpu_s": 0.0030440000000000467,
+      "cycle_id": 24,
+      "decision_cpu_time_s": 1.7700000000009375e-05,
+      "poll_round_trip_s": 0.0041764760007936275
+    }
+  ]
+}

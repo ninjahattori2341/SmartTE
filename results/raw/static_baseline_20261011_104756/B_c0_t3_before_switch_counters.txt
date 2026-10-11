@@ -1,0 +1,33 @@
+=== s2 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=46.697s
+  port  "s2-eth1": rx pkts=1, bytes=90, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=3, bytes=266, drop=0, errs=0, coll=0
+           duration=46.701s
+  port  "s2-eth2": rx pkts=2, bytes=176, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=2, bytes=180, drop=0, errs=0, coll=0
+           duration=46.702s
+=== s3 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=46.707s
+  port  "s3-eth1": rx pkts=13377, bytes=37347098, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=12732, bytes=865454, drop=0, errs=0, coll=0
+           duration=46.710s
+  port  "s3-eth2": rx pkts=12731, bytes=865368, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=13376, bytes=37347012, drop=0, errs=0, coll=0
+           duration=46.710s
+=== s1 flows ===
+cookie=0x0, duration=43.088s, table=0, n_packets=13404, n_bytes=37414060, ip,in_port="s1-eth1",nw_dst=10.0.0.2 actions=output:"s1-eth4"
+ cookie=0x0, duration=43.043s, table=0, n_packets=12729, n_bytes=865188, ip,in_port="s1-eth4",nw_dst=10.0.0.1 actions=output:"s1-eth1"
+=== s2 flows ===
+
+=== s3 flows ===
+cookie=0x0, duration=43.047s, table=0, n_packets=13375, n_bytes=37346922, ip,in_port="s3-eth1",nw_dst=10.0.0.2 actions=output:"s3-eth2"
+ cookie=0x0, duration=42.999s, table=0, n_packets=12729, n_bytes=865188, ip,in_port="s3-eth2",nw_dst=10.0.0.1 actions=output:"s3-eth1"
+=== s4 flows ===
+cookie=0x0, duration=42.998s, table=0, n_packets=13375, n_bytes=37346922, ip,in_port="s4-eth4",nw_dst=10.0.0.2 actions=output:"s4-eth1"
+ cookie=0x0, duration=42.947s, table=0, n_packets=12729, n_bytes=865188, ip,in_port="s4-eth1",nw_dst=10.0.0.1 actions=output:"s4-eth4"

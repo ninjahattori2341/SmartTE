@@ -1,0 +1,48 @@
+{
+  "port_counter_deltas": {
+    "s2:LOCAL:rx_packets": 0,
+    "s2:LOCAL:tx_packets": 0,
+    "s2:LOCAL:rx_bytes": 0,
+    "s2:LOCAL:tx_bytes": 0,
+    "s2:s2-eth1:rx_packets": 29,
+    "s2:s2-eth1:tx_packets": 15,
+    "s2:s2-eth1:rx_bytes": 45604,
+    "s2:s2-eth1:tx_bytes": 1042,
+    "s2:s2-eth2:rx_packets": 17,
+    "s2:s2-eth2:tx_packets": 23,
+    "s2:s2-eth2:rx_bytes": 1174,
+    "s2:s2-eth2:tx_bytes": 30728,
+    "s3:LOCAL:rx_packets": 0,
+    "s3:LOCAL:tx_packets": 0,
+    "s3:LOCAL:rx_bytes": 0,
+    "s3:LOCAL:tx_bytes": 0,
+    "s3:s3-eth1:rx_packets": 6343,
+    "s3:s3-eth1:tx_packets": 6181,
+    "s3:s3-eth1:rx_bytes": 17945298,
+    "s3:s3-eth1:tx_bytes": 418075,
+    "s3:s3-eth2:rx_packets": 6181,
+    "s3:s3-eth2:tx_packets": 6344,
+    "s3:s3-eth2:rx_bytes": 418075,
+    "s3:s3-eth2:tx_bytes": 17945364
+  },
+  "rx_gt_tx_direction_imbalances": [
+    {
+      "switch": "s2",
+      "port": "s2-eth1",
+      "rx_packets_delta": 29,
+      "tx_packets_delta": 15
+    },
+    {
+      "switch": "s3",
+      "port": "s3-eth1",
+      "rx_packets_delta": 6343,
+      "tx_packets_delta": 6181
+    }
+  ],
+  "counter_interpretation": "Per-port RX/TX packet-count imbalance is descriptive and can occur with asymmetric TCP data and ACK traffic; it is not by itself a loop verdict.",
+  "flow_n_packets_deltas": {},
+  "unused_path": "B",
+  "unused_path_switch": "s3",
+  "unused_path_packet_delta_sum": 25049,
+  "unused_path_traffic_detected": true
+}

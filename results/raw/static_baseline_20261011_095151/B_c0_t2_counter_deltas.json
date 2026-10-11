@@ -1,0 +1,16 @@
+{
+  "port_counter_deltas": {},
+  "rx_greater_than_tx_anomalies": [],
+  "flow_n_packets_deltas": {
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth1\",nw_dst=10.0.0.2 actions=output:\"s1-eth4\"": 4434,
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth4\",nw_dst=10.0.0.1 actions=output:\"s1-eth1\"": 4133,
+    "s3:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s3-eth1\",nw_dst=10.0.0.2 actions=output:\"s3-eth2\"": 4360,
+    "s3:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s3-eth2\",nw_dst=10.0.0.1 actions=output:\"s3-eth1\"": 4139,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth4\",nw_dst=10.0.0.2 actions=output:\"s4-eth1\"": 4438,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth1\",nw_dst=10.0.0.1 actions=output:\"s4-eth4\"": 4225
+  },
+  "unused_path": "A",
+  "unused_path_switch": "s2",
+  "unused_path_packet_delta_sum": 0,
+  "unused_path_traffic_detected": false
+}

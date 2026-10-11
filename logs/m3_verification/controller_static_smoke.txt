@@ -1,0 +1,352 @@
+[1/2] primary_A_no_competition trial=1 policy=STATIC path=A
+[INFO] Cleaning up previous Mininet state...
+[INFO] Cleanup complete.
+[INFO] Creating switches (OpenFlow 1.3, failMode=secure)...
+[INFO] Creating hosts...
+[INFO] Creating access links (100 Mbps, 1ms)...
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+[INFO] Creating Path A links (s2, 10 Mbps, 5ms, queue=100 pkts)...
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+[INFO] Creating Path B links (s3, 10 Mbps, 10ms, queue=100 pkts)...
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+*** Configuring hosts
+[INFO] *** Configuring hosts
+
+h1 [INFO] h1 
+h2 [INFO] h2 
+h3 [INFO] h3 
+h4 [INFO] h4 
+
+[INFO] 
+
+*** Starting controller
+[INFO] *** Starting controller
+
+c0 [INFO] c0 
+
+[INFO] 
+
+*** Starting 4 switches
+[INFO] *** Starting 4 switches
+
+s1 [INFO] s1 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+s2 [INFO] s2 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+s3 [INFO] s3 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+s4 [INFO] s4 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+...[INFO] ...
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+
+[INFO] 
+
+*** Stopping 1 controllers
+[INFO] *** Stopping 1 controllers
+
+c0 [INFO] c0 
+
+[INFO] 
+
+*** Stopping 8 links
+[INFO] *** Stopping 8 links
+
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+
+[INFO] 
+
+*** Stopping 4 switches
+[INFO] *** Stopping 4 switches
+
+s1 [INFO] s1 
+s2 [INFO] s2 
+s3 [INFO] s3 
+s4 [INFO] s4 
+
+[INFO] 
+
+*** Stopping 4 hosts
+[INFO] *** Stopping 4 hosts
+
+h1 [INFO] h1 
+h2 [INFO] h2 
+h3 [INFO] h3 
+h4 [INFO] h4 
+
+*** Done
+[INFO] 
+*** Done
+
+[INFO] Cleaning up previous Mininet state...
+[INFO] Cleanup complete.
+  status=failed throughput=9.488 rtt_avg=181.723 final_path=A changes=0
+[2/2] primary_B_no_competition trial=1 policy=STATIC path=B
+[INFO] Cleaning up previous Mininet state...
+[INFO] Cleanup complete.
+[INFO] Creating switches (OpenFlow 1.3, failMode=secure)...
+[INFO] Creating hosts...
+[INFO] Creating access links (100 Mbps, 1ms)...
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+[INFO] Creating Path A links (s2, 10 Mbps, 5ms, queue=100 pkts)...
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+[INFO] Creating Path B links (s3, 10 Mbps, 10ms, queue=100 pkts)...
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+*** Configuring hosts
+[INFO] *** Configuring hosts
+
+h1 [INFO] h1 
+h2 [INFO] h2 
+h3 [INFO] h3 
+h4 [INFO] h4 
+
+[INFO] 
+
+*** Starting controller
+[INFO] *** Starting controller
+
+c0 [INFO] c0 
+
+[INFO] 
+
+*** Starting 4 switches
+[INFO] *** Starting 4 switches
+
+s1 [INFO] s1 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+s2 [INFO] s2 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+s3 [INFO] s3 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+s4 [INFO] s4 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+...[INFO] ...
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+
+[INFO] 
+
+*** Stopping 1 controllers
+[INFO] *** Stopping 1 controllers
+
+c0 [INFO] c0 
+
+[INFO] 
+
+*** Stopping 8 links
+[INFO] *** Stopping 8 links
+
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+
+[INFO] 
+
+*** Stopping 4 switches
+[INFO] *** Stopping 4 switches
+
+s1 [INFO] s1 
+s2 [INFO] s2 
+s3 [INFO] s3 
+s4 [INFO] s4 
+
+[INFO] 
+
+*** Stopping 4 hosts
+[INFO] *** Stopping 4 hosts
+
+h1 [INFO] h1 
+h2 [INFO] h2 
+h3 [INFO] h3 
+h4 [INFO] h4 
+
+*** Done
+[INFO] 
+*** Done
+
+[INFO] Cleaning up previous Mininet state...
+[INFO] Cleanup complete.
+  status=ok throughput=9.294 rtt_avg=238.092 final_path=B changes=0
+{
+  "run_id": "static_20261011T113518Z",
+  "csv": "results/raw/m3_controller_static_20261011T113518Z.csv",
+  "raw_dir": "results/raw/m3_controller_static_20261011T113518Z",
+  "rows": 2,
+  "status_counts": {
+    "ok": 1,
+    "failed": 1,
+    "aborted": 0,
+    "excluded": 0
+  }
+}

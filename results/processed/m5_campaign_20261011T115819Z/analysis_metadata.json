@@ -1,0 +1,26 @@
+{
+  "input_csv": "results/raw/m5_campaign_20261011T115819Z.csv",
+  "input_sha256": "a8eb2b0a9656fa081f8e5feecfbeb50d273d1645990c1fd64634ea76ca26a666",
+  "row_count": 110,
+  "status_counts": {
+    "ok": 105,
+    "failed": 5
+  },
+  "observed_rows_by_experiment": {
+    "E2-congestion": 40,
+    "E3-bursty": 40,
+    "E1-baseline": 15,
+    "E4-link-failure": 15
+  },
+  "expected_rows_by_experiment": {
+    "E1-baseline": 15,
+    "E2-congestion": 40,
+    "E3-bursty": 40,
+    "E4-link-failure": 15
+  },
+  "complete_expected_matrix": true,
+  "confidence_interval": "two-sided 95% Student t interval: mean +/- t(0.975, n-1) * sample_sd/sqrt(n); descriptive, no hypothesis significance test",
+  "metric_aggregation": "Only experiment_status=ok rows enter the generic metric summaries; E4 outcomes retain all rows separately. Path-change summaries use successful controller event path_changes_total counters where available; raw CSV decision counts remain in path_change_audit.csv.",
+  "path_change_provenance": "Raw CSV path_changes can count switch decisions rejected because a path is unavailable. Processed path_changes uses controller event path_changes_total when present and preserves raw values in path_change_audit.csv.",
+  "output_dir": "results/processed/m5_campaign_20261011T115819Z"
+}

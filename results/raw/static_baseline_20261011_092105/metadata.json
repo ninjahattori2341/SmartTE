@@ -1,0 +1,29 @@
+{
+  "run_id": "static_baseline_20261011_092105",
+  "timestamp_utc": "2026-10-11T09:21:05.413959+00:00",
+  "git_commit": "ccdb3f7ccbc2667948bffd195032f0d92dda669b",
+  "cli_args": {
+    "paths": [
+      "A",
+      "B"
+    ],
+    "competing_rates": [
+      0,
+      5,
+      9
+    ],
+    "trials": 5,
+    "duration": 15,
+    "queue": 100,
+    "smoke_test": true
+  },
+  "kernel": "6.6.87.2-microsoft-standard-WSL2",
+  "python_version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "bottleneck_bw_a": 10,
+  "bottleneck_bw_b": 10,
+  "access_bw": 100,
+  "delay_access": "1ms",
+  "delay_a": "5ms",
+  "delay_b": "10ms",
+  "queue_pkts": 100
+}

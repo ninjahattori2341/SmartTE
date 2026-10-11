@@ -1,0 +1,33 @@
+=== s2 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=103.073s
+  port  "s2-eth1": rx pkts=10, bytes=796, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=10, bytes=796, drop=0, errs=0, coll=0
+           duration=103.079s
+  port  "s2-eth2": rx pkts=10, bytes=796, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=10, bytes=796, drop=0, errs=0, coll=0
+           duration=103.080s
+=== s3 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=103.032s
+  port  "s3-eth1": rx pkts=13424, bytes=37829124, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=12806, bytes=866361, drop=0, errs=0, coll=0
+           duration=103.036s
+  port  "s3-eth2": rx pkts=12806, bytes=866361, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=13424, bytes=37829124, drop=0, errs=0, coll=0
+           duration=103.036s
+=== s1 flows ===
+cookie=0x0, duration=99.339s, table=0, n_packets=13435, n_bytes=37898890, ip,in_port="s1-eth1",nw_dst=10.0.0.2 actions=output:"s1-eth4"
+ cookie=0x0, duration=99.288s, table=0, n_packets=12716, n_bytes=860829, ip,in_port="s1-eth4",nw_dst=10.0.0.1 actions=output:"s1-eth1"
+=== s2 flows ===
+
+=== s3 flows ===
+cookie=0x0, duration=99.272s, table=0, n_packets=13346, n_bytes=37653765, ip,in_port="s3-eth1",nw_dst=10.0.0.2 actions=output:"s3-eth2"
+ cookie=0x0, duration=99.235s, table=0, n_packets=12720, n_bytes=861045, ip,in_port="s3-eth2",nw_dst=10.0.0.1 actions=output:"s3-eth1"
+=== s4 flows ===
+cookie=0x0, duration=99.219s, table=0, n_packets=13341, n_bytes=37638955, ip,in_port="s4-eth4",nw_dst=10.0.0.2 actions=output:"s4-eth1"
+ cookie=0x0, duration=99.198s, table=0, n_packets=12725, n_bytes=861315, ip,in_port="s4-eth1",nw_dst=10.0.0.1 actions=output:"s4-eth4"

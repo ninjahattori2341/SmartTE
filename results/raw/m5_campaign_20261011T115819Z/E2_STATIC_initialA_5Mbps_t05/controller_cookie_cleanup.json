@@ -1,0 +1,34 @@
+{
+  "all_dumps_nonempty": true,
+  "remaining_smartte_cookie_entries": 0,
+  "switches": [
+    {
+      "exit_code": 0,
+      "nonempty": true,
+      "raw_file": "s1_after_controller_exit_flows.txt",
+      "smartte_cookie_entries": 0,
+      "switch": "s1"
+    },
+    {
+      "exit_code": 0,
+      "nonempty": true,
+      "raw_file": "s2_after_controller_exit_flows.txt",
+      "smartte_cookie_entries": 0,
+      "switch": "s2"
+    },
+    {
+      "exit_code": 0,
+      "nonempty": true,
+      "raw_file": "s3_after_controller_exit_flows.txt",
+      "smartte_cookie_entries": 0,
+      "switch": "s3"
+    },
+    {
+      "exit_code": 0,
+      "nonempty": true,
+      "raw_file": "s4_after_controller_exit_flows.txt",
+      "smartte_cookie_entries": 0,
+      "switch": "s4"
+    }
+  ]
+}

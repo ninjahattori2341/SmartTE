@@ -1,0 +1,2 @@
+run_id,timestamp_utc,algorithm,path,competing_mbps,trial,tcp_throughput_mbps,tcp_retransmits,rtt_min_ms,rtt_avg_ms,rtt_max_ms,rtt_mdev_ms,ping_loss_pct,competing_loss_pct,bottleneck_mbps,queue_pkts,tcp_duration_s,notes
+static_baseline_20261011_092105,2026-10-11T09:21:12.844544+00:00,static,A,0,1,9.414,8,41.7,188.683,254.0,45.403,4.0,0.0,10,100,5,first ping discarded

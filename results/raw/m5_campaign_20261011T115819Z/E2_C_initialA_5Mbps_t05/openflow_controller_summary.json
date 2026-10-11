@@ -1,0 +1,1084 @@
+{
+  "alternative_path_first_tx_time_monotonic_s": null,
+  "controller_policy_events": [
+    {
+      "candidate_path": null,
+      "controller_process_cpu_s": 0.0005961999999999912,
+      "current_path": "A",
+      "cycle_id": 1,
+      "decision": "hold",
+      "elapsed_since_last_switch_ms": 1300.571,
+      "path_link_utilization_pct": {
+        "A": [
+          null,
+          null
+        ],
+        "B": [
+          null,
+          null
+        ]
+      },
+      "path_scores_pct": {
+        "A": null,
+        "B": null
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0010496569993847515,
+      "reason": "hold: path score unavailable",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14227.834889262,
+      "timestamp_utc": "2026-10-11T12:21:35.001948+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.001224900000000001,
+      "current_path": "A",
+      "cycle_id": 2,
+      "decision": "hold",
+      "decision_cpu_time_s": 8.799999999975494e-06,
+      "elapsed_since_last_switch_ms": 2302.316,
+      "flow_mod_count_after": 12,
+      "flow_mod_count_before": 12,
+      "improvement_pct_points": 0.0,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 0,
+      "path_link_utilization_pct": {
+        "A": [
+          0.0,
+          0.0
+        ],
+        "B": [
+          0.0,
+          0.0071876252740049485
+        ]
+      },
+      "path_scores_pct": {
+        "A": 0.0,
+        "B": 0.0071876252740049485
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0018738929993560305,
+      "reaction_time_s": null,
+      "reason": "hold: current path is best or tied",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14228.83663265,
+      "timestamp_utc": "2026-10-11T12:21:36.003691+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0008708000000000049,
+      "current_path": "A",
+      "cycle_id": 3,
+      "decision": "hold",
+      "decision_cpu_time_s": 1.3600000000002499e-05,
+      "elapsed_since_last_switch_ms": 3304.059,
+      "flow_mod_count_after": 12,
+      "flow_mod_count_before": 12,
+      "improvement_pct_points": 8.729380104692439,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 0,
+      "path_link_utilization_pct": {
+        "A": [
+          8.729380104692439,
+          8.25710066855465
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 8.729380104692439,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.001377119000608218,
+      "reaction_time_s": null,
+      "reason": "held: dwell 3304 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14229.838375858,
+      "timestamp_utc": "2026-10-11T12:21:37.005435+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0033980999999999872,
+      "current_path": "A",
+      "cycle_id": 4,
+      "decision": "hold",
+      "decision_cpu_time_s": 3.469999999999862e-05,
+      "elapsed_since_last_switch_ms": 4311.156,
+      "flow_mod_count_after": 12,
+      "flow_mod_count_before": 12,
+      "improvement_pct_points": 97.70167280063463,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 0,
+      "path_link_utilization_pct": {
+        "A": [
+          97.70167280063463,
+          97.30894263965459
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 97.70167280063463,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0038937600002100226,
+      "reaction_time_s": null,
+      "reason": "held: dwell 4311 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14230.845464205,
+      "timestamp_utc": "2026-10-11T12:21:38.012517+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.001710299999999998,
+      "current_path": "A",
+      "cycle_id": 5,
+      "decision": "switch",
+      "decision_cpu_time_s": 1.7200000000022753e-05,
+      "elapsed_since_last_switch_ms": 5312.603,
+      "flow_mod_count_after": 22,
+      "flow_mod_count_before": 12,
+      "flow_mod_install_succeeded": true,
+      "flow_mod_timestamp_monotonic_s": 14231.846949999,
+      "improvement_pct_points": 98.03206051103372,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "A",
+      "path_changes_total": 1,
+      "path_link_utilization_pct": {
+        "A": [
+          97.85694283813356,
+          98.03206051103372
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 98.03206051103372,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0029800619995512534,
+      "reaction_time_s": null,
+      "reason": "switch: improvement 98.03 >= margin 15.00 percentage points",
+      "recovery_time_s": null,
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14231.846917626,
+      "timestamp_utc": "2026-10-11T12:21:39.013975+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.0016595000000000082,
+      "current_path": "B",
+      "cycle_id": 6,
+      "decision": "hold",
+      "decision_cpu_time_s": 2.1199999999998997e-05,
+      "elapsed_since_last_switch_ms": 998.871,
+      "flow_mod_count_after": 22,
+      "flow_mod_count_before": 22,
+      "improvement_pct_points": 67.58718242020399,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "B",
+      "path_changes_total": 1,
+      "path_link_utilization_pct": {
+        "A": [
+          19.53997601079289,
+          1.0694052490149695
+        ],
+        "B": [
+          87.12715843099687,
+          86.26913173772266
+        ]
+      },
+      "path_scores_pct": {
+        "A": 19.53997601079289,
+        "B": 87.12715843099687
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.002648290001161513,
+      "reaction_time_s": null,
+      "reason": "held: dwell 999 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14232.847126854,
+      "timestamp_utc": "2026-10-11T12:21:40.014184+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.0018538000000000165,
+      "current_path": "B",
+      "cycle_id": 7,
+      "decision": "hold",
+      "decision_cpu_time_s": 2.1999999999994246e-05,
+      "elapsed_since_last_switch_ms": 2000.497,
+      "flow_mod_count_after": 22,
+      "flow_mod_count_before": 22,
+      "improvement_pct_points": 98.07382602399954,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "B",
+      "path_changes_total": 1,
+      "path_link_utilization_pct": {
+        "A": [
+          0.0,
+          0.0
+        ],
+        "B": [
+          98.07382602399954,
+          98.027480803677
+        ]
+      },
+      "path_scores_pct": {
+        "A": 0.0,
+        "B": 98.07382602399954
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.002776114000880625,
+      "reaction_time_s": null,
+      "reason": "held: dwell 2000 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14233.848753814,
+      "timestamp_utc": "2026-10-11T12:21:41.015811+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.0015302000000000093,
+      "current_path": "B",
+      "cycle_id": 8,
+      "decision": "hold",
+      "decision_cpu_time_s": 2.2099999999997122e-05,
+      "elapsed_since_last_switch_ms": 3001.231,
+      "flow_mod_count_after": 22,
+      "flow_mod_count_before": 22,
+      "improvement_pct_points": 91.23750209953167,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "B",
+      "path_changes_total": 1,
+      "path_link_utilization_pct": {
+        "A": [
+          6.485246700026091,
+          6.133851065686183
+        ],
+        "B": [
+          97.72274879955776,
+          97.65171585219588
+        ]
+      },
+      "path_scores_pct": {
+        "A": 6.485246700026091,
+        "B": 97.72274879955776
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0024555250001867535,
+      "reaction_time_s": null,
+      "reason": "held: dwell 3001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14234.849487481,
+      "timestamp_utc": "2026-10-11T12:21:42.647166+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.0007107000000000085,
+      "current_path": "B",
+      "cycle_id": 9,
+      "decision": "hold",
+      "decision_cpu_time_s": 9.299999999989872e-06,
+      "elapsed_since_last_switch_ms": 4000.825,
+      "flow_mod_count_after": 22,
+      "flow_mod_count_before": 22,
+      "improvement_pct_points": 46.477085806894465,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "B",
+      "path_changes_total": 1,
+      "path_link_utilization_pct": {
+        "A": [
+          51.62338500618141,
+          51.61450222153386
+        ],
+        "B": [
+          97.96976977807161,
+          98.10047081307587
+        ]
+      },
+      "path_scores_pct": {
+        "A": 51.62338500618141,
+        "B": 98.10047081307587
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0010917479994532187,
+      "reaction_time_s": null,
+      "reason": "held: dwell 4001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14235.849085647,
+      "timestamp_utc": "2026-10-11T12:21:43.646766+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.0006155000000000188,
+      "current_path": "B",
+      "cycle_id": 10,
+      "decision": "switch",
+      "decision_cpu_time_s": 9.499999999995623e-06,
+      "elapsed_since_last_switch_ms": 5001.321,
+      "flow_mod_count_after": 32,
+      "flow_mod_count_before": 22,
+      "flow_mod_install_succeeded": true,
+      "flow_mod_timestamp_monotonic_s": 14236.849597762,
+      "improvement_pct_points": 46.36335894023836,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "B",
+      "path_changes_total": 2,
+      "path_link_utilization_pct": {
+        "A": [
+          51.489140126906044,
+          51.57783587703495
+        ],
+        "B": [
+          97.94119481727331,
+          97.9027530184727
+        ]
+      },
+      "path_scores_pct": {
+        "A": 51.57783587703495,
+        "B": 97.94119481727331
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0008741680012462894,
+      "reaction_time_s": 2.244319006000296,
+      "reason": "switch: improvement 46.36 >= margin 15.00 percentage points",
+      "recovery_time_s": null,
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14236.849581575,
+      "timestamp_utc": "2026-10-11T12:21:44.647262+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0007807999999999704,
+      "current_path": "A",
+      "cycle_id": 11,
+      "decision": "hold",
+      "decision_cpu_time_s": 9.299999999989872e-06,
+      "elapsed_since_last_switch_ms": 1000.67,
+      "flow_mod_count_after": 32,
+      "flow_mod_count_before": 32,
+      "improvement_pct_points": 80.15976026180763,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 2,
+      "path_link_utilization_pct": {
+        "A": [
+          98.39468960383596,
+          98.1922805653817
+        ],
+        "B": [
+          18.234929342028323,
+          1.6570981301191512
+        ]
+      },
+      "path_scores_pct": {
+        "A": 98.39468960383596,
+        "B": 18.234929342028323
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0011823969998658868,
+      "reaction_time_s": null,
+      "reason": "held: dwell 1001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14237.850802034,
+      "timestamp_utc": "2026-10-11T12:21:45.648482+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0007101999999999942,
+      "current_path": "A",
+      "cycle_id": 12,
+      "decision": "hold",
+      "decision_cpu_time_s": 1.0000000000010001e-05,
+      "elapsed_since_last_switch_ms": 2001.012,
+      "flow_mod_count_after": 32,
+      "flow_mod_count_before": 32,
+      "improvement_pct_points": 99.13108525561472,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 2,
+      "path_link_utilization_pct": {
+        "A": [
+          99.13108525561472,
+          99.11646383841536
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 99.13108525561472,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0010659529998520156,
+      "reaction_time_s": null,
+      "reason": "held: dwell 2001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14238.851144499,
+      "timestamp_utc": "2026-10-11T12:21:46.648825+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.000776700000000019,
+      "current_path": "A",
+      "cycle_id": 13,
+      "decision": "hold",
+      "decision_cpu_time_s": 1.0100000000012876e-05,
+      "elapsed_since_last_switch_ms": 3001.287,
+      "flow_mod_count_after": 32,
+      "flow_mod_count_before": 32,
+      "improvement_pct_points": 99.02782642108346,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 2,
+      "path_link_utilization_pct": {
+        "A": [
+          98.98586720322739,
+          99.02782642108346
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 99.02782642108346,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0011692520001815865,
+      "reaction_time_s": null,
+      "reason": "held: dwell 3001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14239.851418883,
+      "timestamp_utc": "2026-10-11T12:21:47.649099+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0007706000000000102,
+      "current_path": "A",
+      "cycle_id": 14,
+      "decision": "hold",
+      "decision_cpu_time_s": 9.80000000000425e-06,
+      "elapsed_since_last_switch_ms": 4001.657,
+      "flow_mod_count_after": 32,
+      "flow_mod_count_before": 32,
+      "improvement_pct_points": 98.80403899267056,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 2,
+      "path_link_utilization_pct": {
+        "A": [
+          98.80403899267056,
+          98.52190992942204
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 98.80403899267056,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0011254999990342185,
+      "reaction_time_s": null,
+      "reason": "held: dwell 4002 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14240.851788914,
+      "timestamp_utc": "2026-10-11T12:21:48.649469+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0006902000000000297,
+      "current_path": "A",
+      "cycle_id": 15,
+      "decision": "switch",
+      "decision_cpu_time_s": 8.800000000031005e-06,
+      "elapsed_since_last_switch_ms": 5001.727,
+      "flow_mod_count_after": 42,
+      "flow_mod_count_before": 32,
+      "flow_mod_install_succeeded": true,
+      "flow_mod_timestamp_monotonic_s": 14241.851874652,
+      "improvement_pct_points": 98.93893687413112,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "A",
+      "path_changes_total": 3,
+      "path_link_utilization_pct": {
+        "A": [
+          98.93018557155276,
+          98.93893687413112
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 98.93893687413112,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0009500970008957665,
+      "reaction_time_s": 7.246595896000144,
+      "reason": "switch: improvement 98.94 >= margin 15.00 percentage points",
+      "recovery_time_s": null,
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14241.851858858,
+      "timestamp_utc": "2026-10-11T12:21:49.649539+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.0008512999999999993,
+      "current_path": "B",
+      "cycle_id": 16,
+      "decision": "hold",
+      "decision_cpu_time_s": 1.0599999999971743e-05,
+      "elapsed_since_last_switch_ms": 1000.629,
+      "flow_mod_count_after": 42,
+      "flow_mod_count_before": 42,
+      "improvement_pct_points": 13.790154596677155,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "B",
+      "path_changes_total": 3,
+      "path_link_utilization_pct": {
+        "A": [
+          64.13400677615425,
+          58.585628857666514
+        ],
+        "B": [
+          77.9241613728314,
+          76.98699573959067
+        ]
+      },
+      "path_scores_pct": {
+        "A": 64.13400677615425,
+        "B": 77.9241613728314
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0013580939994426444,
+      "reaction_time_s": null,
+      "reason": "held: dwell 1001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14242.853058421,
+      "timestamp_utc": "2026-10-11T12:21:50.650739+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.000714699999999957,
+      "current_path": "B",
+      "cycle_id": 17,
+      "decision": "hold",
+      "decision_cpu_time_s": 9.700000000001374e-06,
+      "elapsed_since_last_switch_ms": 2000.939,
+      "flow_mod_count_after": 42,
+      "flow_mod_count_before": 42,
+      "improvement_pct_points": 46.466138386865566,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "B",
+      "path_changes_total": 3,
+      "path_link_utilization_pct": {
+        "A": [
+          51.369641650601885,
+          51.474464145999235
+        ],
+        "B": [
+          97.9406025328648,
+          97.89390641656914
+        ]
+      },
+      "path_scores_pct": {
+        "A": 51.474464145999235,
+        "B": 97.9406025328648
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0011186319989064941,
+      "reaction_time_s": null,
+      "reason": "held: dwell 2001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14243.853368709,
+      "timestamp_utc": "2026-10-11T12:21:51.651049+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.0007163999999999504,
+      "current_path": "B",
+      "cycle_id": 18,
+      "decision": "hold",
+      "decision_cpu_time_s": 1.0200000000015752e-05,
+      "elapsed_since_last_switch_ms": 3001.302,
+      "flow_mod_count_after": 42,
+      "flow_mod_count_before": 42,
+      "improvement_pct_points": 46.430301205687115,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "B",
+      "path_changes_total": 3,
+      "path_link_utilization_pct": {
+        "A": [
+          51.46502777647481,
+          51.35994635272789
+        ],
+        "B": [
+          97.89532898216193,
+          97.69726334181348
+        ]
+      },
+      "path_scores_pct": {
+        "A": 51.46502777647481,
+        "B": 97.89532898216193
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0010868539993680315,
+      "reaction_time_s": null,
+      "reason": "held: dwell 3001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14244.853732053,
+      "timestamp_utc": "2026-10-11T12:21:52.651412+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.0010129999999999861,
+      "current_path": "B",
+      "cycle_id": 19,
+      "decision": "hold",
+      "decision_cpu_time_s": 9.700000000001374e-06,
+      "elapsed_since_last_switch_ms": 4001.858,
+      "flow_mod_count_after": 42,
+      "flow_mod_count_before": 42,
+      "improvement_pct_points": 46.55528703183698,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "B",
+      "path_before": "B",
+      "path_changes_total": 3,
+      "path_link_utilization_pct": {
+        "A": [
+          51.46869910507051,
+          51.463284371899796
+        ],
+        "B": [
+          97.78653029603707,
+          98.0239861369075
+        ]
+      },
+      "path_scores_pct": {
+        "A": 51.46869910507051,
+        "B": 98.0239861369075
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0014065749983274145,
+      "reaction_time_s": null,
+      "reason": "held: dwell 4002 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14245.854287806,
+      "timestamp_utc": "2026-10-11T12:21:53.651968+00:00"
+    },
+    {
+      "candidate_path": "A",
+      "controller_process_cpu_s": 0.0006448000000000009,
+      "current_path": "B",
+      "cycle_id": 20,
+      "decision": "switch",
+      "decision_cpu_time_s": 9.200000000042508e-06,
+      "elapsed_since_last_switch_ms": 5001.839,
+      "flow_mod_count_after": 52,
+      "flow_mod_count_before": 42,
+      "flow_mod_install_succeeded": true,
+      "flow_mod_timestamp_monotonic_s": 14246.854285689,
+      "improvement_pct_points": 46.47785251512402,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "B",
+      "path_changes_total": 4,
+      "path_link_utilization_pct": {
+        "A": [
+          51.51773537038286,
+          51.49673795190765
+        ],
+        "B": [
+          97.99558788550688,
+          97.92547811053744
+        ]
+      },
+      "path_scores_pct": {
+        "A": 51.51773537038286,
+        "B": 97.99558788550688
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0009536779998597922,
+      "reaction_time_s": 12.249006932999691,
+      "reason": "switch: improvement 46.48 >= margin 15.00 percentage points",
+      "recovery_time_s": null,
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14246.854268552,
+      "timestamp_utc": "2026-10-11T12:21:54.651949+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0007394000000000012,
+      "current_path": "A",
+      "cycle_id": 21,
+      "decision": "hold",
+      "decision_cpu_time_s": 1.070000000003013e-05,
+      "elapsed_since_last_switch_ms": 1000.88,
+      "flow_mod_count_after": 52,
+      "flow_mod_count_before": 52,
+      "improvement_pct_points": 91.76616747406828,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 4,
+      "path_link_utilization_pct": {
+        "A": [
+          98.03612978751349,
+          97.86639977759802
+        ],
+        "B": [
+          6.269962313445198,
+          1.6564375615554003
+        ]
+      },
+      "path_scores_pct": {
+        "A": 98.03612978751349,
+        "B": 6.269962313445198
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0011539320003066678,
+      "reaction_time_s": null,
+      "reason": "held: dwell 1001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14247.855715606,
+      "timestamp_utc": "2026-10-11T12:21:55.653396+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0007072000000000189,
+      "current_path": "A",
+      "cycle_id": 22,
+      "decision": "hold",
+      "decision_cpu_time_s": 9.399999999992747e-06,
+      "elapsed_since_last_switch_ms": 2001.151,
+      "flow_mod_count_after": 52,
+      "flow_mod_count_before": 52,
+      "improvement_pct_points": 98.29959543398371,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 4,
+      "path_link_utilization_pct": {
+        "A": [
+          98.2227115717367,
+          98.29959543398371
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 98.29959543398371,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0011144680011057062,
+      "reaction_time_s": null,
+      "reason": "held: dwell 2001 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14248.855987283,
+      "timestamp_utc": "2026-10-11T12:21:56.653668+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0010683999999999694,
+      "current_path": "A",
+      "cycle_id": 23,
+      "decision": "hold",
+      "decision_cpu_time_s": 1.0200000000015752e-05,
+      "elapsed_since_last_switch_ms": 3001.961,
+      "flow_mod_count_after": 52,
+      "flow_mod_count_before": 52,
+      "improvement_pct_points": 99.14477465595995,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 4,
+      "path_link_utilization_pct": {
+        "A": [
+          99.14477465595995,
+          99.06750752252177
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 99.14477465595995,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.0015795069994055666,
+      "reaction_time_s": null,
+      "reason": "held: dwell 3002 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14249.85679656,
+      "timestamp_utc": "2026-10-11T12:21:57.654477+00:00"
+    },
+    {
+      "candidate_path": "B",
+      "controller_process_cpu_s": 0.0033585999999999894,
+      "current_path": "A",
+      "cycle_id": 24,
+      "decision": "hold",
+      "decision_cpu_time_s": 3.649999999999487e-05,
+      "elapsed_since_last_switch_ms": 4007.115,
+      "flow_mod_count_after": 52,
+      "flow_mod_count_before": 52,
+      "improvement_pct_points": 6.1342878613909555,
+      "minimum_dwell_time_ms": 5000,
+      "path_after": "A",
+      "path_before": "A",
+      "path_changes_total": 4,
+      "path_link_utilization_pct": {
+        "A": [
+          5.6689276221850164,
+          6.1342878613909555
+        ],
+        "B": [
+          0.0,
+          0.0
+        ]
+      },
+      "path_scores_pct": {
+        "A": 6.1342878613909555,
+        "B": 0.0
+      },
+      "policy": "C",
+      "poll_interval_ms": 1000,
+      "poll_round_trip_s": 0.00515166299919656,
+      "reaction_time_s": null,
+      "reason": "held: dwell 4007 < 5000 ms",
+      "switching_threshold": 15.0,
+      "time_monotonic_s": 14250.861940034,
+      "timestamp_utc": "2026-10-11T12:21:58.659615+00:00"
+    }
+  ],
+  "ipv6_suppression_verified": true,
+  "link_failure_time_monotonic_s": null,
+  "path_counter_deltas": {
+    "counter_interpretation": "Per-port RX/TX packet-count imbalance is descriptive and can occur with asymmetric TCP data and ACK traffic; it is not by itself a loop verdict.",
+    "flow_n_packets_deltas": {
+      "s1:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s1-eth1\",nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=output:\"s1-eth3\"": 7249,
+      "s1:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s1-eth3\",nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=output:\"s1-eth1\"": 677,
+      "s1:cookie=0x534d41520000000c, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s1-eth2\",nw_src=10.0.0.3,nw_dst=10.0.0.4 actions=output:\"s1-eth3\"": 6490,
+      "s1:cookie=0x534d41520000000c, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s1-eth3\",nw_src=10.0.0.4,nw_dst=10.0.0.3 actions=output:\"s1-eth2\"": 14,
+      "s2:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s2-eth1\",nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=output:\"s2-eth2\"": 721,
+      "s2:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s2-eth2\",nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=output:\"s2-eth1\"": 678,
+      "s2:cookie=0x534d41520000000c, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s2-eth1\",nw_src=10.0.0.3,nw_dst=10.0.0.4 actions=output:\"s2-eth2\"": 6466,
+      "s2:cookie=0x534d41520000000c, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s2-eth2\",nw_src=10.0.0.4,nw_dst=10.0.0.3 actions=output:\"s2-eth1\"": 14,
+      "s4:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s4-eth1\",nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=output:\"s4-eth3\"": 6669,
+      "s4:cookie=0x534d41520000000a, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s4-eth3\",nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=output:\"s4-eth1\"": 721,
+      "s4:cookie=0x534d41520000000c, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s4-eth2\",nw_src=10.0.0.4,nw_dst=10.0.0.3 actions=output:\"s4-eth3\"": 14,
+      "s4:cookie=0x534d41520000000c, table=0, n_packets=N, n_bytes=N, priority=100,ip,in_port=\"s4-eth3\",nw_src=10.0.0.3,nw_dst=10.0.0.4 actions=output:\"s4-eth2\"": 6466
+    },
+    "port_counter_deltas": {
+      "s2:LOCAL:rx_bytes": 0,
+      "s2:LOCAL:rx_packets": 0,
+      "s2:LOCAL:tx_bytes": 0,
+      "s2:LOCAL:tx_packets": 0,
+      "s2:s2-eth1:rx_bytes": 17502113,
+      "s2:s2-eth1:rx_packets": 9373,
+      "s2:s2-eth1:tx_bytes": 185520,
+      "s2:s2-eth1:tx_packets": 2670,
+      "s2:s2-eth2:rx_bytes": 185784,
+      "s2:s2-eth2:rx_packets": 2674,
+      "s2:s2-eth2:tx_bytes": 17187911,
+      "s2:s2-eth2:tx_packets": 9264,
+      "s3:LOCAL:rx_bytes": 0,
+      "s3:LOCAL:rx_packets": 0,
+      "s3:LOCAL:tx_bytes": 0,
+      "s3:LOCAL:tx_packets": 0,
+      "s3:s3-eth1:rx_bytes": 12167754,
+      "s3:s3-eth1:rx_packets": 4301,
+      "s3:s3-eth1:tx_bytes": 267932,
+      "s3:s3-eth1:tx_packets": 4006,
+      "s3:s3-eth2:rx_bytes": 268130,
+      "s3:s3-eth2:rx_packets": 4009,
+      "s3:s3-eth2:tx_bytes": 11878762,
+      "s3:s3-eth2:tx_packets": 4201
+    },
+    "rx_gt_tx_direction_imbalances": [
+      {
+        "port": "s2-eth1",
+        "rx_packets_delta": 9373,
+        "switch": "s2",
+        "tx_packets_delta": 2670
+      },
+      {
+        "port": "s3-eth1",
+        "rx_packets_delta": 4301,
+        "switch": "s3",
+        "tx_packets_delta": 4006
+      }
+    ],
+    "unused_path": "B",
+    "unused_path_packet_delta_sum": 16517,
+    "unused_path_switch": "s3",
+    "unused_path_traffic_detected": true
+  },
+  "path_utilization_samples": {
+    "A": {
+      "capacity_mbps": 10,
+      "counter_end": {
+        "configured_capacity_mbps": 10.0,
+        "cycle_id": 24,
+        "elapsed_s": 1.0050001139989035,
+        "port_no": 2,
+        "status": "ok",
+        "switch": "s2",
+        "time_monotonic_s": 14250.861435238,
+        "timestamp_utc": "2026-10-11T12:21:58.659136+00:00",
+        "tx_bytes": 17188087,
+        "utilization_pct": 6.1342878613909555
+      },
+      "counter_start": {
+        "configured_capacity_mbps": 10.0,
+        "cycle_id": 2,
+        "elapsed_s": 1.0018542490015534,
+        "port_no": 2,
+        "status": "ok",
+        "switch": "s2",
+        "time_monotonic_s": 14228.836521798,
+        "timestamp_utc": "2026-10-11T12:21:36.003588+00:00",
+        "tx_bytes": 176,
+        "utilization_pct": 0.0
+      },
+      "delta_tx_bytes": 17187911,
+      "interface": "s2-eth2",
+      "interval_s": 22.024913439998272,
+      "port": 2,
+      "requested_window_end_monotonic_s": 14250.120139566,
+      "requested_window_start_monotonic_s": 14229.604979251,
+      "status": "ok",
+      "switch": "s2",
+      "utilization_pct": 62.431
+    },
+    "B": {
+      "capacity_mbps": 10,
+      "counter_end": {
+        "configured_capacity_mbps": 10.0,
+        "cycle_id": 24,
+        "elapsed_s": 1.0049214820010093,
+        "port_no": 2,
+        "status": "ok",
+        "switch": "s3",
+        "time_monotonic_s": 14250.861627267,
+        "timestamp_utc": "2026-10-11T12:21:58.659327+00:00",
+        "tx_bytes": 11878942,
+        "utilization_pct": 0.0
+      },
+      "counter_start": {
+        "configured_capacity_mbps": 10.0,
+        "cycle_id": 2,
+        "elapsed_s": 1.0017216710002685,
+        "port_no": 2,
+        "status": "ok",
+        "switch": "s3",
+        "time_monotonic_s": 14228.836566728,
+        "timestamp_utc": "2026-10-11T12:21:36.003633+00:00",
+        "tx_bytes": 180,
+        "utilization_pct": 0.0071876252740049485
+      },
+      "delta_tx_bytes": 11878762,
+      "interface": "s3-eth2",
+      "interval_s": 22.02506053900106,
+      "port": 2,
+      "requested_window_end_monotonic_s": 14250.120139566,
+      "requested_window_start_monotonic_s": 14229.604979251,
+      "status": "ok",
+      "switch": "s3",
+      "utilization_pct": 43.146
+    }
+  },
+  "queue_limit_verified": true,
+  "ready_record": {
+    "competing_path": "A",
+    "connected_switches": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ],
+    "initial_path": "A",
+    "openflow_version": "1.3",
+    "policy": "C",
+    "ready": true,
+    "time_monotonic_s": 14227.833594956,
+    "timestamp_utc": "2026-10-11T12:21:35.000646+00:00"
+  },
+  "udp_bursts": [
+    {
+      "active_duration_s": 15.0,
+      "end_monotonic_s": 14249.605402584,
+      "index": 1,
+      "node_json_path": "/tmp/E2_C_initialA_5Mbps_t05_burst_1.json",
+      "raw_file": "competing_burst_1.json",
+      "requested_rate_mbps": 5,
+      "start_monotonic_s": 14234.605278756
+    }
+  ]
+}

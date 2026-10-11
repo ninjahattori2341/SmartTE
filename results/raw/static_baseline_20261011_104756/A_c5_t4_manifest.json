@@ -1,0 +1,19 @@
+{
+  "trial_tag": "A_c5_t4",
+  "raw_files": {
+    "iperf3.json": "A_c5_t4_iperf3.json",
+    "ping.txt": "A_c5_t4_ping.txt",
+    "competing.json": "A_c5_t4_competing.json",
+    "utilization_counters.json": "A_c5_t4_utilization_counters.json",
+    "switch_counters_before.txt": "A_c5_t4_before_switch_counters.txt",
+    "switch_counters_after.txt": "A_c5_t4_after_switch_counters.txt",
+    "counter_deltas.json": "A_c5_t4_counter_deltas.json"
+  },
+  "queue_config": "verified queue limit 100 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms",
+  "queue_limit_pkts_requested": 100,
+  "counter_interval_s": 15.436296764999497,
+  "utilization_port_selection": {
+    "A": "s2 port 2, egress toward s4",
+    "B": "s3 port 2, egress toward s4"
+  }
+}

@@ -1,0 +1,33 @@
+=== s2 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=17.596s
+  port  "s2-eth1": rx pkts=3224, bytes=9107826, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=2913, bytes=194942, drop=0, errs=0, coll=0
+           duration=17.598s
+  port  "s2-eth2": rx pkts=2915, bytes=195030, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=3057, bytes=8626160, drop=0, errs=0, coll=0
+           duration=17.599s
+=== s3 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=17.598s
+  port  "s3-eth1": rx pkts=3638, bytes=10134714, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=3396, bytes=227702, drop=0, errs=0, coll=0
+           duration=17.600s
+  port  "s3-eth2": rx pkts=3399, bytes=227880, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=3563, bytes=9914000, drop=0, errs=0, coll=0
+           duration=17.600s
+=== s1 flows ===
+cookie=0x534d41520000000b, duration=3.568s, table=0, n_packets=6860, n_bytes=19242360, priority=100,ip,in_port="s1-eth1",nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=output:"s1-eth4"
+ cookie=0x534d41520000000b, duration=3.568s, table=0, n_packets=1350, n_bytes=90222, priority=100,ip,in_port="s1-eth4",nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=output:"s1-eth1"
+=== s2 flows ===
+
+=== s3 flows ===
+cookie=0x534d41520000000b, duration=3.595s, table=0, n_packets=1414, n_bytes=3927226, priority=100,ip,in_port="s3-eth1",nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=output:"s3-eth2"
+ cookie=0x534d41520000000b, duration=3.596s, table=0, n_packets=1350, n_bytes=90222, priority=100,ip,in_port="s3-eth2",nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=output:"s3-eth1"
+=== s4 flows ===
+cookie=0x534d41520000000b, duration=3.609s, table=0, n_packets=1414, n_bytes=3927226, priority=100,ip,in_port="s4-eth4",nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=output:"s4-eth1"
+ cookie=0x534d41520000000b, duration=3.609s, table=0, n_packets=6312, n_bytes=422730, priority=100,ip,in_port="s4-eth1",nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=output:"s4-eth4"

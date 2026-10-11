@@ -1,0 +1,37 @@
+/home/andy2341/.local/share/smartte/os-ken-py310/lib/python3.10/site-packages/os_ken/lib/hub.py:160: EventletDeprecationWarning: 
+Eventlet is deprecated. It is currently being maintained in bugfix mode, and
+we strongly recommend against using it for new projects.
+
+If you are already using Eventlet, we recommend migrating to a different
+framework.  For more detail see
+https://eventlet.readthedocs.io/en/latest/asyncio/migration.html
+
+  import eventlet
+2026-10-11 12:52:13,916 INFO os_ken.base.app_manager loading app controller.smartte_controller
+2026-10-11 12:52:13,917 INFO os_ken.base.app_manager loading app os_ken.controller.ofp_handler
+2026-10-11 12:52:13,917 INFO os_ken.base.app_manager instantiating app controller.smartte_controller of SmartTEController
+2026-10-11 12:52:13,918 INFO smartte.controller SmartTE controller starting: policy=B initial_path=A competing_path=OFF poll_interval_ms=1000 threshold=15.000 dwell_ms=5000
+2026-10-11 12:52:13,918 INFO os_ken.base.app_manager instantiating app os_ken.controller.ofp_handler of OFPHandler
+2026-10-11 12:52:15,190 INFO smartte.controller OpenFlow 1.3 switch connected: s1 dpid=1
+2026-10-11 12:52:15,225 INFO smartte.controller OpenFlow 1.3 switch connected: s2 dpid=2
+2026-10-11 12:52:15,249 INFO smartte.controller OpenFlow 1.3 switch connected: s3 dpid=3
+2026-10-11 12:52:15,273 INFO smartte.controller OpenFlow 1.3 switch connected: s4 dpid=4
+2026-10-11 12:52:15,275 INFO smartte.controller Initial OpenFlow rules installed: primary=A competing=OFF; datapaths=['s1', 's2', 's3', 's4']
+2026-10-11 12:52:18,113 WARNING smartte.controller Core port status: switch=s2 port=2 path=A down=False
+2026-10-11 12:52:18,113 WARNING smartte.controller Core port status: switch=s2 port=2 path=A down=True
+2026-10-11 12:52:18,285 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:19,287 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:20,289 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:21,290 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:22,290 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:23,292 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:24,291 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:25,293 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:26,911 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:27,910 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:28,914 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:29,915 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:30,916 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:31,915 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:32,915 WARNING smartte.controller Refusing unavailable primary path A
+2026-10-11 12:52:33,919 WARNING smartte.controller Refusing unavailable primary path A

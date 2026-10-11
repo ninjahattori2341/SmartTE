@@ -1,0 +1,81 @@
+{
+  "counter_source": "OS-Ken OFPPortStatsReply tx_bytes",
+  "counter_window_definition": "latest sample at/before TCP start through earliest sample at/after TCP end",
+  "interval_note": "Actual OpenFlow sample timestamps are recorded per path; the poll interval is not substituted for elapsed time.",
+  "paths": {
+    "A": {
+      "capacity_mbps": 10,
+      "counter_end": {
+        "configured_capacity_mbps": 10.0,
+        "cycle_id": 24,
+        "elapsed_s": 1.0019044720011152,
+        "port_no": 2,
+        "status": "ok",
+        "switch": "s2",
+        "time_monotonic_s": 13393.808175205,
+        "timestamp_utc": "2026-10-11T12:07:25.097718+00:00",
+        "tx_bytes": 19873150,
+        "utilization_pct": 0.0
+      },
+      "counter_start": {
+        "configured_capacity_mbps": 10.0,
+        "cycle_id": 2,
+        "elapsed_s": 1.0028134040003351,
+        "port_no": 2,
+        "status": "ok",
+        "switch": "s2",
+        "time_monotonic_s": 13371.782111461,
+        "timestamp_utc": "2026-10-11T12:07:03.071630+00:00",
+        "tx_bytes": 266,
+        "utilization_pct": 0.006860698084563796
+      },
+      "delta_tx_bytes": 19872884,
+      "interface": "s2-eth2",
+      "interval_s": 22.026063744000567,
+      "port": 2,
+      "requested_window_end_monotonic_s": 13393.357526096,
+      "requested_window_start_monotonic_s": 13372.585788737,
+      "status": "ok",
+      "switch": "s2",
+      "utilization_pct": 72.18
+    },
+    "B": {
+      "capacity_mbps": 10,
+      "counter_end": {
+        "configured_capacity_mbps": 10.0,
+        "cycle_id": 24,
+        "elapsed_s": 1.0021142739988136,
+        "port_no": 2,
+        "status": "ok",
+        "switch": "s3",
+        "time_monotonic_s": 13393.808666906,
+        "timestamp_utc": "2026-10-11T12:07:25.098177+00:00",
+        "tx_bytes": 22233535,
+        "utilization_pct": 35.44210567750285
+      },
+      "counter_start": {
+        "configured_capacity_mbps": 10.0,
+        "cycle_id": 2,
+        "elapsed_s": 1.0029761519999738,
+        "port_no": 2,
+        "status": "ok",
+        "switch": "s3",
+        "time_monotonic_s": 13371.782231226,
+        "timestamp_utc": "2026-10-11T12:07:03.071748+00:00",
+        "tx_bytes": 176,
+        "utilization_pct": 0.0
+      },
+      "delta_tx_bytes": 22233359,
+      "interface": "s3-eth2",
+      "interval_s": 22.02643567999985,
+      "port": 2,
+      "requested_window_end_monotonic_s": 13393.357526096,
+      "requested_window_start_monotonic_s": 13372.585788737,
+      "status": "ok",
+      "switch": "s3",
+      "utilization_pct": 80.752
+    }
+  },
+  "tcp_end_monotonic_s": 13393.357526096,
+  "tcp_start_monotonic_s": 13372.585788737
+}

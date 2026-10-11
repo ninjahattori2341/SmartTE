@@ -1,0 +1,54 @@
+{
+  "port_counter_deltas": {
+    "s2:LOCAL:rx_packets": 0,
+    "s2:LOCAL:tx_packets": 0,
+    "s2:LOCAL:rx_bytes": 0,
+    "s2:LOCAL:tx_bytes": 0,
+    "s2:s2-eth1:rx_packets": 4496,
+    "s2:s2-eth1:tx_packets": 4299,
+    "s2:s2-eth1:rx_bytes": 12594636,
+    "s2:s2-eth1:tx_bytes": 290174,
+    "s2:s2-eth2:rx_packets": 4299,
+    "s2:s2-eth2:tx_packets": 4496,
+    "s2:s2-eth2:rx_bytes": 290174,
+    "s2:s2-eth2:tx_bytes": 12594636,
+    "s3:LOCAL:rx_packets": 0,
+    "s3:LOCAL:tx_packets": 0,
+    "s3:LOCAL:rx_bytes": 0,
+    "s3:LOCAL:tx_bytes": 0,
+    "s3:s3-eth1:rx_packets": 0,
+    "s3:s3-eth1:tx_packets": 0,
+    "s3:s3-eth1:rx_bytes": 0,
+    "s3:s3-eth1:tx_bytes": 0,
+    "s3:s3-eth2:rx_packets": 0,
+    "s3:s3-eth2:tx_packets": 0,
+    "s3:s3-eth2:rx_bytes": 0,
+    "s3:s3-eth2:tx_bytes": 0
+  },
+  "rx_greater_than_tx_anomalies": [
+    {
+      "switch": "s2",
+      "port": "s2-eth1",
+      "rx_packets_delta": 4496,
+      "tx_packets_delta": 4299
+    }
+  ],
+  "flow_n_packets_deltas": {
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth1\",nw_dst=10.0.0.2 actions=output:\"s1-eth3\"": 4506,
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth3\",nw_dst=10.0.0.1 actions=output:\"s1-eth1\"": 4299,
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth2\",nw_dst=10.0.0.4 actions=output:\"s1-eth3\"": 0,
+    "s1:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s1-eth3\",nw_dst=10.0.0.3 actions=output:\"s1-eth2\"": 0,
+    "s2:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s2-eth1\",nw_dst=10.0.0.2 actions=output:\"s2-eth2\"": 4496,
+    "s2:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s2-eth2\",nw_dst=10.0.0.1 actions=output:\"s2-eth1\"": 4299,
+    "s2:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s2-eth1\",nw_dst=10.0.0.4 actions=output:\"s2-eth2\"": 0,
+    "s2:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s2-eth2\",nw_dst=10.0.0.3 actions=output:\"s2-eth1\"": 0,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth3\",nw_dst=10.0.0.2 actions=output:\"s4-eth1\"": 4496,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth1\",nw_dst=10.0.0.1 actions=output:\"s4-eth3\"": 4299,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth3\",nw_dst=10.0.0.4 actions=output:\"s4-eth2\"": 0,
+    "s4:cookie=0x0, table=0, n_packets=N, n_bytes=N, ip,in_port=\"s4-eth2\",nw_dst=10.0.0.3 actions=output:\"s4-eth3\"": 0
+  },
+  "unused_path": "B",
+  "unused_path_switch": "s3",
+  "unused_path_packet_delta_sum": 0,
+  "unused_path_traffic_detected": false
+}

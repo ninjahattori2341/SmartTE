@@ -1,0 +1,526 @@
+[INFO] Cleaning up previous Mininet state...
+[INFO] Cleanup complete.
+[INFO] Creating switches (OpenFlow 1.3, failMode=secure)...
+[INFO] Creating hosts...
+[INFO] Creating access links (100 Mbps, 1ms)...
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+[INFO] Creating Path A links (s2, 10 Mbps, 5ms, queue=100 pkts)...
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+[INFO] Creating Path B links (s3, 10 Mbps, 10ms, queue=100 pkts)...
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+*** Configuring hosts
+[INFO] *** Configuring hosts
+
+h1 [INFO] h1 
+h2 [INFO] h2 
+h3 [INFO] h3 
+h4 [INFO] h4 
+
+[INFO] 
+
+*** Starting controller
+[INFO] *** Starting controller
+
+c0 [INFO] c0 
+
+[INFO] 
+
+*** Starting 4 switches
+[INFO] *** Starting 4 switches
+
+s1 [INFO] s1 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+s2 [INFO] s2 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+s3 [INFO] s3 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+s4 [INFO] s4 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+...[INFO] ...
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+
+[INFO] 
+
+*** Stopping 1 controllers
+[INFO] *** Stopping 1 controllers
+
+c0 [INFO] c0 
+
+[INFO] 
+
+*** Stopping 8 links
+[INFO] *** Stopping 8 links
+
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+
+[INFO] 
+
+*** Stopping 4 switches
+[INFO] *** Stopping 4 switches
+
+s1 [INFO] s1 
+s2 [INFO] s2 
+s3 [INFO] s3 
+s4 [INFO] s4 
+
+[INFO] 
+
+*** Stopping 4 hosts
+[INFO] *** Stopping 4 hosts
+
+h1 [INFO] h1 
+h2 [INFO] h2 
+h3 [INFO] h3 
+h4 [INFO] h4 
+
+*** Done
+[INFO] 
+*** Done
+
+[INFO] Cleaning up previous Mininet state...
+[INFO] Cleanup complete.
+[INFO] Cleaning up previous Mininet state...
+[INFO] Cleanup complete.
+[INFO] Creating switches (OpenFlow 1.3, failMode=secure)...
+[INFO] Creating hosts...
+[INFO] Creating access links (100 Mbps, 1ms)...
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+[INFO] Creating Path A links (s2, 10 Mbps, 5ms, queue=100 pkts)...
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+[INFO] Creating Path B links (s3, 10 Mbps, 10ms, queue=100 pkts)...
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+*** Configuring hosts
+[INFO] *** Configuring hosts
+
+h1 [INFO] h1 
+h2 [INFO] h2 
+h3 [INFO] h3 
+h4 [INFO] h4 
+
+[INFO] 
+
+*** Starting controller
+[INFO] *** Starting controller
+
+c0 [INFO] c0 
+
+[INFO] 
+
+*** Starting 4 switches
+[INFO] *** Starting 4 switches
+
+s1 [INFO] s1 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+s2 [INFO] s2 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+s3 [INFO] s3 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+s4 [INFO] s4 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+...[INFO] ...
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(100.00Mbit 1ms delay) [INFO] (100.00Mbit 1ms delay) 
+*** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+[ERROR] *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+(10.00Mbit 5ms delay) [INFO] (10.00Mbit 5ms delay) 
+(10.00Mbit 10ms delay) [INFO] (10.00Mbit 10ms delay) 
+
+[INFO] 
+
+*** Stopping 1 controllers
+[INFO] *** Stopping 1 controllers
+
+c0 [INFO] c0 
+
+[INFO] 
+
+*** Stopping 8 links
+[INFO] *** Stopping 8 links
+
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+.[INFO] .
+
+[INFO] 
+
+*** Stopping 4 switches
+[INFO] *** Stopping 4 switches
+
+s1 [INFO] s1 
+s2 [INFO] s2 
+s3 [INFO] s3 
+s4 [INFO] s4 
+
+[INFO] 
+
+*** Stopping 4 hosts
+[INFO] *** Stopping 4 hosts
+
+h1 [INFO] h1 
+h2 [INFO] h2 
+h3 [INFO] h3 
+h4 [INFO] h4 
+
+*** Done
+[INFO] 
+*** Done
+
+[INFO] Cleaning up previous Mininet state...
+[INFO] Cleanup complete.
+{
+  "controller": "os-ken 4.2.2",
+  "python": "3.10.22",
+  "paths": [
+    {
+      "path": "A",
+      "controller_pid": 65218,
+      "ready_record": {
+        "ready": true,
+        "timestamp_utc": "2026-10-11T11:29:09.367453+00:00",
+        "time_monotonic_s": 11142.329220612,
+        "policy": "STATIC",
+        "initial_path": "A",
+        "competing_path": "A",
+        "connected_switches": [
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "openflow_version": "1.3"
+      },
+      "ipv6_suppression_verified": true,
+      "queue_limit_verified": true,
+      "queue_config": "verified explicit max_queue_size queue limit 100 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms",
+      "path_a_core_packet_delta_sum": null,
+      "path_b_core_packet_delta_sum": null,
+      "unused_path": "B",
+      "unused_path_packet_delta_sum": 0,
+      "h1_h2_ping": {
+        "ping_loss_pct": 0.0,
+        "rtt_min_ms": 24.2,
+        "rtt_avg_ms": 25.021,
+        "rtt_max_ms": 26.8,
+        "rtt_mdev_ms": 0.644,
+        "p95_rtt_ms": 26.8,
+        "samples_count": 19,
+        "discard_rule": "first received RTT sample discarded as a precaution"
+      },
+      "h3_h4_ping": {
+        "ping_loss_pct": 0.0,
+        "rtt_min_ms": 24.7,
+        "rtt_avg_ms": 25.342,
+        "rtt_max_ms": 27.0,
+        "rtt_mdev_ms": 0.525,
+        "p95_rtt_ms": 27.0,
+        "samples_count": 19,
+        "discard_rule": "first received RTT sample discarded as a precaution"
+      },
+      "duplicate_reply": false,
+      "h1_h2_tcp_receiver_mbps": 9.359,
+      "counter_comparisons": [
+        {
+          "switch": "s1",
+          "port": 3,
+          "osken_tx_bytes": 6436519,
+          "ovs_ofctl_tx_bytes": 6436519,
+          "absolute_difference_bytes": 0
+        },
+        {
+          "switch": "s2",
+          "port": 2,
+          "osken_tx_bytes": 6436609,
+          "ovs_ofctl_tx_bytes": 6436609,
+          "absolute_difference_bytes": 0
+        },
+        {
+          "switch": "s1",
+          "port": 4,
+          "osken_tx_bytes": 180,
+          "ovs_ofctl_tx_bytes": 180,
+          "absolute_difference_bytes": 0
+        },
+        {
+          "switch": "s3",
+          "port": 2,
+          "osken_tx_bytes": 90,
+          "ovs_ofctl_tx_bytes": 90,
+          "absolute_difference_bytes": 0
+        }
+      ],
+      "osken_stats_sample_count": 428,
+      "flow_rules_remaining_after_controller_exit": {
+        "s1": 0,
+        "s2": 0,
+        "s3": 0,
+        "s4": 0
+      },
+      "controller_alive_after_survival_s": false,
+      "survival_seconds": 60,
+      "raw_files": [
+        "path_a_before_switch_counters.txt",
+        "path_a_after_switch_counters.txt",
+        "path_a_counter_deltas.json"
+      ]
+    },
+    {
+      "path": "B",
+      "controller_pid": 66254,
+      "ready_record": {
+        "ready": true,
+        "timestamp_utc": "2026-10-11T11:31:03.410407+00:00",
+        "time_monotonic_s": 11253.807171674,
+        "policy": "STATIC",
+        "initial_path": "B",
+        "competing_path": "A",
+        "connected_switches": [
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "openflow_version": "1.3"
+      },
+      "ipv6_suppression_verified": true,
+      "queue_limit_verified": true,
+      "queue_config": "verified explicit max_queue_size queue limit 100 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms",
+      "path_a_core_packet_delta_sum": null,
+      "path_b_core_packet_delta_sum": null,
+      "unused_path": null,
+      "unused_path_packet_delta_sum": 0,
+      "h1_h2_ping": {
+        "ping_loss_pct": 0.0,
+        "rtt_min_ms": 44.7,
+        "rtt_avg_ms": 46.2,
+        "rtt_max_ms": 52.2,
+        "rtt_mdev_ms": 1.605,
+        "p95_rtt_ms": 52.2,
+        "samples_count": 19,
+        "discard_rule": "first received RTT sample discarded as a precaution"
+      },
+      "h3_h4_ping": {
+        "ping_loss_pct": 0.0,
+        "rtt_min_ms": 24.3,
+        "rtt_avg_ms": 24.732,
+        "rtt_max_ms": 25.9,
+        "rtt_mdev_ms": 0.399,
+        "p95_rtt_ms": 25.9,
+        "samples_count": 19,
+        "discard_rule": "first received RTT sample discarded as a precaution"
+      },
+      "duplicate_reply": false,
+      "h1_h2_tcp_receiver_mbps": 9.341,
+      "counter_comparisons": [
+        {
+          "switch": "s1",
+          "port": 3,
+          "osken_tx_bytes": 2050,
+          "ovs_ofctl_tx_bytes": 2050,
+          "absolute_difference_bytes": 0
+        },
+        {
+          "switch": "s2",
+          "port": 2,
+          "osken_tx_bytes": 2140,
+          "ovs_ofctl_tx_bytes": 2140,
+          "absolute_difference_bytes": 0
+        },
+        {
+          "switch": "s1",
+          "port": 4,
+          "osken_tx_bytes": 6671839,
+          "ovs_ofctl_tx_bytes": 6671839,
+          "absolute_difference_bytes": 0
+        },
+        {
+          "switch": "s3",
+          "port": 2,
+          "osken_tx_bytes": 6671843,
+          "ovs_ofctl_tx_bytes": 6671843,
+          "absolute_difference_bytes": 0
+        }
+      ],
+      "osken_stats_sample_count": 192,
+      "flow_rules_remaining_after_controller_exit": {
+        "s1": 0,
+        "s2": 0,
+        "s3": 0,
+        "s4": 0
+      },
+      "controller_alive_after_survival_s": false,
+      "survival_seconds": 0,
+      "raw_files": [
+        "path_b_before_switch_counters.txt",
+        "path_b_after_switch_counters.txt",
+        "path_b_counter_deltas.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,431 @@
+{
+  "run_id": "static_baseline_20261011_100417",
+  "experiment_id": "static_baseline_m2",
+  "timestamp_utc": "2026-10-11T10:04:17.600840+00:00",
+  "git_commit": "b1624a13fc7b013ee8ff3dd98cbe10bbde626d09",
+  "git_dirty": true,
+  "cli_args": {
+    "paths": [
+      "A",
+      "B"
+    ],
+    "competing_rates": [
+      0,
+      5,
+      9
+    ],
+    "trials": 5,
+    "duration": 15,
+    "queue": 100,
+    "smoke_test": false,
+    "path_evidence": true,
+    "queue_audit_only": false
+  },
+  "kernel": "6.6.87.2-microsoft-standard-WSL2",
+  "python_version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "bottleneck_bw_a": 10,
+  "bottleneck_bw_b": 10,
+  "access_bw": 100,
+  "delay_access": "1ms",
+  "delay_a": "5ms",
+  "delay_b": "10ms",
+  "queue_pkts": 100,
+  "queue_config": "verified queue limit 100 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms",
+  "queue_limit_verified": true,
+  "queue_observations": [
+    {
+      "scenario": "primary_A_competing_off_0mbps",
+      "queue_config": "verified queue limit 100 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms",
+      "queue_limit_verified": true,
+      "raw_log_ref": "A_c0_tc.txt"
+    },
+    {
+      "scenario": "primary_B_competing_off_0mbps",
+      "queue_config": "verified queue limit 100 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms",
+      "queue_limit_verified": true,
+      "raw_log_ref": "B_c0_tc.txt"
+    },
+    {
+      "scenario": "primary_A_competing_A_0mbps",
+      "queue_config": "verified queue limit 100 packets; s1-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s2-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s4-eth3=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 5ms; s1-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth1=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s3-eth2=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms; s4-eth4=qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 100 delay 10ms",
+      "queue_limit_verified": true,
+      "raw_log_ref": "A_c0_tc.txt"
+    }
+  ],
+  "access_qdisc_observations": [
+    {
+      "scenario": "primary_A_competing_off_0mbps",
+      "description": "s1-eth1 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; s1-eth2 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; s4-eth1 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; s4-eth2 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h1/h1-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h3/h3-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h2/h2-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h4/h4-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms"
+    },
+    {
+      "scenario": "primary_B_competing_off_0mbps",
+      "description": "s1-eth1 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; s1-eth2 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; s4-eth1 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; s4-eth2 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h1/h1-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h3/h3-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h2/h2-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h4/h4-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms"
+    },
+    {
+      "scenario": "primary_A_competing_A_0mbps",
+      "description": "s1-eth1 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; s1-eth2 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; s4-eth1 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; s4-eth2 [exit=0]: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h1/h1-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h3/h3-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h2/h2-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms; h4/h4-eth0: qdisc htb 5: root refcnt 9 r2q 10 default 0x1 direct_packets_stat 0 direct_qlen 1000\r\nqdisc netem 10: parent 5:1 limit 1000 delay 1ms"
+    }
+  ],
+  "path_utilization_method": "OVS tx_bytes counters sampled around TCP window using time.monotonic()",
+  "path_utilization_ports": {
+    "A": "s2 port 2, egress toward s4",
+    "B": "s3 port 2, egress toward s4"
+  },
+  "path_utilization_port_selection_reason": "Selected the egress port of each core link in the h1-to-h2 flow direction.",
+  "ipv6_interface_observations": [
+    {
+      "scenario": "primary_A_competing_off_0mbps",
+      "verified": true,
+      "interfaces": [
+        {
+          "node": "s1",
+          "interface": "s1-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s1",
+          "interface": "s1-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s1",
+          "interface": "s1-eth3",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s1",
+          "interface": "s1-eth4",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s2",
+          "interface": "s2-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s2",
+          "interface": "s2-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s3",
+          "interface": "s3-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s3",
+          "interface": "s3-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth3",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth4",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h1",
+          "interface": "h1-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h2",
+          "interface": "h2-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h3",
+          "interface": "h3-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h4",
+          "interface": "h4-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        }
+      ],
+      "raw_log": "A_c0_ipv6_config.txt"
+    },
+    {
+      "scenario": "primary_B_competing_off_0mbps",
+      "verified": true,
+      "interfaces": [
+        {
+          "node": "s1",
+          "interface": "s1-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s1",
+          "interface": "s1-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s1",
+          "interface": "s1-eth3",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s1",
+          "interface": "s1-eth4",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s2",
+          "interface": "s2-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s2",
+          "interface": "s2-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s3",
+          "interface": "s3-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s3",
+          "interface": "s3-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth3",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth4",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h1",
+          "interface": "h1-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h2",
+          "interface": "h2-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h3",
+          "interface": "h3-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h4",
+          "interface": "h4-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        }
+      ],
+      "raw_log": "B_c0_ipv6_config.txt"
+    },
+    {
+      "scenario": "primary_A_competing_A_0mbps",
+      "verified": true,
+      "interfaces": [
+        {
+          "node": "s1",
+          "interface": "s1-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s1",
+          "interface": "s1-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s1",
+          "interface": "s1-eth3",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s1",
+          "interface": "s1-eth4",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s2",
+          "interface": "s2-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s2",
+          "interface": "s2-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s3",
+          "interface": "s3-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s3",
+          "interface": "s3-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth1",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth2",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth3",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "s4",
+          "interface": "s4-eth4",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h1",
+          "interface": "h1-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h2",
+          "interface": "h2-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h3",
+          "interface": "h3-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        },
+        {
+          "node": "h4",
+          "interface": "h4-eth0",
+          "observed_disable_ipv6": "1",
+          "verified": true
+        }
+      ],
+      "raw_log": "A_c0_ipv6_config.txt"
+    }
+  ],
+  "h3_h4_validation": [
+    {
+      "scenario": "primary_A_competing_off",
+      "expected": "h3-h4 ping fails and neither core path has packets",
+      "observed_ping_loss_pct": 100.0,
+      "path_a_packet_delta_sum": 0,
+      "path_b_packet_delta_sum": 0,
+      "passed": true,
+      "raw_files": [
+        "A_competing_off_h3h4_h3_h4_ping.txt",
+        "A_competing_off_h3h4_h3h4_before_switch_counters.txt",
+        "A_competing_off_h3h4_h3h4_after_switch_counters.txt",
+        "A_competing_off_h3h4_h3h4_counter_deltas.json"
+      ]
+    },
+    {
+      "scenario": "primary_B_competing_off",
+      "expected": "h3-h4 ping fails and neither core path has packets",
+      "observed_ping_loss_pct": 100.0,
+      "path_a_packet_delta_sum": 0,
+      "path_b_packet_delta_sum": 0,
+      "passed": true,
+      "raw_files": [
+        "B_competing_off_h3h4_h3_h4_ping.txt",
+        "B_competing_off_h3h4_h3h4_before_switch_counters.txt",
+        "B_competing_off_h3h4_h3h4_after_switch_counters.txt",
+        "B_competing_off_h3h4_h3h4_counter_deltas.json"
+      ]
+    },
+    {
+      "scenario": "primary_A_competing_A",
+      "expected": "h3-h4 ping succeeds and Path A has packets; Path B has none",
+      "observed_ping_loss_pct": 0.0,
+      "path_a_packet_delta_sum": 0,
+      "path_b_packet_delta_sum": 0,
+      "passed": false,
+      "raw_files": [
+        "A_competing_A_h3h4_h3_h4_ping.txt",
+        "A_competing_A_h3h4_h3h4_before_switch_counters.txt",
+        "A_competing_A_h3h4_h3h4_after_switch_counters.txt",
+        "A_competing_A_h3h4_h3h4_counter_deltas.json"
+      ]
+    }
+  ],
+  "verification_evidence_dir": "logs/m2_verification/static_baseline_20261011_100417"
+}

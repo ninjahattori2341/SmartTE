@@ -1,0 +1,39 @@
+=== s2 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=30.941s
+  port  "s2-eth1": rx pkts=16915, bytes=25774877, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=697, bytes=51232, drop=0, errs=0, coll=0
+           duration=30.943s
+  port  "s2-eth2": rx pkts=697, bytes=51232, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=16915, bytes=25774877, drop=0, errs=0, coll=0
+           duration=30.945s
+=== s3 ports ===
+OFPST_PORT reply (OF1.3) (xid=0x2): 3 ports
+  port LOCAL: rx pkts=0, bytes=0, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=0, bytes=0, drop=0, errs=0, coll=0
+           duration=30.947s
+  port  "s3-eth1": rx pkts=3, bytes=266, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=1, bytes=90, drop=0, errs=0, coll=0
+           duration=30.951s
+  port  "s3-eth2": rx pkts=2, bytes=180, drop=0, errs=0, frame=0, over=0, crc=0
+           tx pkts=1, bytes=90, drop=0, errs=0, coll=0
+           duration=30.951s
+=== s1 flows ===
+cookie=0x0, duration=27.252s, table=0, n_packets=756, n_bytes=1767588, ip,in_port="s1-eth1",nw_dst=10.0.0.2 actions=output:"s1-eth3"
+ cookie=0x0, duration=27.204s, table=0, n_packets=681, n_bytes=49807, ip,in_port="s1-eth3",nw_dst=10.0.0.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=26.971s, table=0, n_packets=16333, n_bytes=24311017, ip,in_port="s1-eth2",nw_dst=10.0.0.4 actions=output:"s1-eth3"
+ cookie=0x0, duration=26.942s, table=0, n_packets=14, n_bytes=1249, ip,in_port="s1-eth3",nw_dst=10.0.0.3 actions=output:"s1-eth2"
+=== s2 flows ===
+cookie=0x0, duration=27.206s, table=0, n_packets=712, n_bytes=1660364, ip,in_port="s2-eth1",nw_dst=10.0.0.2 actions=output:"s2-eth2"
+ cookie=0x0, duration=27.154s, table=0, n_packets=681, n_bytes=49807, ip,in_port="s2-eth2",nw_dst=10.0.0.1 actions=output:"s2-eth1"
+ cookie=0x0, duration=26.971s, table=0, n_packets=16201, n_bytes=24114337, ip,in_port="s2-eth1",nw_dst=10.0.0.4 actions=output:"s2-eth2"
+ cookie=0x0, duration=26.948s, table=0, n_packets=14, n_bytes=1249, ip,in_port="s2-eth2",nw_dst=10.0.0.3 actions=output:"s2-eth1"
+=== s3 flows ===
+
+=== s4 flows ===
+cookie=0x0, duration=27.163s, table=0, n_packets=712, n_bytes=1660364, ip,in_port="s4-eth3",nw_dst=10.0.0.2 actions=output:"s4-eth1"
+ cookie=0x0, duration=27.113s, table=0, n_packets=681, n_bytes=49807, ip,in_port="s4-eth1",nw_dst=10.0.0.1 actions=output:"s4-eth3"
+ cookie=0x0, duration=26.984s, table=0, n_packets=16201, n_bytes=24114337, ip,in_port="s4-eth3",nw_dst=10.0.0.4 actions=output:"s4-eth2"
+ cookie=0x0, duration=26.962s, table=0, n_packets=14, n_bytes=1249, ip,in_port="s4-eth2",nw_dst=10.0.0.3 actions=output:"s4-eth3"

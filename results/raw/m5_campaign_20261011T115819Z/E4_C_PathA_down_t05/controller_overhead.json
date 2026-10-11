@@ -1,0 +1,127 @@
+{
+  "flow_mod_count_final": 16,
+  "measurement_method": "per-cycle process_time delta and OpenFlow request-to-last-reply monotonic interval logged by the controller",
+  "openflow_port_stat_record_count": 76,
+  "poll_cycles": [
+    {
+      "controller_process_cpu_s": 0.0008393999999999902,
+      "cycle_id": 1,
+      "decision_cpu_time_s": null,
+      "poll_round_trip_s": 0.0010021759990195278
+    },
+    {
+      "controller_process_cpu_s": 0.0035331000000000112,
+      "cycle_id": 2,
+      "decision_cpu_time_s": 2.6599999999987745e-05,
+      "poll_round_trip_s": 0.005477405999045004
+    },
+    {
+      "controller_process_cpu_s": 0.0029519000000000073,
+      "cycle_id": 3,
+      "decision_cpu_time_s": 3.7300000000017874e-05,
+      "poll_round_trip_s": 0.003842115998850204
+    },
+    {
+      "controller_process_cpu_s": null,
+      "cycle_id": null,
+      "decision_cpu_time_s": null,
+      "poll_round_trip_s": null
+    },
+    {
+      "controller_process_cpu_s": 0.003414200000000006,
+      "cycle_id": 4,
+      "decision_cpu_time_s": 2.1700000000013375e-05,
+      "poll_round_trip_s": 0.004567985999528901
+    },
+    {
+      "controller_process_cpu_s": 0.003772400000000009,
+      "cycle_id": 5,
+      "decision_cpu_time_s": 3.649999999999487e-05,
+      "poll_round_trip_s": 0.004681529000663431
+    },
+    {
+      "controller_process_cpu_s": 0.003352999999999995,
+      "cycle_id": 6,
+      "decision_cpu_time_s": 2.96000000000185e-05,
+      "poll_round_trip_s": 0.004434539001522353
+    },
+    {
+      "controller_process_cpu_s": 0.0019446999999999937,
+      "cycle_id": 7,
+      "decision_cpu_time_s": 2.0500000000006624e-05,
+      "poll_round_trip_s": 0.00252078499943309
+    },
+    {
+      "controller_process_cpu_s": 0.0034042999999999712,
+      "cycle_id": 8,
+      "decision_cpu_time_s": 3.88000000000055e-05,
+      "poll_round_trip_s": 0.004161368999120896
+    },
+    {
+      "controller_process_cpu_s": 0.0032151000000000263,
+      "cycle_id": 9,
+      "decision_cpu_time_s": 3.410000000003688e-05,
+      "poll_round_trip_s": 0.004362332001619507
+    },
+    {
+      "controller_process_cpu_s": 0.0027813999999999894,
+      "cycle_id": 10,
+      "decision_cpu_time_s": 3.339999999996124e-05,
+      "poll_round_trip_s": 0.003717310999491019
+    },
+    {
+      "controller_process_cpu_s": 0.0009068000000000409,
+      "cycle_id": 11,
+      "decision_cpu_time_s": 1.0800000000033005e-05,
+      "poll_round_trip_s": 0.0011989850008831127
+    },
+    {
+      "controller_process_cpu_s": 0.003138799999999997,
+      "cycle_id": 12,
+      "decision_cpu_time_s": 3.380000000002825e-05,
+      "poll_round_trip_s": 0.0039825640014896635
+    },
+    {
+      "controller_process_cpu_s": 0.002886600000000017,
+      "cycle_id": 13,
+      "decision_cpu_time_s": 3.490000000000437e-05,
+      "poll_round_trip_s": 0.004816826000023866
+    },
+    {
+      "controller_process_cpu_s": 0.002926099999999987,
+      "cycle_id": 14,
+      "decision_cpu_time_s": 3.4800000000001496e-05,
+      "poll_round_trip_s": 0.003881708000335493
+    },
+    {
+      "controller_process_cpu_s": 0.0010185999999999806,
+      "cycle_id": 15,
+      "decision_cpu_time_s": 1.0000000000010001e-05,
+      "poll_round_trip_s": 0.0017450060004193801
+    },
+    {
+      "controller_process_cpu_s": 0.0033579000000000248,
+      "cycle_id": 16,
+      "decision_cpu_time_s": 4.1300000000021875e-05,
+      "poll_round_trip_s": 0.005206320000070264
+    },
+    {
+      "controller_process_cpu_s": 0.0034532999999999925,
+      "cycle_id": 17,
+      "decision_cpu_time_s": 3.609999999998337e-05,
+      "poll_round_trip_s": 0.004913951001071837
+    },
+    {
+      "controller_process_cpu_s": 0.0033994000000000524,
+      "cycle_id": 18,
+      "decision_cpu_time_s": 3.9200000000017e-05,
+      "poll_round_trip_s": 0.004954206999173039
+    },
+    {
+      "controller_process_cpu_s": 0.004046999999999967,
+      "cycle_id": 19,
+      "decision_cpu_time_s": 3.8599999999999746e-05,
+      "poll_round_trip_s": 0.0052795900010096375
+    }
+  ]
+}

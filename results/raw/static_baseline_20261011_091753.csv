@@ -1,0 +1,1 @@
+run_id,timestamp_utc,algorithm,path,competing_mbps,trial,tcp_throughput_mbps,tcp_retransmits,rtt_min_ms,rtt_avg_ms,rtt_max_ms,rtt_mdev_ms,ping_loss_pct,competing_loss_pct,bottleneck_mbps,queue_pkts,tcp_duration_s,notes

@@ -1,0 +1,12 @@
+{
+  "run_id": "m5_20261011T114755Z",
+  "scenario": "E2_STATIC_initialB_9Mbps",
+  "trial": 1,
+  "controller_started": true,
+  "mininet_started": false,
+  "traffic_started": false,
+  "interruption": "KeyboardInterrupt during cleanup_previous before Mininet topology construction",
+  "queue_verified": false,
+  "cleanup": "mn -c completed and ovs-vsctl list-br returned no bridges",
+  "final_analysis": "excluded: partial campaign; a separate complete 110-row campaign will be run"
+}

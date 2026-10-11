@@ -1,0 +1,24 @@
+Using Python 3.10.22 environment at: /home/andy2341/.local/share/smartte/ryu-py310
+error: Failed to build `ryu==4.34`
+  cause: The build backend returned an error
+  cause: Call to `setuptools.build_meta:__legacy__.get_requires_for_build_wheel` failed (exit status: 1)
+
+         [stderr]
+         Traceback (most recent call last):
+           File "<string>", line 14, in <module>
+           File "/home/andy2341/.cache/uv/builds-v0/.tmpt27E2q/lib/python3.10/site-packages/setuptools/build_meta.py", line 333, in get_requires_for_build_wheel
+             return self._get_build_requires(config_settings, requirements=[])
+           File "/home/andy2341/.cache/uv/builds-v0/.tmpt27E2q/lib/python3.10/site-packages/setuptools/build_meta.py", line 301, in _get_build_requires
+             self.run_setup()
+           File "/home/andy2341/.cache/uv/builds-v0/.tmpt27E2q/lib/python3.10/site-packages/setuptools/build_meta.py", line 520, in run_setup
+             super().run_setup(setup_script=setup_script)
+           File "/home/andy2341/.cache/uv/builds-v0/.tmpt27E2q/lib/python3.10/site-packages/setuptools/build_meta.py", line 317, in run_setup
+             exec(code, locals())  # noqa: S102 # exec is intentional here
+           File "<string>", line 27, in <module>
+           File "/home/andy2341/.cache/uv/sdists-v10/pypi/ryu/4.34/1D53UqjewzxJcYne/src/ryu/hooks.py", line 36, in save_orig
+             _main_module()._orig_get_script_args = easy_install.get_script_args
+           File "/home/andy2341/.cache/uv/builds-v0/.tmpt27E2q/lib/python3.10/site-packages/setuptools/command/easy_install.py", line 15, in __getattr__
+             attr = getattr(
+         AttributeError: 'types.SimpleNamespace' object has no attribute 'get_script_args'
+
+hint: Build failures usually indicate a problem with the package or the build environment
