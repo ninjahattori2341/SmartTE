@@ -45,6 +45,31 @@ import logging
 import sys
 import time
 
+try:
+    from topology.spec import (
+        ACCESS_LINKS,
+        CONTROLLER_IP,
+        CONTROLLER_PORT,
+        FLOW_PAIRS,
+        HOSTS,
+        OPENFLOW_VERSION,
+        PATHS,
+        SWITCHES,
+        flow_rules_for_pair,
+    )
+except ModuleNotFoundError:  # Direct `python topology/datacenter_topology.py` use.
+    from spec import (
+        ACCESS_LINKS,
+        CONTROLLER_IP,
+        CONTROLLER_PORT,
+        FLOW_PAIRS,
+        HOSTS,
+        OPENFLOW_VERSION,
+        PATHS,
+        SWITCHES,
+        flow_rules_for_pair,
+    )
+
 # ---------------------------------------------------------------------------
 # Configuration defaults
 # ---------------------------------------------------------------------------
@@ -113,6 +138,10 @@ def parse_args():
         '--no-cli', action='store_true', default=False,
         help='Run automated ping test and exit (no interactive CLI)'
     )
+    parser.add_argument(
+        '--controller', choices=['none', 'remote'], default='none',
+        help='Use no controller (static dpctl rules) or a remote OpenFlow controller at 127.0.0.1:6653'
+    )
     return parser.parse_args()
 
 
@@ -176,7 +205,7 @@ def disable_ipv6_interface_noise(net, raw_dir=None, label='topology'):
 def build_topology(args):
     """Build and return the Mininet network with the diamond topology."""
     from mininet.net import Mininet
-    from mininet.node import OVSSwitch
+    from mininet.node import OVSSwitch, RemoteController
     from mininet.link import TCLink
     from mininet.log import setLogLevel
 
@@ -186,146 +215,102 @@ def build_topology(args):
     delay_a = getattr(args, 'delay_a', DEFAULT_DELAY_A)
     delay_b = getattr(args, 'delay_b', DEFAULT_DELAY_B)
     queue_pkts = getattr(args, 'queue', DEFAULT_QUEUE)
+    controller_mode = getattr(args, 'controller', 'none')
     q_param = queue_pkts if (queue_pkts is not None and queue_pkts > 0) else None
 
-    # Use no controller - we install flows manually for static baseline
+    controller_cls = RemoteController if controller_mode == 'remote' else None
     net = Mininet(
-        controller=None,
+        controller=controller_cls,
         switch=OVSSwitch,
         link=TCLink,
         autoSetMacs=True,      # Deterministic MAC addresses (e.g. 00:00:00:00:00:01 for h1)
         autoStaticArp=True,    # Pre-populate kernel ARP tables on hosts. This is required because OpenFlow switches run in failMode='secure' without a controller and flow rules only match IP traffic; without static ARP, ARP requests would be dropped. Flooding ARP would cause broadcast storms in this looped diamond topology.
     )
+    if controller_mode == 'remote':
+        net.addController(
+            'c0', controller=RemoteController,
+            ip=CONTROLLER_IP, port=CONTROLLER_PORT
+        )
 
     log.info('Creating switches (OpenFlow 1.3, failMode=secure)...')
-    s1 = net.addSwitch('s1', protocols='OpenFlow13', failMode='secure')
-    s2 = net.addSwitch('s2', protocols='OpenFlow13', failMode='secure')
-    s3 = net.addSwitch('s3', protocols='OpenFlow13', failMode='secure')
-    s4 = net.addSwitch('s4', protocols='OpenFlow13', failMode='secure')
+    switches = {
+        name: net.addSwitch(name, protocols=OPENFLOW_VERSION, failMode='secure')
+        for name in SWITCHES
+    }
 
     log.info('Creating hosts...')
-    h1 = net.addHost('h1', ip='10.0.0.1/24')
-    h2 = net.addHost('h2', ip='10.0.0.2/24')
-    h3 = net.addHost('h3', ip='10.0.0.3/24')
-    h4 = net.addHost('h4', ip='10.0.0.4/24')
+    hosts = {
+        name: net.addHost(name, ip=f"{details['ip']}/24")
+        for name, details in HOSTS.items()
+    }
+    nodes = {**hosts, **switches}
 
     # ------------------------------------------------------------------
     # Links - port numbers are explicitly assigned
     # ------------------------------------------------------------------
     log.info('Creating access links (%d Mbps, %s)...', args.access_bw, delay_access)
-    # s1 access links
-    net.addLink(h1, s1, port1=0, port2=1, bw=args.access_bw, delay=delay_access)
-    net.addLink(h3, s1, port1=0, port2=2, bw=args.access_bw, delay=delay_access)
-    # s4 access links
-    net.addLink(h2, s4, port1=0, port2=1, bw=args.access_bw, delay=delay_access)
-    net.addLink(h4, s4, port1=0, port2=2, bw=args.access_bw, delay=delay_access)
+    for host_name, switch_name, host_port, switch_port in ACCESS_LINKS:
+        net.addLink(
+            nodes[host_name], nodes[switch_name],
+            port1=host_port, port2=switch_port,
+            bw=args.access_bw, delay=delay_access
+        )
 
-    log.info('Creating Path A links (s1-s2-s4, %d Mbps, %s, queue=%s pkts)...',
-             args.bw_a, delay_a, q_param)
-    net.addLink(s1, s2, port1=3, port2=1, bw=args.bw_a, delay=delay_a, max_queue_size=q_param)
-    net.addLink(s2, s4, port1=2, port2=3, bw=args.bw_a, delay=delay_a, max_queue_size=q_param)
-
-    log.info('Creating Path B links (s1-s3-s4, %d Mbps, %s, queue=%s pkts)...',
-             args.bw_b, delay_b, q_param)
-    net.addLink(s1, s3, port1=4, port2=1, bw=args.bw_b, delay=delay_b, max_queue_size=q_param)
-    net.addLink(s3, s4, port1=2, port2=4, bw=args.bw_b, delay=delay_b, max_queue_size=q_param)
+    for path_name, path in PATHS.items():
+        bw = getattr(args, path['bw_arg'])
+        delay = getattr(args, path['delay_arg'])
+        log.info(
+            'Creating Path %s links (%s, %d Mbps, %s, queue=%s pkts)...',
+            path_name, path['middle_switch'], bw, delay, q_param
+        )
+        for left, right, left_port, right_port in path['link_endpoints']:
+            net.addLink(
+                nodes[left], nodes[right],
+                port1=left_port, port2=right_port,
+                bw=bw, delay=delay, max_queue_size=q_param
+            )
 
     return net
 
 
+def _install_static_pair(net, path_name, pair_name):
+    """Install a bidirectional IPv4 pair using the shared topology spec."""
+    rules = flow_rules_for_pair(path_name, pair_name)
+    for direction in ('forward', 'reverse'):
+        for rule in rules[direction]:
+            flow = (
+                f"in_port={rule['in_port']},ip,"
+                f"nw_src={rule['ipv4_src']},nw_dst={rule['ipv4_dst']},"
+                f"actions=output:{rule['out_port']}"
+            )
+            net[rule['switch']].dpctl('add-flow', flow, '-O', OPENFLOW_VERSION)
+
+
 def install_flows_path_a(net):
-    """
-    Install OpenFlow rules for h1 <-> h2 via Path A (s1 -> s2 -> s4).
-
-    Forward direction:  h1 -> s1:p1 -> s1:p3 -> s2:p1 -> s2:p2 -> s4:p3 -> s4:p1 -> h2
-    Reverse direction:  h2 -> s4:p1 -> s4:p3 -> s2:p2 -> s2:p1 -> s1:p3 -> s1:p1 -> h1
-    """
-    log.info('Installing Path A flows (s1 -> s2 -> s4) for h1 <-> h2...')
-
-    # s1: h1(port1) -> s2(port3) and s2(port3) -> h1(port1)
-    net['s1'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.2,actions=output:3', '-O', 'OpenFlow13')
-    net['s1'].dpctl('add-flow', 'in_port=3,ip,nw_dst=10.0.0.1,actions=output:1', '-O', 'OpenFlow13')
-
-    # s2: s1(port1) -> s4(port2) and s4(port2) -> s1(port1)
-    net['s2'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.2,actions=output:2', '-O', 'OpenFlow13')
-    net['s2'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.1,actions=output:1', '-O', 'OpenFlow13')
-
-    # s4: s2(port3) -> h2(port1) and h2(port1) -> s2(port3)
-    net['s4'].dpctl('add-flow', 'in_port=3,ip,nw_dst=10.0.0.2,actions=output:1', '-O', 'OpenFlow13')
-    net['s4'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.1,actions=output:3', '-O', 'OpenFlow13')
-
+    """Install the h1-h2 primary flow pair over Path A."""
+    log.info('Installing Path A flows for h1 <-> h2...')
+    _install_static_pair(net, 'A', 'primary')
     log.info('Path A flows installed.')
 
 
 def install_flows_path_b(net):
-    """
-    Install OpenFlow rules for h1 <-> h2 via Path B (s1 -> s3 -> s4).
-
-    Forward direction:  h1 -> s1:p1 -> s1:p4 -> s3:p1 -> s3:p2 -> s4:p4 -> s4:p1 -> h2
-    Reverse direction:  h2 -> s4:p1 -> s4:p4 -> s3:p2 -> s3:p1 -> s1:p4 -> s1:p1 -> h1
-    """
-    log.info('Installing Path B flows (s1 -> s3 -> s4) for h1 <-> h2...')
-
-    # s1: h1(port1) -> s3(port4) and s3(port4) -> h1(port1)
-    net['s1'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.2,actions=output:4', '-O', 'OpenFlow13')
-    net['s1'].dpctl('add-flow', 'in_port=4,ip,nw_dst=10.0.0.1,actions=output:1', '-O', 'OpenFlow13')
-
-    # s3: s1(port1) -> s4(port2) and s4(port2) -> s1(port1)
-    net['s3'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.2,actions=output:2', '-O', 'OpenFlow13')
-    net['s3'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.1,actions=output:1', '-O', 'OpenFlow13')
-
-    # s4: s3(port4) -> h2(port1) and h2(port1) -> s3(port4)
-    net['s4'].dpctl('add-flow', 'in_port=4,ip,nw_dst=10.0.0.2,actions=output:1', '-O', 'OpenFlow13')
-    net['s4'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.1,actions=output:4', '-O', 'OpenFlow13')
-
+    """Install the h1-h2 primary flow pair over Path B."""
+    log.info('Installing Path B flows for h1 <-> h2...')
+    _install_static_pair(net, 'B', 'primary')
     log.info('Path B flows installed.')
 
 
 def install_competing_flows_path_a(net):
-    """
-    Install OpenFlow rules for competing traffic h3 <-> h4 via Path A (s1 -> s2 -> s4).
-
-    Forward direction:  h3 -> s1:p2 -> s1:p3 -> s2:p1 -> s2:p2 -> s4:p3 -> s4:p2 -> h4
-    Reverse direction:  h4 -> s4:p2 -> s4:p3 -> s2:p2 -> s2:p1 -> s1:p3 -> s1:p2 -> h3
-    """
-    log.info('Installing competing Path A flows (s1 -> s2 -> s4) for h3 <-> h4...')
-
-    # s1: h3(port2) -> s2(port3) and s2(port3) -> h3(port2)
-    net['s1'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.4,actions=output:3', '-O', 'OpenFlow13')
-    net['s1'].dpctl('add-flow', 'in_port=3,ip,nw_dst=10.0.0.3,actions=output:2', '-O', 'OpenFlow13')
-
-    # s2: s1(port1) -> s4(port2) and s4(port2) -> s1(port1)
-    net['s2'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.4,actions=output:2', '-O', 'OpenFlow13')
-    net['s2'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.3,actions=output:1', '-O', 'OpenFlow13')
-
-    # s4: s2(port3) -> h4(port2) and h4(port2) -> s2(port3)
-    net['s4'].dpctl('add-flow', 'in_port=3,ip,nw_dst=10.0.0.4,actions=output:2', '-O', 'OpenFlow13')
-    net['s4'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.3,actions=output:3', '-O', 'OpenFlow13')
-
+    """Pin the h3-h4 competing pair to Path A."""
+    log.info('Installing competing Path A flows for h3 <-> h4...')
+    _install_static_pair(net, 'A', 'competing')
     log.info('Competing Path A flows installed.')
 
 
 def install_competing_flows_path_b(net):
-    """
-    Install OpenFlow rules for competing traffic h3 <-> h4 via Path B (s1 -> s3 -> s4).
-
-    Forward direction:  h3 -> s1:p2 -> s1:p4 -> s3:p1 -> s3:p2 -> s4:p4 -> s4:p2 -> h4
-    Reverse direction:  h4 -> s4:p2 -> s4:p4 -> s3:p2 -> s3:p1 -> s1:p4 -> s1:p2 -> h3
-    """
-    log.info('Installing competing Path B flows (s1 -> s3 -> s4) for h3 <-> h4...')
-
-    # s1: h3(port2) -> s3(port4) and s3(port4) -> h3(port2)
-    net['s1'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.4,actions=output:4', '-O', 'OpenFlow13')
-    net['s1'].dpctl('add-flow', 'in_port=4,ip,nw_dst=10.0.0.3,actions=output:2', '-O', 'OpenFlow13')
-
-    # s3: s1(port1) -> s4(port2) and s4(port2) -> s1(port1)
-    net['s3'].dpctl('add-flow', 'in_port=1,ip,nw_dst=10.0.0.4,actions=output:2', '-O', 'OpenFlow13')
-    net['s3'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.3,actions=output:1', '-O', 'OpenFlow13')
-
-    # s4: s3(port4) -> h4(port2) and h4(port2) -> s3(port4)
-    net['s4'].dpctl('add-flow', 'in_port=4,ip,nw_dst=10.0.0.4,actions=output:2', '-O', 'OpenFlow13')
-    net['s4'].dpctl('add-flow', 'in_port=2,ip,nw_dst=10.0.0.3,actions=output:4', '-O', 'OpenFlow13')
-
+    """Pin the h3-h4 competing pair to Path B."""
+    log.info('Installing competing Path B flows for h3 <-> h4...')
+    _install_static_pair(net, 'B', 'competing')
     log.info('Competing Path B flows installed.')
 
 
@@ -382,21 +367,36 @@ def run_network(args):
     # Brief pause for OVS to initialise
     time.sleep(2)
 
-    # Clear any default flows (OVS may have residual rules)
-    log.info('Clearing default flows on all switches...')
-    for sw_name in ['s1', 's2', 's3', 's4']:
-        net[sw_name].dpctl('del-flows', '-O', 'OpenFlow13')
-    time.sleep(1)
+    controller_mode = getattr(args, 'controller', 'none')
+    if controller_mode == 'none':
+        # Clear any default flows (OVS may have residual rules).
+        log.info('Clearing default flows on all switches...')
+        for sw_name in SWITCHES:
+            net[sw_name].dpctl('del-flows', '-O', OPENFLOW_VERSION)
+        time.sleep(1)
 
-    # Install forwarding rules based on path selection
-    if args.path == 'A':
-        install_flows_path_a(net)
-    elif args.path == 'B':
-        install_flows_path_b(net)
-    elif args.path == 'both':
-        # 'both' mode: install Path A as default
-        log.info('Installing Path A as default in "both" mode...')
-        install_flows_path_a(net)
+        # Static mode installs the predetermined primary path locally.
+        if args.path == 'A':
+            install_flows_path_a(net)
+        elif args.path == 'B':
+            install_flows_path_b(net)
+        if args.competing == 'A':
+            install_competing_flows_path_a(net)
+        elif args.competing == 'B':
+            install_competing_flows_path_b(net)
+    else:
+        log.info(
+            'Remote controller selected at %s:%s; no dpctl flows will be installed.',
+            CONTROLLER_IP, CONTROLLER_PORT
+        )
+        deadline = time.monotonic() + 10
+        while time.monotonic() < deadline:
+            flow_dump = net['s1'].cmd('ovs-ofctl -O OpenFlow13 dump-flows s1')
+            if 'nw_src=10.0.0.1' in flow_dump:
+                break
+            time.sleep(0.25)
+        else:
+            log.warning('No controller-installed h1-h2 flow appeared within 10 seconds.')
 
     # Verify setup
     verify_port_mappings(net)
@@ -411,7 +411,10 @@ def run_network(args):
         log.info('  Route: h1 -> s1 -> s3 -> s4 -> h2  (10 ms per hop)')
     else:
         log.info('  Route: Path A installed as default')
-    log.info('  h3, h4: NO forwarding rules (isolated)')
+    if args.competing == 'off':
+        log.info('  h3, h4: NO forwarding rules (isolated)')
+    else:
+        log.info('  h3 <-> h4 competing flow path: %s', args.competing)
     log.info('=' * 60)
 
     if args.no_cli:
