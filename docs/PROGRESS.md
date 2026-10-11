@@ -86,7 +86,7 @@ Updated 2026-10-11.
 
 - Ryu was tried first in an isolated Python 3.10 environment. The packaged install failed in its legacy setuptools entry-point path; a source install then failed at runtime with Eventlet compatibility errors (`ALREADY_HANDLED` missing, and a Python 3.10 `TimeoutError` type error with the older Eventlet workaround). Logs: [Ryu install](../logs/m3_verification/ryu_install.txt) and [Ryu compatibility](../logs/m3_verification/ryu_compatibility.txt). No system Python was modified.
 - OS-Ken 4.2.2 runs in the isolated Python 3.10.22 environment using OpenFlow 1.3. A smoke run confirmed four switch connections, controller-installed IPv4 path rules, port-stat replies, and graceful cookie-owned rule cleanup. The launcher selects the Eventlet hub before OS-Ken starts; its startup/termination check is retained in [the OS-Ken spike evidence](../logs/m3_verification/osken_spike_eventlet/).
-- The static reproduction completed five trials per path (10/10 `experiment_status=ok`) at queue 100 and 15-second TCP duration: [CSV](../results/raw/m3_controller_static_20261011T113744Z.csv), [raw trials](../results/raw/m3_controller_static_20261011T113744Z/). Controller-installed Path A mean h1–h2 receiver throughput was 9.472 Mbps (sample SD 0.048); Path B was 9.475 Mbps (SD 0.014). Mean RTT was 172.07 ms (SD 15.00) on A and 201.92 ms (SD 26.22) on B. Utilization came from OS-Ken port `tx_bytes` counters over intervals bracketing TCP, not from iperf.
+- The static reproduction completed five trials per path (10/10 `experiment_status=ok`) at queue 100 and 15-second TCP duration: [CSV](../results/raw/m3_controller_static_20261011T113744Z.csv), [raw trials](../results/raw/m3_controller_static_20261011T113744Z/). Controller-installed Path A mean h1–h2 receiver throughput was 9.472 Mbps (sample SD 0.048); Path B was 9.475 Mbps (SD 0.014). Mean RTT was 172.07 ms (SD 15.00) on A and 201.92 ms (SD 26.22) on B. Utilization came from OS-Ken port `tx_bytes` counters over intervals bracketing TCP, not from iperf. This run captured commit `35c8db5` and marked the tree dirty because the controller changes were still in progress.
 - Every controller static trial contains a queue audit and a post-exit OVS flow dump for all four switches. The cookie-cleanup checks report zero remaining SmartTE rules. A separate direct-`dpctl` smoke after the topology refactor completed one 5-second trial on each path with both rows `ok`; its evidence is [CSV](../results/raw/static_baseline_20261011_114241.csv) and [console log](../logs/m3_verification/dpctl_static_recheck.txt). This reproduces the static path behavior through both rule-installation methods.
 - `python3 -m unittest discover -s tests -v` passed all 18 tests; the relevant controller/topology/experiment modules also passed `py_compile`.
 
@@ -95,4 +95,22 @@ Updated 2026-10-11.
 - M3 reproduction is a small Mininet emulation on one host. It checks rule behavior and repeatability in this setup; it is not a production-network performance claim.
 - Mininet still reports the existing HTB quantum warning on the 100 Mbps access links. Trials completed and the configured 10 Mbps core queues were verified. See the M2 queue interpretation above.
 
-**NEXT:** Short M4 pilot, freeze controller parameters, then run the M5 matrix without tuning from its results.
+**M3 COMMIT:** `857b674 feat: add OpenFlow controller and campaign runner`.
+
+## M4: B/C policies, tests, and frozen settings
+
+**VERIFIED BY EXECUTION**
+
+- The five-variant pilot completed with 5/5 rows `ok`: [CSV](../results/raw/m4_pilot_20261011T114337Z.csv), [per-trial evidence](../results/raw/m4_pilot_20261011T114337Z/), and [runner log](../logs/m4_pilot_run.txt). Every variant used the same 12-second h1–h2 TCP window, 9 Mbps h3–h4 UDP offered on Path A beginning at second 3, queue 100, and OpenFlow port-counter telemetry.
+- Pilot observations are one trial per setting and are exploratory: B at 1,000 ms polling changed paths 8 times; C at 500 ms / 15 percentage points / 5,000 ms dwell changed twice; C at 1,000 ms / 10 points / 2,000 ms changed 4 times; C at 1,000 ms / 15 points / 5,000 ms changed twice; C at 1,000 ms / 30 points / 10,000 ms changed once (one observed reaction was 4.27 s). Do not infer the hypothesis from this small pilot.
+- The pilot confirms the intended mechanics in the event logs: B follows each lower measured score and can switch repeatedly; C applies both its margin and dwell gate. Path choice uses the maximum utilization of the two core egress links on each path, measured from OpenFlow `tx_bytes`; the primary flow is included. Pure decision tests cover score selection, ties, threshold boundaries, dwell blocking, invalid/missing scores, and counter wrap/interval rejection. The 18-test suite and `py_compile` passed after the campaign-order changes.
+
+**FROZEN FOR M5**
+
+- Shared controller polling: 1,000 ms. C margin: 15 percentage points. C minimum dwell: 5,000 ms. These are held fixed in E1/E2/E4 and form the reference C setting in E3; E3's five other C configurations are the declared sensitivity comparison, not result-driven tuning. Static, B, and C use the same topology, queue, workloads, port-counter method, interval, and path score.
+- Experiment order is interleaved by trial and rotated between rounds. Generated matrix: E1 15 rows (static/B/C, 5 each); E2 40 (static A, static B, B, C at 5 and 9 Mbps, 5 each); E3 40 (static A/B, B, and five C sensitivity settings, 5 each); E4 15 (static/B/C under the same Path A link-down event, 5 each). The E3 schedule is three 5-second, 9 Mbps bursts beginning at seconds 5, 15, and 25 of a 30-second TCP run. It uses the existing h3–h4 pair on Path A; no second pair is added, so similarly loaded paths are outside this experiment.
+- E4 is run only as the same one-link failure treatment for all three policies: s2–s4 is disabled one second into the 15-second TCP run, with all policies starting on A. Static is expected to lose its path; B/C receive the same switch port-down event and may reroute to B. The result will determine whether E4 remains in the fair comparison.
+
+**M4 COMPLETE**
+
+- The policy implementation landed with the controller in `857b674`; this milestone records the passing decision-logic tests, pilot evidence, and frozen M5 settings.
