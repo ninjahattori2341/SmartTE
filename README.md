@@ -15,7 +15,7 @@ SmartTE is a **BACSE203 Computer Networks, Fall 2026 (Topic 9)** case study. It 
 - [Results](#results-and-discussion)
 - [Limitations](#limitations)
 - [Reproducibility](#reproducibility-and-data-provenance)
-- [Contributions](#team-contributions-to-verify)
+- [Contributions](#team-contributions)
 
 ## Team
 
@@ -177,17 +177,17 @@ Raw evidence is intentionally retained. [metadata.json](results/raw/m5_campaign_
 
 The source CSV is [results/raw/m5_campaign_20261011T115819Z.csv](results/raw/m5_campaign_20261011T115819Z.csv); per-trial evidence is in the sibling directory. [analysis_metadata.json](results/processed/m5_campaign_20261011T115819Z/analysis_metadata.json) records its SHA-256, row counts, and aggregation rules. [results/DATA_DICTIONARY.md](results/DATA_DICTIONARY.md) defines the fields and null rules. Do not overwrite raw data when rerunning; create a new campaign.
 
-## Team contributions to verify
+## Team contributions
 
-Git history is supporting evidence only: it contains commits by ninjahattori2341 and M2 static-experiment commits by AAYUSH, but no authoritative two-person work log. The following is a **proposed split for verification**, not a completed-work claim:
+The team confirms the following division of work. Git history remains supporting evidence, rather than the sole basis for attribution.
 
-| Member | Proposed responsibility |
+| Member | Confirmed responsibility |
 |---|---|
-| Aayush Santosh Singh — 25BCE2341 | Controller/algorithm work, OpenFlow integration, topology configuration, experiment execution, and technical debugging. |
+| Aayush Santosh Singh — 25BCE2341 | Controller/algorithm implementation, OpenFlow integration, topology configuration, experiment execution, and technical debugging. |
 | Ashwin Krishna G — 25BDS0038 | Literature review, comparative result interpretation/visualization, report preparation, and documentation. |
 | Both | System design, testing/validation, final report review, and viva preparation. |
 
-Before submission, confirm or replace this proposal with evidence in [report/team_contribution.md](report/team_contribution.md).
+The detailed contribution record is maintained in [report/team_contribution.md](report/team_contribution.md).
 
 ## Academic references and related work
 
