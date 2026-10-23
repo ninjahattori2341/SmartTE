@@ -105,7 +105,7 @@ These setup commands are documented from project evidence; they were not re-exec
 | [results/raw/](results/raw/) | Raw CSVs, metadata, and per-trial evidence. |
 | [results/processed/](results/processed/) | Summaries, audits, and generated figures. |
 | [analysis/](analysis/) | Analysis and plotting scripts. |
-| [report/](report/) | Drafts, bibliography, viva guide, and contribution template. |
+| [report/](report/) | Supplementary research and experiment notes, bibliography, viva guide, and confirmed contribution record. |
 | [report_latex/](report_latex/) | Editable final report source, evidence, figures, and standalone report export. |
 | [presentation/](presentation/) | Original supplied deck, editable PPTX, PDF export, and rebuild script. |
 | [submission/](submission/) | Final standalone report and presentation PDFs plus the report-first combined PDF and manifest. |
@@ -194,7 +194,7 @@ The detailed contribution record is maintained in [report/team_contribution.md](
 
 ## Academic references and related work
 
-[report/references.md](report/references.md) contains the verified bibliography, including OpenFlow, Mininet, Hedera, MicroTE, and network-update literature. The Part A/B/C drafts are supporting course material; this README does not replace them.
+[report/references.md](report/references.md) contains the verified bibliography, including OpenFlow, Mininet, Hedera, MicroTE, and network-update literature. Supplementary Markdown notes support the editable report source and submission PDFs.
 
 ## Academic-use statement
 

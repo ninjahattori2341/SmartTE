@@ -4,7 +4,7 @@ Final PDFs are generated from the checked project sources. The combined PDF is m
 
 | Deliverable | Pages | Source / generation |
 |---|---:|---|
-| `SmartTE_Final_Report.pdf` | 18 | `report_latex/main.tex`, `report_latex/sections/`, `report_latex/references.bib`, report figures and evidence; compiled with Tectonic. Includes confirmed contributions on the title page and a detailed contributions section. |
+| `SmartTE_Final_Report.pdf` | 18 | `report_latex/main.tex`, `report_latex/sections/`, `report_latex/references.bib`, report figures and evidence; compiled with Tectonic. The confirmed contribution details appear once in the report body, not on the title page. |
 | `SmartTE_Final_Presentation.pdf` | 15 | `presentation/SmartTE_Presentation_Source.pdf`, `presentation/rebuild_deck.py`, and `results/processed/m5_campaign_20261011T115819Z/metrics_summary.csv`. |
 | `Centralized Traffic Engineering in Data Center Networks_Ashwin Krishna G.pdf` | 33 | Concatenation of the report PDF (pages 1–18) followed by the presentation PDF (pages 19–33). |
 

@@ -1,6 +1,6 @@
 # Centralized Traffic Engineering in Data-Center Networks: Path Selection, Stability, and Measurement
 
-> **DRAFT FOR STUDENT REWRITE.** This draft is source material. Rewrite it in your own words, verify the course’s citation and AI-use rules, and do not submit it unchanged.
+This review text is supplementary source material for the compiled Part A report in `report_latex/`. Keep its references and factual claims aligned with the verified bibliography and course authorship requirements.
 
 ## 1. Introduction
 

@@ -1,12 +1,12 @@
-# Part A review paper outline
+# Part A review structure
 
-**DRAFT FOR STUDENT REWRITE.** Target 4–6 pages excluding references. Use the verified numbered sources in [references.md](references.md), keep the review comparative, and rewrite the prose in your own words before submission.
+This structure summarizes the scope and organization of the compiled Part A review. The review is four to six pages excluding references and uses the verified sources in [references.md](references.md).
 
-## Working title
+## Review title
 
 Centralized Traffic Engineering in Data-Center Networks: Path Selection, Stability, and Measurement
 
-## Research question and thesis to develop
+## Research question and central argument
 
 - **Question:** Does a switching margin plus a minimum dwell time reduce unnecessary path changes for a simple congestion-aware controller, while preserving useful throughput and latency in a controlled two-path emulation?
 - **Scope statement:** This is a small implementation study, not a new traffic-engineering algorithm. Prior work already covers centralized WAN scheduling, data-center flow scheduling, multipath load balancing, safe updates, and routing stability.

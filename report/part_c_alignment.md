@@ -1,6 +1,6 @@
 # SmartTE interpretation and alignment with prior work
 
-> **DRAFT FOR STUDENT REWRITE.** This section connects the project design to verified sources in [the bibliography](references.md). Replace the pending comparison with the completed M5 analysis, and rewrite the discussion in your own words.
+This section connects the project design to verified sources in [the bibliography](references.md) and interprets the completed M5 analysis. Results are specific to the documented emulation and workload.
 
 ## What this experiment can say
 

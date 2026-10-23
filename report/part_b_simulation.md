@@ -1,6 +1,6 @@
 # SmartTE simulation and evaluation
 
-> **DRAFT FOR STUDENT REWRITE.** This draft reports measured evidence from the repository. Rewrite it in your own words and check every value against the cited raw CSV and processed tables before submission.
+This technical record summarizes the implemented design and measured M5 campaign. Numerical claims are traceable to the repository's raw CSV, processed summaries, and event audits.
 
 ## Aim and experimental design
 
