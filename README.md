@@ -1,145 +1,198 @@
-# SmartTE: congestion-aware path selection in a data-center network
+# SmartTE: Centralized Traffic Engineering in Data-Center Networks
 
-SmartTE compares fixed OpenFlow paths with two centralized policies in a small Mininet diamond. The primary TCP pair is h1–h2. The optional competing UDP pair is h3–h4. Path A is s1–s2–s4; Path B is s1–s3–s4. The controller polls switch port counters and changes only the primary pair’s forwarding rules.
+SmartTE is a **BACSE203 Computer Networks, Fall 2026 (Topic 9)** case study. It compares fixed forwarding with centralized path selection for a TCP flow in a Mininet/Open vSwitch (OVS) diamond topology. It is an experimental emulation, **not** a production deployment.
 
-## Project status
+## Contents
 
-- M2 static path, contention, and queue evidence: complete; see [progress](docs/PROGRESS.md).
-- M3 OS-Ken static-rule reproduction: complete.
-- M4 B/C logic, unit tests, and parameter pilot: complete.
-- M5 110-row campaign and its analysis: in progress. Use the completed campaign path and actual status summary documented in `docs/PROGRESS.md` before citing experiment conclusions.
-- Student screenshots and final rewriting: still the student’s work; see the [screenshot checklist](report/screenshot_checklist.md) and rewrite the Part A/B/C drafts in your own words.
+- [Team](#team)
+- [Problem and objectives](#problem-and-objectives)
+- [Architecture](#architecture)
+- [Routing policies](#routing-policies)
+- [Environment and setup](#environment-and-setup)
+- [Repository layout](#repository-layout)
+- [Run, test, and analyse](#run-test-and-analyse)
+- [Experimental methodology](#experimental-methodology)
+- [Results](#results-and-discussion)
+- [Limitations](#limitations)
+- [Reproducibility](#reproducibility-and-data-provenance)
+- [Contributions](#team-contributions-to-verify)
 
-## Verified environment
+## Team
 
-The recorded host is WSL2 Ubuntu 24.04.5 on aarch64, Python 3.12.3, Mininet 2.3.0, Open vSwitch 3.3.9, and Git 2.43.0. Mininet runs with root privileges. The experiment scripts use `/usr/bin/python3` for Mininet; OS-Ken runs in a separate Python 3.10.22 virtual environment. Analysis uses its own Python 3.10.22 environment. System Python was not used for package installation.
+| Member | Registration number |
+|---|---|
+| Aayush Santosh Singh | 25BCE2341 |
+| Ashwin Krishna G | 25BDS0038 |
 
-## Installation
+## Problem and objectives
 
-Install or enable Mininet, Open vSwitch, `iproute2`/`tc`, `iperf3`, and Python 3.12 on WSL2 Ubuntu. Start Open vSwitch, then check the environment:
+Congestion can degrade a fixed path even when another equal-capacity path is available. SmartTE tests whether a central OpenFlow controller can use switch-port counters to select a less congested path for one controlled flow.
 
-```bash
+Objectives are to verify static forwarding, compare Static/B/C policies, measure receiver-side TCP throughput plus RTT/loss and counter utilization, and preserve raw trial evidence for reproducible analysis.
+
+## Architecture
+
+h1-to-h2 is the primary TCP pair. Optional h3-to-h4 UDP traffic is pinned to Path A when contention is required. Forwarding uses OpenFlow 1.3 IPv4 rules and static ARP, not Linux IP routing.
+
+~~~mermaid
+flowchart LR
+  h1["h1 10.0.0.1"] -->|100 Mbps, 1 ms| s1
+  h3["h3 10.0.0.3"] -->|100 Mbps, 1 ms| s1
+  s1 -->|Path A: 10 Mbps, 5 ms| s2
+  s2 -->|10 Mbps, 5 ms| s4
+  s1 -->|Path B: 10 Mbps, 10 ms| s3
+  s3 -->|10 Mbps, 10 ms| s4
+  s4 -->|100 Mbps, 1 ms| h2["h2 10.0.0.2"]
+  s4 -->|100 Mbps, 1 ms| h4["h4 10.0.0.4"]
+  c["OS-Ken controller"] -. OpenFlow 1.3 .-> s1
+  c -.-> s2
+  c -.-> s3
+  c -.-> s4
+~~~
+
+Path A is s1 -> s2 -> s4; Path B is s1 -> s3 -> s4. Fixed ports: s1: 1=h1, 2=h3, 3=s2, 4=s3; s2: 1=s1, 2=s4; s3: 1=s1, 2=s4; s4: 1=h2, 2=h4, 3=s2, 4=s3. Core links default to 10 Mbps with a verified 100-packet queue; access links are 100 Mbps.
+
+Mininet creates the emulation; OVS supplies OpenFlow forwarding and port statistics; OS-Ken manages controller-owned rules. [analysis/](analysis/) converts raw evidence to summaries, quality audits, event audits, and figures.
+
+## Routing policies
+
+| Policy | Behavior |
+|---|---|
+| **Static** | Keeps the primary flow on its configured path. |
+| **B** | At every poll, selects the lower path score; switches only when the improvement exceeds the 0.01 percentage-point tie epsilon. |
+| **C / SmartTE** | Applies B, then requires a configured improvement margin and a minimum dwell time since the previous change. |
+
+A score is the maximum core-egress utilization: A uses s1:3 and s2:2; B uses s1:4 and s3:2. The controlled flow is included. The CSV's downstream utilization fields use s2:2 and s3:2.
+
+utilization (%) = delta_tx_bytes x 8 / (monotonic_interval_s x capacity_bps) x 100
+
+Unavailable/reset counters and intervals below 0.5 seconds are rejected. Frozen M5 reference settings were 1,000 ms polling, a 15 percentage-point C margin, and 5,000 ms C dwell time; E3 deliberately varies C settings.
+
+## Environment and setup
+
+The recorded host was WSL2 Ubuntu 24.04.5 on aarch64, with Python 3.12.3, Mininet 2.3.0, OVS 3.3.9, and Git 2.43.0. Network experiments require root. OS-Ken used an isolated Python 3.10.22 environment with OS-Ken 4.2.2 and Eventlet 0.41.2; analysis used another Python 3.10.22 environment. Locked packages are in [requirements/](requirements/).
+
+Install Mininet, OVS, iproute2/tc, iperf3, and Python, start OVS, and verify:
+
+~~~bash
 python3 --version
 mn --version
 ovs-vsctl --version
 sudo -n true
-```
+~~~
 
-If passwordless sudo is unavailable, run the privileged commands from a WSL root shell. From Windows PowerShell, this project used `wsl.exe -d Ubuntu -u root -- ...`.
+The recorded isolated-environment setup used uv:
 
-The controller was installed only in an isolated Python environment. To reproduce the layout on a machine with `uv`:
-
-```bash
+~~~bash
 uv python install 3.10.22
 uv venv --python 3.10.22 ~/.local/share/smartte/os-ken-py310
 ~/.local/share/smartte/os-ken-py310/bin/python -m pip install -r requirements/controller-osken-py310.lock
-```
 
-The environment used OS-Ken 4.2.2, Python 3.10.22, Eventlet 0.41.2, and OpenFlow 1.3. Ryu was tried first but failed to install through its legacy setuptools entry point; a source attempt then failed at runtime on Eventlet compatibility. The project repository identifies OS-Ken as the maintained alternative. See the exact install and runtime evidence in `logs/m3_verification/ryu_install.txt`, `ryu_compatibility.txt`, and `osken_spike_eventlet/`.
-
-Install analysis packages in a separate isolated environment:
-
-```bash
 uv venv --python 3.10.22 ~/.local/share/smartte/analysis-py310
 ~/.local/share/smartte/analysis-py310/bin/python -m pip install -r requirements/analysis-py310.lock
-```
+~~~
 
-Do not install these packages into the system Python.
+These setup commands are documented from project evidence; they were not re-executed by this README update. Ryu was evaluated but proved incompatible in the recorded environment, so OS-Ken is the supported controller. Mininet may emit an HTB quantum warning on 100 Mbps access links.
 
-## Topology and forwarding
-
-| Item | Setting |
-|---|---|
-| Hosts | h1 `10.0.0.1`, h2 `10.0.0.2`, h3 `10.0.0.3`, h4 `10.0.0.4` |
-| Switches | s1 ingress, s2 Path A middle, s3 Path B middle, s4 egress |
-| Access links | 100 Mbps, 1 ms |
-| Path A | 10 Mbps per core link, 5 ms per link |
-| Path B | 10 Mbps per core link, 10 ms per link |
-| Primary pair | h1–h2; OpenFlow 1.3 rules match IPv4 source and destination |
-| Competing pair | h3–h4, pinned to Path A in the experiments that use it |
-| Core queue | 100 packets in the primary comparisons; verified from `tc` on all eight directed core interfaces |
-| ARP | Mininet static ARP; no ARP flood rules are installed |
-
-The topology and controller import port assignments and path rules from `topology/spec.py`. Forwarding is OpenFlow flow-table forwarding, not Linux IP routing. Static ARP is deliberate: the switches run in secure mode and flooding ARP into the s1–s2–s4–s3 cycle could create a broadcast storm.
-
-## Policies
-
-- **Static:** keep the primary pair on its configured path.
-- **B:** every poll, choose the path with the lower maximum core-link utilization; switch when it is measurably lower than the current path.
-- **C:** B plus a switching margin and a minimum dwell time. The M4 pilot freezes the reference at 1,000 ms polling, a 15-percentage-point margin, and 5,000 ms dwell. E3 contains the declared sensitivity settings.
-
-For controller decisions, Path A’s score is the greater utilization of s1 port 3 and s2 port 2; Path B’s score is the greater utilization of s1 port 4 and s3 port 2. These OpenFlow `tx_bytes` counters include the controlled h1–h2 traffic. The CSV’s utilization fields use the downstream egress ports s2:2 and s3:2. Utilization is `(delta_tx_bytes * 8) / (actual_monotonic_interval_s * configured_capacity_bps) * 100`, never an iperf-derived estimate.
-
-## Running experiments
-
-Run network experiments as root, from the repository root. Each trial starts a fresh Mininet network and retains its raw output. `mn -c` is used during cleanup.
-
-```bash
-# Static topology, interactive Mininet CLI
-python3 topology/datacenter_topology.py --path A --competing A --queue 100
-
-# M2 static matrix (30 planned rows, expected (calculated))
-/usr/bin/python3 experiments/run_static_baseline.py --paths A B --competing-rates 0 5 9 --trials 5 --duration 15 --queue 100
-
-# M3 controller-installed static reproduction (10 planned rows, expected (calculated))
-/usr/bin/python3 experiments/run_controller_campaign.py --mode static --trials 5
-
-# M4 one-trial-per-variant pilot (5 planned rows, expected (calculated))
-/usr/bin/python3 experiments/run_controller_campaign.py --mode pilot
-
-# M5 E1–E4 campaign (110 planned rows, expected (calculated)); allow about 45 minutes
-/usr/bin/python3 experiments/run_controller_campaign.py --mode m5 --trials 5
-```
-
-The campaign prints the CSV and raw-trial directory at completion. Raw CSVs are written to `results/raw/`; each controller trial has a manifest, ping/iperf output, queue captures, counter records, controller event logs, cookie-cleanup checks, and `controller_overhead.csv`. The shared columns and null rules are in [the data dictionary](results/DATA_DICTIONARY.md).
-
-## Analysis
-
-After a campaign has a completed metadata record, run the reproducible summaries and figures with the analysis environment:
-
-```bash
-~/.local/share/smartte/analysis-py310/bin/python analysis/analyse_results.py --csv results/raw/m5_campaign_<timestamp>.csv
-~/.local/share/smartte/analysis-py310/bin/python analysis/plot_results.py --csv results/raw/m5_campaign_<timestamp>.csv
-```
-
-Replace `<timestamp>` with the actual completed CSV name. Without `--csv`, the scripts choose the newest campaign whose metadata says it completed all 110 planned rows. Outputs are written to `results/processed/<campaign>/`, with publication-sized PNG and PDF figures. Confidence intervals use a two-sided Student-t interval with sample standard deviation; they are descriptive, and the project does not claim statistical significance without a specified test.
-
-## Reproduction and troubleshooting
-
-- Clear stale Mininet state with `mn -c` before and after a run.
-- If port 6653 is occupied, stop the process using it before launching a controller. The campaign checks this port before each trial.
-- If the controller fails before four switch connections, inspect `controller_process.log` in the trial folder and check that OS-Ken uses the isolated Python 3.10 environment.
-- If Eventlet prints its deprecation warning, the warning is recorded; OS-Ken still starts in the verified environment. The launcher selects the Eventlet hub before the app manager starts.
-- If a queue is not visible as 100 on all eight core interfaces, do not treat the trial as verified. Inspect its saved `tc` output; the runner marks an unverified queue trial excluded.
-- Mininet can print an HTB quantum warning for 100 Mbps access links. The recorded trials completed; the warning and separate access queues are discussed in `docs/PROGRESS.md`.
-- M5 rows with a non-`ok` status remain in the CSV. Read the notes and raw files before excluding or interpreting one.
-
-## Report material
-
-- [Verified bibliography](report/references.md) and [literature notes](report/literature_notes.md)
-- [Part A draft](report/part_a_draft.md), [Part B simulation draft](report/part_b_simulation.md), and [Part C discussion draft](report/part_c_alignment.md)
-- [Viva guide](report/viva_guide.md), [screenshot checklist](report/screenshot_checklist.md), and [team contribution template](report/team_contribution.md)
-
-The Part A/B/C files are source drafts marked for student rewriting. The screenshot checklist explicitly records that no screenshots are included yet.
-
-## Repository map
+## Repository layout
 
 | Path | Purpose |
 |---|---|
-| `topology/` | Shared path/port spec and Mininet topology |
-| `controller/` | Static, B, and C rules, OS-Ken launcher, telemetry and cleanup |
-| `experiments/` | Static baseline and controller campaign runners |
-| `tests/` | Pure Python decision and runner-helper tests |
-| `results/raw/` | Per-run CSVs and per-trial raw evidence |
-| `results/processed/` | Generated summaries, quality tables, and charts |
-| `analysis/` | Reproducible CSV analysis and plot scripts |
-| `report/` | Verified bibliography, literature notes, draft report material, viva and screenshot guides |
-| `docs/PROGRESS.md` | Milestone status, evidence links, and open risks |
+| [topology/](topology/) | Diamond topology and shared host/path/port specification. |
+| [controller/](controller/) | OS-Ken launcher, controller, and B/C policy helpers. |
+| [experiments/](experiments/) | Static-baseline and controller-campaign runners. |
+| [tests/](tests/) | Policy and runner-helper unit tests. |
+| [results/raw/](results/raw/) | Raw CSVs, metadata, and per-trial evidence. |
+| [results/processed/](results/processed/) | Summaries, audits, and generated figures. |
+| [analysis/](analysis/) | Analysis and plotting scripts. |
+| [report/](report/) | Drafts, bibliography, viva guide, and contribution template. |
+| [docs/PROGRESS.md](docs/PROGRESS.md) | Milestone evidence and environment notes. |
 
-## Suggested division for three teammates
+## Run, test, and analyse
 
-Use [the contribution template](report/team_contribution.md) to record actual ownership. A useful split is topology/queue/path evidence, controller/policy/tests, and analysis/literature/report preparation. Keep interfaces explicit: `topology/spec.py` defines paths and ports, the stable CSV schema is defined in `results/DATA_DICTIONARY.md`, and the controller policy is selected through its configuration fields. Everyone should understand the whole system for the individual viva.
+Run privileged network commands from the repository root. Each campaign starts a fresh Mininet network and cleanup uses mn -c.
 
-## Student completion tasks
+~~~bash
+# Interactive static topology
+sudo /usr/bin/python3 topology/datacenter_topology.py --path A --competing off --queue 100
 
-Capture the original screenshots listed in [the screenshot checklist](report/screenshot_checklist.md); rewrite the Part A, Part B, and Part C drafts in your own words; confirm the course’s similarity and AI-use declaration requirements; fill in actual team contributions; and review all report conclusions against the final raw CSV and figures.
+# Static matrix: A/B x 0/5/9 Mbps UDP x five trials
+sudo /usr/bin/python3 experiments/run_static_baseline.py \
+  --paths A B --competing-rates 0 5 9 --trials 5 --duration 15 --queue 100
+
+# Controller campaigns
+sudo /usr/bin/python3 experiments/run_controller_campaign.py --mode static --trials 5
+sudo /usr/bin/python3 experiments/run_controller_campaign.py --mode pilot
+sudo /usr/bin/python3 experiments/run_controller_campaign.py --mode m5 --trials 5
+
+# Pure Python tests; does not require Mininet
+python3 -m unittest discover -s tests -v
+~~~
+
+The runner starts OS-Ken with its configured interpreter, so install the controller environment first. Regenerate outputs:
+
+~~~bash
+~/.local/share/smartte/analysis-py310/bin/python analysis/analyse_results.py \
+  --csv results/raw/m5_campaign_20261011T115819Z.csv
+~/.local/share/smartte/analysis-py310/bin/python analysis/plot_results.py \
+  --csv results/raw/m5_campaign_20261011T115819Z.csv
+~~~
+
+Without --csv, both scripts select the newest completed 110-row M5 campaign and write under results/processed/<CSV-stem>/.
+
+## Experimental methodology
+
+Principal comparisons use 10 Mbps core links, 100 Mbps access links, a 100-packet core queue verified on eight directed core interfaces, static ARP, and IPv6 control-frame suppression. TCP is receiver-side iperf3; RTT/loss comes from ping; utilization comes from OVS/OpenFlow port counters. The first received RTT sample is omitted from RTT summaries as a precaution but remains in the ping-loss denominator.
+
+| Experiment | Design |
+|---|---|
+| **E1 — baseline** | Static, B, and C without competing UDP; five trials each. |
+| **E2 — congestion** | Path-A UDP at 5 or 9 Mbps; Static A/B references and B/C beginning on A; five trials/scenario. |
+| **E3 — bursty/sensitivity** | Three 5-second, 9 Mbps Path-A UDP bursts from seconds 5, 15, and 25 of a 30-second TCP run; B/C variants plus static references. |
+| **E4 — link failure** | s2-s4 is disabled one second into a 15-second TCP run; all policies begin on A. |
+
+M5 has 110 planned rows: E1 15, E2 40, E3 40, E4 15. A trial preserves its manifest, iperf/ping output, queue audit, counters, controller events, and cleanup checks. Missing required measurements remain in the raw CSV with a status and note.
+
+## Results and discussion
+
+The completed committed campaign is **m5_campaign_20261011T115819Z**: 110 recorded/planned rows, 105 ok, 5 failed, 0 aborted, and 0 excluded. Generic processed summaries include only ok rows; E4 retains all outcomes. The 95% Student-t intervals are descriptive—no hypothesis-significance test was performed.
+
+- E2, 5 Mbps competing UDP: mean TCP receiver throughput was 5.946 Mbps for Static-on-A versus 9.465 Mbps for Static-on-B (five trials each), demonstrating the intended contention contrast.
+- E1: B averaged 16 successful path changes/trial, while reference C averaged 3. This is an observed behavior of this implementation, not a general result for centralized TE.
+- E4: all five Static trials failed after the Path-A outage and have no TCP throughput measurement. B and C each successfully rerouted once in every trial; their mean counter-confirmed recovery times were 0.193 s and 1.005 s, respectively. The event audit confirms that neither policy had successfully changed before the failure.
+
+The raw path_changes field can count rejected requests for an unavailable path. Use [path_change_audit.csv](results/processed/m5_campaign_20261011T115819Z/path_change_audit.csv) for successful transitions. Complete values, CIs, quality audit, E4 outcomes, and figures are in [results/processed/m5_campaign_20261011T115819Z/](results/processed/m5_campaign_20261011T115819Z/). These are archived measurements, not live telemetry.
+
+## Limitations
+
+- A four-host/four-switch emulation with one TCP pair and one optional UDP pair does not establish data-center-scale behavior.
+- Emulated queues, time, and host resources differ from hardware networks and production control planes.
+- WSL2 requires privileged execution and produced the recorded access-link HTB warning; Ryu compatibility was inadequate in this environment.
+- E4 is a single-link diagnostic, not a broad resilience evaluation. It also records rejected route-selection attempts after a failed path becomes unavailable, so decisions must be separated from successful transitions.
+- Queue occupancy and packet-level transient behavior were not continuously measured; missing data was retained rather than imputed.
+
+## Reproducibility and data provenance
+
+Raw evidence is intentionally retained. [metadata.json](results/raw/m5_campaign_20261011T115819Z/metadata.json) records campaign commit 58acacd120a1b8b85b81d8a46c1f273479d18942 and git_dirty: true. Exact reproduction from that commit alone is therefore not claimed: uncommitted controller/campaign state existed at capture time.
+
+The source CSV is [results/raw/m5_campaign_20261011T115819Z.csv](results/raw/m5_campaign_20261011T115819Z.csv); per-trial evidence is in the sibling directory. [analysis_metadata.json](results/processed/m5_campaign_20261011T115819Z/analysis_metadata.json) records its SHA-256, row counts, and aggregation rules. [results/DATA_DICTIONARY.md](results/DATA_DICTIONARY.md) defines the fields and null rules. Do not overwrite raw data when rerunning; create a new campaign.
+
+## Team contributions to verify
+
+Git history is supporting evidence only: it contains commits by ninjahattori2341 and M2 static-experiment commits by AAYUSH, but no authoritative two-person work log. The following is a **proposed split for verification**, not a completed-work claim:
+
+| Member | Proposed responsibility |
+|---|---|
+| Aayush Santosh Singh — 25BCE2341 | Controller/algorithm work, OpenFlow integration, topology configuration, experiment execution, and technical debugging. |
+| Ashwin Krishna G — 25BDS0038 | Literature review, comparative result interpretation/visualization, report preparation, and documentation. |
+| Both | System design, testing/validation, final report review, and viva preparation. |
+
+Before submission, confirm or replace this proposal with evidence in [report/team_contribution.md](report/team_contribution.md).
+
+## Academic references and related work
+
+[report/references.md](report/references.md) contains the verified bibliography, including OpenFlow, Mininet, Hedera, MicroTE, and network-update literature. The Part A/B/C drafts are supporting course material; this README does not replace them.
+
+## Academic-use statement
+
+This is an academic case study. Retain provenance, attribute sources, and follow course rules on authorship, similarity, and AI-use declarations.
