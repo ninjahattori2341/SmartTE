@@ -44,7 +44,7 @@ flowchart LR
   s3 -->|10 Mbps, 10 ms| s4
   s4 -->|100 Mbps, 1 ms| h2["h2 10.0.0.2"]
   s4 -->|100 Mbps, 1 ms| h4["h4 10.0.0.4"]
-  c["OS-Ken controller"] -.->|OpenFlow 1.3| s1
+  c["OS-Ken controller (OpenFlow 1.3)"] -.-> s1
   c -.-> s2
   c -.-> s3
   c -.-> s4
