@@ -6,9 +6,9 @@ The following division of work has been confirmed by the team. Git history, code
 
 | Student name / ID | Responsibilities | Supporting project evidence | Report role |
 |---|---|---|---|
-| Aayush Santosh Singh — 25BCE2341 | Controller and algorithm implementation; OpenFlow integration; topology configuration; experiment execution; technical debugging. | `controller/`, `topology/`, `experiments/`, `tests/`, and raw experiment evidence. | Technical implementation review and viva preparation. |
-| Ashwin Krishna G — 25BDS0038 | Literature review; comparative experiment-result interpretation and visualization; report preparation and documentation. | `report/`, `analysis/`, processed results, figures, and documentation. | Literature, analysis, and documentation review. |
-| Both | System design discussions; testing and validation; final report review; viva preparation. | Shared repository review, raw/processed results, and final report materials. | Final review. |
+| Aayush Santosh Singh — 25BCE2341 | Systems implementation; controller and routing-policy development; OpenFlow integration; topology setup; experiment execution; debugging; and technical validation within his assigned domain. | `controller/`, `topology/`, `experiments/`, `tests/`, and raw experiment evidence. | Technical implementation review and viva preparation. |
+| Ashwin Krishna G — 25BDS0038 (SPOC) | Literature review; comparative analysis; results interpretation and visualization; and report documentation within his assigned domain. | `report/`, `analysis/`, processed results, figures, and documentation. | Literature, analysis, and documentation review. |
+| Both | Overall system design, integration, testing, review of project findings, and preparation for the final presentation and viva. | Shared repository review, raw/processed results, and final report materials. | Final review. |
 
 
 ## Shared interfaces

@@ -106,6 +106,9 @@ These setup commands are documented from project evidence; they were not re-exec
 | [results/processed/](results/processed/) | Summaries, audits, and generated figures. |
 | [analysis/](analysis/) | Analysis and plotting scripts. |
 | [report/](report/) | Drafts, bibliography, viva guide, and contribution template. |
+| [report_latex/](report_latex/) | Editable final report source, evidence, figures, and standalone report export. |
+| [presentation/](presentation/) | Original supplied deck, editable PPTX, PDF export, and rebuild script. |
+| [submission/](submission/) | Final standalone report and presentation PDFs plus the report-first combined PDF and manifest. |
 | [docs/PROGRESS.md](docs/PROGRESS.md) | Milestone evidence and environment notes. |
 
 ## Run, test, and analyse
@@ -183,9 +186,9 @@ The team confirms the following division of work. Git history remains supporting
 
 | Member | Responsibilities |
 |---|---|
-| Aayush Santosh Singh — 25BCE2341 | Controller/algorithm implementation, OpenFlow integration, topology configuration, experiment execution, and technical debugging. |
-| Ashwin Krishna G — 25BDS0038 | Literature review, comparative result interpretation/visualization, report preparation, and documentation. |
-| Both | System design, testing/validation, final report review, and viva preparation. |
+| Aayush Santosh Singh — 25BCE2341 | Systems implementation; controller and routing-policy development; OpenFlow integration; topology setup; experiment execution; debugging; and technical validation within his assigned domain. |
+| Ashwin Krishna G — 25BDS0038 (SPOC) | Literature review; comparative analysis; results interpretation and visualization; and report documentation within his assigned domain. |
+| Both | Overall system design, integration, testing, review of project findings, and preparation for the final presentation and viva. |
 
 The detailed contribution record is maintained in [report/team_contribution.md](report/team_contribution.md).
 
@@ -196,3 +199,7 @@ The detailed contribution record is maintained in [report/team_contribution.md](
 ## Academic-use statement
 
 This is an academic case study. Retain provenance, attribute sources, and follow course rules on authorship, similarity, and AI-use declarations.
+
+## Final submission files
+
+The standalone report, standalone presentation, and combined report-first submission are in [submission/](submission/), with page counts and source provenance in its manifest. Editable LaTeX and presentation sources are in [report_latex/](report_latex/) and [presentation/](presentation/). The presentation rebuild script uses the preserved original PDF and the processed M5 campaign data; its PPTX keeps the revised results and literature slides editable, while slides originating from the PDF remain page images.

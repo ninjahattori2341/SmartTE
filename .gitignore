@@ -10,3 +10,16 @@ __pycache__/
 
 # Temporary scratch files
 logs/scratch/
+
+# Generated report build intermediates and local-only tool binary
+report_latex/build/
+report_latex/main.pdf
+report_latex/tools/tectonic.exe
+report_latex/report_latex/
+report_latex/*_contact.png
+
+# Generated presentation preview and isolated validation outputs
+presentation/results_slide.png
+presentation/*_contact.png
+presentation/*_check.png
+presentation/_validation_processed/

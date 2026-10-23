@@ -1,6 +1,8 @@
 # Verified references
 
-**Verification status: VERIFIED BY INSPECTION.** Metadata and the cited claims below were checked on 2026-10-11 against linked RFC Editor/ONF/publisher or conference pages, author-hosted papers, or a trusted bibliographic index. The list contains 12 peer-reviewed conference/journal papers ([5]–[16]) and two original standards documents ([1], [4]); informational RFCs and non-peer-reviewed background articles are separately identified and are not counted toward that total.
+**Verification status: VERIFIED BY INSPECTION.** The initial bibliography snapshot was checked on 2026-10-11 against linked RFC Editor/ONF/publisher or conference pages, author-hosted papers, or trusted indexes. At that date it contained 18 sources, including 12 peer-reviewed conference/journal papers ([5]–[16]), two original standards documents ([1], [4]), two informational RFCs, one workshop paper, and one non-peer-reviewed editorial article.
+
+**Compiled-report update (2026-10-23):** This bibliography now includes the verified CONGA conference paper [19], for 19 sources total: 13 peer-reviewed conference or journal papers, two original protocol/standards documents, two informational RFCs, one workshop paper not counted in the peer-reviewed total, and one foundational editorial article. The eligible-paper/standard total is 15.
 
 ## IEEE-style bibliography
 
@@ -39,6 +41,8 @@
 [17] B. Lantz, B. Heller, and N. McKeown, “A network in a laptop: Rapid prototyping for software-defined networks,” in *Proc. 9th ACM Workshop on Hot Topics in Networks (HotNets-IX)*, 2010. [Online]. Available: [HotNets paper](https://conferences.sigcomm.org/hotnets/2010/papers/a19-lantz.pdf). **Type:** conference workshop paper; not counted in the minimum above. **Verified:** HotNets 2010 program and paper.
 
 [18] N. McKeown, T. Anderson, H. Balakrishnan, G. Parulkar, L. Peterson, J. Rexford, S. Shenker, and J. Turner, “OpenFlow: Enabling innovation in campus networks,” *ACM SIGCOMM Computer Communication Review*, vol. 38, no. 2, pp. 69–74, 2008, doi: [10.1145/1355734.1355746](https://doi.org/10.1145/1355734.1355746). [Online]. Available: [Princeton publication record](https://collaborate.princeton.edu/en/publications/openflow-enabling-innovation-in-campus-networks/). **Type:** foundational background article. The paper itself labels this CCR article as an editorial note and says it was not peer reviewed; it is **not** counted toward the peer-reviewed minimum. **Verified:** paper front matter, Princeton metadata, and DOI.
+
+[19] M. Alizadeh, T. Edsall, S. Dharmapurikar, R. Vaidyanathan, K. Chu, A. Fingerhut, V. T. Lam, F. Matus, R. Pan, N. Yadav, and G. Varghese, “CONGA: Distributed Congestion-Aware Load Balancing for Datacenters,” in *Proc. ACM SIGCOMM*, 2014, pp. 503–514, doi: [10.1145/2619239.2626316](https://doi.org/10.1145/2619239.2626316). [Online]. Available: [ACM SIGCOMM 2014 program](https://conferences.sigcomm.org/sigcomm/2014/program.php) and [author-hosted paper](https://people.csail.mit.edu/alizadeh/papers/conga-sigcomm14.pdf). **Type:** peer-reviewed conference paper. **Verified:** conference program lists the title and authors; the full paper supports its distributed congestion-aware design.
 
 ## Source use note
 
