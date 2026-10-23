@@ -19,7 +19,7 @@ The report was compiled and visually checked with Tectonic. With Tectonic instal
 tectonic -X compile --outdir build/final main.tex
 ~~~
 
-The local Windows build used a locally available `tools/tectonic.exe` with the same options. The generated 17-page PDF is `SmartTE_report.pdf`; it includes the confirmed team contribution statement on the title page. Tectonic emitted non-fatal Fontconfig and bibliography-rerun warnings, but produced the PDF successfully. The screenshot PDF was rendered with PyMuPDF and its seven pages were visually inspected. Figures 1 and 2 are live terminal captures; Figures 3--11 are archived; Appendix Figures A1--A2 are earlier milestone evidence.
+The local Windows build used a locally available `tools/tectonic.exe` with the same options. The generated 18-page PDF is `SmartTE_report.pdf`; it includes the confirmed team contribution statement on the title page and a detailed contributions section. Tectonic emitted non-fatal Fontconfig and bibliography-rerun warnings, but produced the PDF successfully. The screenshot PDF was rendered with PyMuPDF and its seven pages were visually inspected. Figures 1 and 2 are live terminal captures; Figures 3--11 are archived; Appendix Figures A1--A2 are earlier milestone evidence.
 
 The checked-in report figures are derived from the processed M5 campaign. Regenerating plots may update the analysis metadata and plot outputs under `results/processed/`; inspect the diff before retaining those changes.
 
