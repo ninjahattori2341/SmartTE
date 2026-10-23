@@ -44,7 +44,7 @@ flowchart LR
   s3 -->|10 Mbps, 10 ms| s4
   s4 -->|100 Mbps, 1 ms| h2["h2 10.0.0.2"]
   s4 -->|100 Mbps, 1 ms| h4["h4 10.0.0.4"]
-  c["OS-Ken controller"] -. OpenFlow 1.3 .-> s1
+  c["OS-Ken controller"] -.->|OpenFlow 1.3| s1
   c -.-> s2
   c -.-> s3
   c -.-> s4
@@ -181,7 +181,7 @@ The source CSV is [results/raw/m5_campaign_20261011T115819Z.csv](results/raw/m5_
 
 The team confirms the following division of work. Git history remains supporting evidence, rather than the sole basis for attribution.
 
-| Member | Confirmed responsibility |
+| Member | Responsibilities |
 |---|---|
 | Aayush Santosh Singh — 25BCE2341 | Controller/algorithm implementation, OpenFlow integration, topology configuration, experiment execution, and technical debugging. |
 | Ashwin Krishna G — 25BDS0038 | Literature review, comparative result interpretation/visualization, report preparation, and documentation. |

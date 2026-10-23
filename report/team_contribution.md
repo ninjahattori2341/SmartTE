@@ -4,7 +4,7 @@ The following division of work has been confirmed by the team. Git history, code
 
 ## Team members
 
-| Student name / ID | Confirmed responsibilities | Supporting project evidence | Report role |
+| Student name / ID | Responsibilities | Supporting project evidence | Report role |
 |---|---|---|---|
 | Aayush Santosh Singh — 25BCE2341 | Controller and algorithm implementation; OpenFlow integration; topology configuration; experiment execution; technical debugging. | `controller/`, `topology/`, `experiments/`, `tests/`, and raw experiment evidence. | Technical implementation review and viva preparation. |
 | Ashwin Krishna G — 25BDS0038 | Literature review; comparative experiment-result interpretation and visualization; report preparation and documentation. | `report/`, `analysis/`, processed results, figures, and documentation. | Literature, analysis, and documentation review. |
